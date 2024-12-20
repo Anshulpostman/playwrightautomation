@@ -26,7 +26,7 @@ test('valid login test case' , async  ({page}) => {
 })
 
   //login with invaid Email id and valid password
-  test.only("Invalid email and valid password" , async function({page}){
+  test("Invalid email and valid password" , async function({page}){
 
     await page.goto("https://devecg.resourcifi.tech/login")
 
@@ -58,6 +58,40 @@ test('valid login test case' , async  ({page}) => {
 })
 
 // Login with valid email id and invalid password
+
+test.only("login with valid email id and invalid password" , async function({page}){
+
+    await page.goto("https://devecg.resourcifi.tech/login");
+
+    await page.locator("//input[contains(@placeholder,'Email Address')]").type("superadmin@gmail.com");
+
+    await page.locator("//input[@type='password']").type("superrAdmin123");
+
+    await page.locator("//span[normalize-space()='Log In']").click();
+
+    const erroremailloactor= await page.locator("//div[contains(text(),'Invalid email or password')]")
+
+    const messageloactor=await erroremailloactor.textContent();
+    if 
+
+        (messageloactor==="Invalid email or password"){
+
+            console.log("test case: password is not correct")
+        }
+
+            else{ 
+
+                console.log("Test case: password is valid")
+
+            }
+
+
+    expect(messageloactor).toBe("Invalid email or password");
+
+
+})
+
+//
 
 
 
