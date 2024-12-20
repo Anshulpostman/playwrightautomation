@@ -25,9 +25,8 @@ test('valid login test case' , async  ({page}) => {
 
 })
 
-  //login with valid user id and pwd 
-
-  test.only("valid email and invalid password" , async function({page}){
+  //login with invaid Email id and valid password
+  test.only("Invalid email and valid password" , async function({page}){
 
     await page.goto("https://devecg.resourcifi.tech/login")
 
@@ -57,6 +56,8 @@ test('valid login test case' , async  ({page}) => {
       expect(errormessage).toBe(false);
       
 })
+
+// Login with valid email id and invalid password
 
 
 
