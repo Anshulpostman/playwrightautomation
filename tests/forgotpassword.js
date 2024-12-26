@@ -9,6 +9,7 @@ class Forgotpassword{
     this.emailinput="//input[contains(@placeholder,'Email Address')]";
     this.sendemailbutton="//span[normalize-space()='Send Email']";
     this.successmessage="//body/div/div[1]";
+    
    // Example of an invalid email format
    
   }
@@ -42,7 +43,8 @@ class Forgotpassword{
 }
 
 
-// Define class for Add group
+// Define class for Add 
+
   class Addgroup{
 
     constructor(page){
@@ -61,15 +63,22 @@ class Forgotpassword{
         this.groupname="//input[@placeholder='Enter group name']";
         this.emailaddress="//input[@placeholder='Enter your email address (Press Enter to add additional email addresses)']";
         this.updatecreate="//div[contains(text(),'Create')]";
+        this.browseimage="//input[@type='file']";
+        this.filePath="C:/Users/RNF-User/Documents/pic/image1.png";
+        this.errormessagegroup="(//div[contains(text(),'This is a required field.')])[1]";
+                //this.emptygroupmessage="//*[@id="modal_body"]/div/div[3]/div/div[2]/div/div";
+        //this.emptyemailaddress="/html[1]/body[1]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/div[5]/div[1]/div[1]/span[1]/div[1]/div[1]";
+        
     }
 
-            async navigate(url){
-            await this.page.goto(url)
-           }
+             async navigate(url){
+             await this.page.goto(url)
+            }
 
            async fillEmail(email) {
             if (!email) throw new Error('Email is required');
             await this.page.fill(this.emailinputAddress, email);
+            await this.page.waitForTimeout(1000);
         }
 
             async fillPassword(password) {
@@ -87,10 +96,12 @@ class Forgotpassword{
 
           async clickgroupmanagement(){
           await this.page.click(this.groupmanagement)
+          await this.page.waitForTimeout(1000);
           }
 
           async clickaddgroup(){
           await this.page.click(this.addgroupofcompany)
+          await this.page.waitForTimeout(200);
           }
 
           async clickcancelbutton(){
@@ -99,6 +110,7 @@ class Forgotpassword{
 
           async browseimageclick(){
             await this.page.click(this.browseimage);
+            await this.page.waitForTimeout(200);
           }
 
           async Entergroupname(){
@@ -120,14 +132,35 @@ class Forgotpassword{
           async login  (email , password){
 
             await this.navigate(this.urlone);
-            await this.fillEmail("testing@zis1bxhm.mailosaur.net");
+            await this.fillEmail("testing@zis1bxhm.mailosaur.net" );
+            await this.page.waitForTimeout(200);
             await this.fillPassword("Anshul@12345678");
+            await this.page.waitForTimeout(200);
             await this.clickloginbutton();
-            
-            
-          }
-         
+            await this.page.waitForTimeout(200);
+
+           }
+
+          
+           async uploadimage() {
+            if (!this.filePath) throw new Error("File path is not defined");
+            await this.page.setInputFiles(this.browseimage, this.filePath);
+            await this.page.waitForTimeout(5000);
+          
         }
+
+        // async blankEmailaddress(){
+        //   await this.page.click(this.emptyemailaddress);
+        // }
+
+        async blankgorupmessage(){
+        await this.page.click(this.errormessagegroup);
+        await this.page.waitForTimeout(10000);
+        }
+          }
+        
+          
+        
     
   
 

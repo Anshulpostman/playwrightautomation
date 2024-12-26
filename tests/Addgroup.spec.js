@@ -75,9 +75,9 @@
             }
 
         });
-        // verify the validation message shows correct if we user click on create without upload anything.
+        // verify the validation message shows correct if we user click on create without upload and enter anything.
 
-           test.only("verify all mandatory message" , async ({page})=>{
+           test("verify all mandatory message" , async ({page})=>{
            const addgroup=new Addgroup(page)
            await addgroup.login();
            await addgroup.clickgroupmanagement();
@@ -125,10 +125,106 @@
            else{
             console.log("Messaeg is not correct")
            }
-            
-
 
         });
+            
+           
+        // Valiadte if user only upload image and did not enter any other field and click on create
+
+        test("Validate if user upload only image" , async ({page})=>{
+
+
+            const addgroup=new Addgroup(page);
+            await addgroup.login();
+            await addgroup.clickgroupmanagement();
+            await addgroup.clickaddgroup();
+           
+            const successfullupload=await addgroup.uploadimage();
+            const imageVisible  = await page.locator("(//img[@alt='Selected'])[1]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
+             if(successfullupload===imageVisible)
+              {
+              console.log("image upload successfully");
+              expect(successfullupload).toBe(imageVisible);
+              }
+               else{
+               console.log("image not uplaod successfully");
+               }
+
+               const requiredmessage=await addgroup.clickupdatecreate();
+               const messagevisible= await page.locator("(//div[contains(text(),'This is a required field.')])[1]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
+               const emailerrorvisible=await page.locator("//div[contains(text(),'Atleast one email is required')]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
+             
+               if (requiredmessage===messagevisible) {
+                console.log("This is a required field");
+                expect(requiredmessage).toBe(messagevisible);
+            } else {
+                console.log("Message is not correct");
+            }
+
+            if (requiredmessage===emailerrorvisible) {
+                console.log("Atleast one email is required");
+                expect(requiredmessage).toBe(emailerrorvisible);
+            } else {
+                console.log("Message is not correct");
+            }
+          
+        });
+        
+        // validate if user browse image and enter groupname and click on create.
+
+            test("click create after uplaod image and enter groupname"  , async ({page})=>{
+
+            const addgroup=new Addgroup(page);
+            await addgroup.login();
+            await addgroup.clickgroupmanagement();
+            await addgroup.clickaddgroup();
+            await addgroup.uploadimage();
+            await addgroup.Entergroupname("grp1");
+            
+            await addgroup.clickupdatecreate();
+            const emailerrorvisible=await page.locator("//div[contains(text(),'Atleast one email is required')]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
+            const requiredmessage=await addgroup.clickupdatecreate();
+            //const imageVisible  = await page.locator("(//img[@alt='Selected'])[1]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
+            
+            if (requiredmessage===emailerrorvisible) {
+                console.log("Atleast one email is required");
+                expect(requiredmessage).toBe(emailerrorvisible);
+            } else {
+                console.log("Message is not correct");
+            }
+        });
+
+         //validate if user created group sucessfully and make sure that is visible on the page.
+         
+         test.only("validate if user created group sucessfully and make sure that is visible on the page"  , async ({page})=>{
+
+            const addgroup=new Addgroup(page);
+            await addgroup.login();
+            await addgroup.clickgroupmanagement();
+            await addgroup.clickaddgroup();
+            await addgroup.uploadimage();
+            await addgroup.Entergroupname("grp1");
+            await addgroup.fillEmail("Anshul@yopmail.com");
+            await addgroup.clickupdatecreate();
+            await addgroup.navigate("https://devecg.resourcifi.tech/super/group");
+            console.log("user redirect")
+
+
+        } )
+
+              
+             
+                                  
+                                       
+           
+
+        
+           
+            
+           
+
+
+       
 
         
 
