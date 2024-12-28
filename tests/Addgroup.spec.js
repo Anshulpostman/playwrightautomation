@@ -199,15 +199,33 @@
          test.only("validate if user created group sucessfully and make sure that is visible on the page"  , async ({page})=>{
 
             const addgroup=new Addgroup(page);
+                    
+            await addgroup.navigate("https://devecg.resourcifi.tech/login");
             await addgroup.login();
             await addgroup.clickgroupmanagement();
             await addgroup.clickaddgroup();
             await addgroup.uploadimage();
-            await addgroup.Entergroupname("grp1");
-            await addgroup.fillEmail("Anshul@yopmail.com");
-            await addgroup.clickupdatecreate();
-            await addgroup.navigate("https://devecg.resourcifi.tech/super/group");
-            console.log("user redirect")
+             await addgroup.Entergroupname("grp13")
+             await addgroup.entergrpemail("Anshul13@yopmail.com");
+             await page.keyboard.press( 'Enter');
+             await addgroup.clickupdatecreate();
+             await addgroup.dashboardnavigate("https://devecg.resourcifi.tech/super/group");
+             
+            const textpresent= await page.waitForSelector('text=grp13', { timeout: 5000 });
+             const textIsVisible = await page.locator('text=grp13').first().isVisible();
+
+             if(textIsVisible){
+
+                 console.log("text is present in page")
+
+                expect(textIsVisible).toBeTruthy();
+               
+             }
+             else{
+
+                console.log("text is not present")
+             }
+             
 
 
         } )

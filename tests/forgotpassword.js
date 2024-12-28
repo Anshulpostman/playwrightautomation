@@ -56,6 +56,7 @@ class Forgotpassword{
         this.emailinputAddress="//input[contains(@placeholder,'Email Address')]";
         this.passwordinput="//input[@type='password']";
         this.loginbutton="//button[@type='button']";
+
         this.groupmanagement="//div[contains(text(),'Group Management')]";
         this.addgroupofcompany="//div[contains(text(),'Add Group')]";
         this.cancelclick="//body/div/div/div/div/div/div/div/div[2]/div[1]";
@@ -66,6 +67,7 @@ class Forgotpassword{
         this.browseimage="//input[@type='file']";
         this.filePath="C:/Users/RNF-User/Documents/pic/image1.png";
         this.errormessagegroup="(//div[contains(text(),'This is a required field.')])[1]";
+        this.addnavigateurl='https://devecg.resourcifi.tech/super/group';
                 //this.emptygroupmessage="//*[@id="modal_body"]/div/div[3]/div/div[2]/div/div";
         //this.emptyemailaddress="/html[1]/body[1]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/div[5]/div[1]/div[1]/span[1]/div[1]/div[1]";
         
@@ -75,11 +77,21 @@ class Forgotpassword{
              await this.page.goto(url)
             }
 
+            async dashboardnavigate(addnavigateurl){
+              await this.page.goto(addnavigateurl)
+             }
+
            async fillEmail(email) {
             if (!email) throw new Error('Email is required');
             await this.page.fill(this.emailinputAddress, email);
             await this.page.waitForTimeout(1000);
         }
+
+        async entergrpemail(email) {
+          if (!email) throw new Error('Email is required');
+          await this.page.fill(this.emailaddress, email);
+          await this.page.waitForTimeout(1000);
+      }
 
             async fillPassword(password) {
             if (!password) throw new Error('Password is required');
@@ -113,8 +125,9 @@ class Forgotpassword{
             await this.page.waitForTimeout(200);
           }
 
-          async Entergroupname(){
-            await this.page.click(this.groupname);
+          async Entergroupname(groupName){
+            await this.page.fill(this.groupname , groupName);
+            await this.page.waitForTimeout(200);
           }
 
           async validEmailaddress(){
@@ -127,14 +140,15 @@ class Forgotpassword{
 
           async clickupdatecreate(){
             await this.page.click(this.updatecreate);
+            await this.page.waitForTimeout(1000)
           }
          
           async login  (email , password){
 
             await this.navigate(this.urlone);
-            await this.fillEmail("testing@zis1bxhm.mailosaur.net" );
+            await this.fillEmail("superadmin@gmail.com" );
             await this.page.waitForTimeout(200);
-            await this.fillPassword("Anshul@12345678");
+            await this.fillPassword("superAdmin123");
             await this.page.waitForTimeout(200);
             await this.clickloginbutton();
             await this.page.waitForTimeout(200);
