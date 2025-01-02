@@ -1,5 +1,12 @@
-const Addcom=require('./Addcom')
+const  {ECGcomp}  = require('./Addcompanyfunction');
+
+//console.log('Imported Addcompanyfun:', Addcompanyfun);
+const Addcom=require('./Addcom');
+//const Addgroup=require('./Addcom')
 const{test , expect}= require('@playwright/test')
+
+
+
 
 test("click on Add company button" , async ({page})=>{
     const newaddcomp=new Addcom(page);
@@ -14,11 +21,23 @@ test("click on Add company button" , async ({page})=>{
 
     //To be verify all vaidation message if any of the fields is not entered.
 
-    test("Verify all validation message" , async  ({page})=>{
-
-        const addcom= new Addcom(page);
+    test.only("Verify all validation message" , async  ({page})=>{
         
-
-
-
-    })
+        const newaddcom= new Addcom(page);
+        await newaddcom.login();
+        await newaddcom.clickgroupmanagement();
+        const grp13=await page.locator("//p[normalize-space()='grp13']").click();
+        await page.waitForTimeout(1000);
+        await newaddcom.clickAddcompanybutton();
+        await newaddcom.clickAddcompanyinfo();
+        
+        await ECGcomp(page);
+        
+        
+              
+  
+  
+                
+            
+            
+})
