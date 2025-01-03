@@ -83,8 +83,10 @@ class Forgotpassword{
               await this.page.goto(addnavigateurl)
              }
              async grp13dashboardurl(addcompnavigateurlgrp13){
-              await this.page.goto(addcompnavigateurlgrp13)
-             }
+              await this.page.goto(addcompnavigateurlgrp13);
+          }
+             
+             
 
            async fillEmail(email) {
             if (!email) throw new Error('Email is required');

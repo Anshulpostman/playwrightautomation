@@ -173,7 +173,7 @@ async function ECGcomp(page){
         // Enter message and submit information and checking validation message for phone number and select value from dropdown.
         
         
-        const Firstname=await page.locator("//input[@placeholder='Enter company name']").type("Name 6");
+        const Firstname=await page.locator("//input[@placeholder='Enter company name']").type("Name 21");
         await page.waitForTimeout(1000);
         const category=await page.locator("//div//div//div//div//div//div//div//div[3]//select[1]").selectOption({label : "Utility"});
         await page.waitForTimeout(1000);
@@ -181,11 +181,11 @@ async function ECGcomp(page){
         await page.waitForTimeout(1000);
         const typeofutility=await page.locator("//body//div//div//div//div//div//div//div[1]//div[1]//div[5]//select[1]").selectOption({label : "Gas"});
         await page.waitForTimeout(1000);
-        const userfirstname=await page.locator("//input[@placeholder='Enter first name']").fill("anshul16");
+        const userfirstname=await page.locator("//input[@placeholder='Enter first name']").fill("anshul31");
         await page.waitForTimeout(1000);
-        const userlastname=await page.locator("//input[@placeholder='Enter last name']").fill("ggghhhj");
+        const userlastname=await page.locator("//input[@placeholder='Enter last name']").fill("xyzz");
         await page.waitForTimeout(1000);
-        const validemail = await page.locator("//input[@placeholder='Enter email address']").fill("a9995865@yopmail.com");
+        const validemail = await page.locator("//input[@placeholder='Enter email address']").fill("gAkk56@yopmail.com");
         await page.waitForTimeout(1000);
         // const invalidemail=await page.locator("//input[@placeholder='Enter email address']").fill("a99@")
         // const blankemail =await page.locator("//input[@placeholder='Enter email address']").fill("");
@@ -205,6 +205,8 @@ async function ECGcomp(page){
         await page.waitForTimeout(1000);
         const country=await page.locator("#modal_body > div > form > div:nth-child(3) > div > div:nth-child(5) > select").selectOption({label : "United States"});
         await page.waitForTimeout(1000);
+
+        
 }
 
 
