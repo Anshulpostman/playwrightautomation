@@ -1,4 +1,5 @@
 const  {ECGcomp}  = require('./Addcompanyfunction');
+const  {Actionofeditgroup}  = require('./Addcompanyfunction');
 
 //console.log('Imported Addcompanyfun:', Addcompanyfun);
 const Addcom=require('./Addcom');
@@ -84,37 +85,28 @@ test("click on Add company button" , async ({page})=>{
     //Edit Test functionality of a company, change inactive to Active and inactive to Active
 
     test.only("Testing edit functionality" , async({page})=>{
+        await page.setViewportSize({ width: 1536, height: 864 }); // Full HD resolution
+
 
         const newedit= new Addcom(page);
          await newedit.login();
          await newedit.clickgroupmanagement();
-         const grp13=await page.locator("//p[normalize-space()='grp13']").click();
-         const Actionclick=await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
-         const editactionclick=await page.locator("//div[normalize-space()='Edit Company']").click();
-         await page.waitForTimeout(1000);
-         await page.locator("//input[@placeholder='Enter company name']").fill('');
-         await page.locator("//input[@placeholder='Enter company name']").fill('Name 27');
-         await page.waitForTimeout(1000);
-         await page.locator("//div//div//div//div//div//div//div//div[3]//select[1]").selectOption({label : "CCA"});
-         await page.waitForTimeout(1000);
-         const updatebutton=await page.locator("(//div[contains(text(),'Update')])[2]").click();
-         //const clikedbutton=await page.locator("(//div[contains(text(),'Update')])[2]").clikedbutton('clicked')
-         console.log("update functionality is working correct")
-        
+          await Actionofeditgroup();
+        //  const grp13=await page.locator("//p[normalize-space()='grp13']").click();
+        //  const Actionclick=await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
+        //  const editactionclick=await page.locator("//div[normalize-space()='Edit Company']").click();
+        //  await page.waitForTimeout(1000);
+        //  await page.locator("//input[@placeholder='Enter company name']").fill('');
+        //  await page.locator("//input[@placeholder='Enter company name']").fill('Name 27');
+        //  await page.waitForTimeout(1000);
+        //  await page.locator("//div//div//div//div//div//div//div//div[3]//select[1]").selectOption({label : "CCA"});
+        //  await page.waitForTimeout(1000);
+        //  const updatebutton=await page.locator("(//div[contains(text(),'Update')])[2]").click();
+        //  //const clikedbutton=await page.locator("(//div[contains(text(),'Update')])[2]").clikedbutton('clicked')
+        //  console.log("update functionality is working correct")
 
-
-          
-
-         
-        
-
-
-
-
-
-
-
-    })
+         //Test the logout functionality
+})
 
    
 
