@@ -9,7 +9,7 @@ const exp = require('constants');
 
 
 
-
+ //vaidate if user click on Add company successfully
 test("click on Add company button" , async ({page})=>{
     const newaddcomp=new Addcom(page);
     await newaddcomp.login();
@@ -120,7 +120,7 @@ test("click on Add company button" , async ({page})=>{
 
         ////Test the logout  for cancel  functionality
 
-        test.only("test the cancel functionality" , async ({page})=>{
+        test("test the cancel functionality" , async ({page})=>{
             const newlogout = new Addcom(page);
             await newlogout.login();
             await page.locator("//body/div/div/div/div[3]/div[1]/div[2]/div[1]").click();
@@ -139,6 +139,69 @@ test("click on Add company button" , async ({page})=>{
             console.log("Cancel button is not working successfully");
         }
     })
+
+       // To test the Delete functionality of the dropdown.
+       //company id is what we need to delete, it shows under company id
+
+       test("Delete the compny functoionality" , async({page})=>{
+
+        const deletefunctionality =new Addcom(page);
+        await deletefunctionality.login();
+        await deletefunctionality.clickgroupmanagement();
+        const grp13=await page.locator("//p[normalize-space()='grp13']").click();
+        const Actionclick=await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
+        const deleteactionclick=await page.locator("//div[normalize-space()='Delete Company']").click();
+        await page.waitForTimeout(10000)
+        const deleteconfirm= await page.locator("//button[normalize-space()='Confirm']").click();
+        await page.waitForTimeout(1000);
+        await page.waitForURL("https://devecg.resourcifi.tech/super/group/list?id=76&grp=ID67888&grpname=grp13");
+        const companyid=await page.locator("//div[contains(text(),'ID88919')]");
+        if(companyid.isHidden())
+        {
+
+            
+            console.log("delete functionality is working")
+        }
+
+        else{
+
+            console.log("delete functionality is not working")
+        }
+
+})
+
+
+
+      
+       // Test the functionality of cancel button
+
+
+       test.only("cancel the delete compny functoionality" , async({page})=>{
+       const deletefunctionality =new Addcom(page);
+        await deletefunctionality.login();
+        await deletefunctionality.clickgroupmanagement();
+        const grp13=await page.locator("//p[normalize-space()='grp13']").click();
+        const Actionclick=await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
+        const deleteactionclick=await page.locator("//div[normalize-space()='Delete Company']").click();
+        await page.waitForTimeout(10000)
+        const deletecancel= await page.locator("//button[normalize-space()='Cancel']").click();
+        await page.waitForTimeout(1000);
+        await page.waitForURL("https://devecg.resourcifi.tech/super/group/list?id=76&grp=ID67888&grpname=grp13");
+        const companyid=await page.locator("//div[contains(text(),'ID93107')]");
+        if(companyid.isVisible)
+        {
+            console.log("cancel functionality is working")
+        }
+
+        else{
+
+            console.log("cancel functionality is not working")
+        }
+    })
+
+
+
+
             
 
 

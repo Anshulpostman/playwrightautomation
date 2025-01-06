@@ -12,6 +12,7 @@
     "@types/node": "^22.10.2"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "mailosaur": "^8.7.0"
   }
 }

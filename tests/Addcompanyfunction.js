@@ -219,6 +219,7 @@ async function ECGcomp(page){
          await page.locator("//div//div//div//div//div//div//div//div[3]//select[1]").selectOption({label : "CCA"});
          await page.waitForTimeout(1000);
          const updatebutton=await page.locator("(//div[contains(text(),'Update')])[2]").click();
+         
          //const clikedbutton=await page.locator("(//div[contains(text(),'Update')])[2]").clikedbutton('clicked')
          console.log("update functionality is working correct")
 
