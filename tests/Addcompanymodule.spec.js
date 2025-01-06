@@ -84,7 +84,7 @@ test("click on Add company button" , async ({page})=>{
 
     //Edit Test functionality of a company, change inactive to Active and inactive to Active
 
-    test.only("Testing edit functionality" , async({page})=>{
+    test("Testing edit functionality" , async({page})=>{
         await page.setViewportSize({ width: 1536, height: 864 }); // Full HD resolution
 
 
@@ -92,21 +92,55 @@ test("click on Add company button" , async ({page})=>{
          await newedit.login();
          await newedit.clickgroupmanagement();
           await Actionofeditgroup();
-        //  const grp13=await page.locator("//p[normalize-space()='grp13']").click();
-        //  const Actionclick=await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
-        //  const editactionclick=await page.locator("//div[normalize-space()='Edit Company']").click();
-        //  await page.waitForTimeout(1000);
-        //  await page.locator("//input[@placeholder='Enter company name']").fill('');
-        //  await page.locator("//input[@placeholder='Enter company name']").fill('Name 27');
-        //  await page.waitForTimeout(1000);
-        //  await page.locator("//div//div//div//div//div//div//div//div[3]//select[1]").selectOption({label : "CCA"});
-        //  await page.waitForTimeout(1000);
-        //  const updatebutton=await page.locator("(//div[contains(text(),'Update')])[2]").click();
-        //  //const clikedbutton=await page.locator("(//div[contains(text(),'Update')])[2]").clikedbutton('clicked')
-        //  console.log("update functionality is working correct")
+        })    
 
-         //Test the logout functionality
-})
+         //Test the logout  for confirm functionality
+
+         test("test the logout functionality" , async ({page})=>{
+         const newlogout = new Addcom(page);
+         await newlogout.login();
+         await page.locator("//body/div/div/div/div[3]/div[1]/div[2]/div[1]").click();
+         await page.locator("//li[normalize-space()='Log Out']").click();
+         await page.waitForTimeout(5000);
+         const logoutpopupconfirm= await page.locator("//button[normalize-space()='Confirm']").click();
+         const urllogout="https://devecg.resourcifi.tech/login";
+         await page.waitForURL(urllogout);
+        
+         if (page.url()===urllogout){
+            expect(page.url()).toBe(urllogout)
+            console.log("userloggedout successfully");
+         }
+         else
+         {
+          console.log("user not loggedout successfully");
+
+           }
+
+        })
+
+        ////Test the logout  for cancel  functionality
+
+        test.only("test the cancel functionality" , async ({page})=>{
+            const newlogout = new Addcom(page);
+            await newlogout.login();
+            await page.locator("//body/div/div/div/div[3]/div[1]/div[2]/div[1]").click();
+            await page.locator("//li[normalize-space()='Log Out']").click();
+            await page.waitForTimeout(5000);
+
+        const logoutpopupcancel=  await page.locator("(//button[normalize-space()='Cancel'])[1]").click();
+        const urlnotloggout="https://devecg.resourcifi.tech/super/dashboard";
+        await page.waitForURL(urlnotloggout)
+        if (page.url()===urlnotloggout){
+        expect(page.url()).toBe(urlnotloggout)
+        console.log("user remains on same page successfully");
+         }
+        else{
+
+            console.log("Cancel button is not working successfully");
+        }
+    })
+            
+
 
    
 
