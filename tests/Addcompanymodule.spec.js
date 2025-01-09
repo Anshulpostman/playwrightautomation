@@ -10,7 +10,7 @@ const exp = require('constants');
 
 
  //vaidate if user click on Add company successfully
-test("click on Add company button" , async ({page})=>{
+    test("click on Add company button" , async ({page})=>{
     const newaddcomp=new Addcom(page);
     await newaddcomp.login();
     await newaddcomp.clickgroupmanagement();
@@ -23,7 +23,7 @@ test("click on Add company button" , async ({page})=>{
 
     //To be verify all vaidation message if any of the fields is not entered.
 
-    test("Verify all validation message" , async  ({page})=>{
+        test("Verify all validation message" , async  ({page})=>{
         
         const newaddcom= new Addcom(page);
         await newaddcom.login();
@@ -40,7 +40,7 @@ test("click on Add company button" , async ({page})=>{
 //Test to validate form fill successfully with all fields
 
      
-     test("fill form successfully" , async({page})=>{
+        test("fill form successfully" , async({page})=>{
 
         const newaddcom= new Addcom(page);
         await newaddcom.login();
@@ -84,7 +84,7 @@ test("click on Add company button" , async ({page})=>{
 
     //Edit Test functionality of a company, change inactive to Active and inactive to Active
 
-    test("Testing edit functionality" , async({page})=>{
+        test("Testing edit functionality" , async({page})=>{
         await page.setViewportSize({ width: 1536, height: 864 }); // Full HD resolution
 
 
@@ -120,7 +120,7 @@ test("click on Add company button" , async ({page})=>{
 
         ////Test the logout  for cancel  functionality
 
-        test("test the cancel functionality" , async ({page})=>{
+            test("test the cancel functionality" , async ({page})=>{
             const newlogout = new Addcom(page);
             await newlogout.login();
             await page.locator("//body/div/div/div/div[3]/div[1]/div[2]/div[1]").click();
@@ -143,7 +143,7 @@ test("click on Add company button" , async ({page})=>{
        // To test the Delete functionality of the dropdown.
        //company id is what we need to delete, it shows under company id
 
-       test("Delete the compny functoionality" , async({page})=>{
+        test("Delete the compny functoionality" , async({page})=>{
 
         const deletefunctionality =new Addcom(page);
         await deletefunctionality.login();
@@ -176,8 +176,8 @@ test("click on Add company button" , async ({page})=>{
        // Test the functionality of cancel button
 
 
-       test.only("cancel the delete compny functoionality" , async({page})=>{
-       const deletefunctionality =new Addcom(page);
+        test("cancel the delete compny functoionality" , async({page})=>{
+        const deletefunctionality =new Addcom(page);
         await deletefunctionality.login();
         await deletefunctionality.clickgroupmanagement();
         const grp13=await page.locator("//p[normalize-space()='grp13']").click();
@@ -198,10 +198,186 @@ test("click on Add company button" , async ({page})=>{
             console.log("cancel functionality is not working")
         }
     })
+    
+        // Test the toggle on/off functionality.
+
+        test("test the toggle Active to Inactive functionality" , async ({page})=>{
+
+            const edittoggle=new Addcom(page);
+            await edittoggle.login();
+            await edittoggle.clickgroupmanagement();
+            await page.locator("//p[normalize-space()='grp13']").click();
+            await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
+            await page.waitForTimeout(10000);
+            const toggleon=await page.locator("//li[3]//div[1]//*[name()='svg']").click();
+            await page.waitForTimeout(1000)
+            const activetoinactive=await page.locator("//button[normalize-space()='Confirm']").click();
+            await page.waitForTimeout(1000);
+            const activecompanyid=await page.locator("//div[contains(text(),'ID93107')]");
+            await page.waitForTimeout(1000)
+            const inactivestatus=await page.locator("//div[contains(text(),'Inactive')]");
+            await page.waitForTimeout(1000)
+            const Activestatustext=await activecompanyid.textContent();
+            const Inactivestatustext=await inactivestatus.textContent();
+             if(Inactivestatustext.includes("Inactive")){
+
+               await expect(Inactivestatustext).toContain("Inactive")
+                console.log("toggle active to inactive is working correct")
+                }
+                else{
+
+                    console.log("toogle functionality is not working correct")
+                }
+       })
+         
+       // Test the inactive to active
+
+        test("test the toggle inactive to Active functionality" , async ({page})=>{
+
+            const edittoggle=new Addcom(page);
+            await edittoggle.login();
+            await edittoggle.clickgroupmanagement();
+            await page.locator("//p[normalize-space()='grp13']").click();
+            await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
+            await page.waitForTimeout(10000);
+            const toggleon=await page.locator("//li[3]//div[1]//*[name()='svg']").click();
+            await page.waitForTimeout(1000)
+            const activetoinactive=await page.locator("//button[normalize-space()='Confirm']").click();
+            await page.waitForTimeout(1000);
+            const activecompanyid=await page.locator("//div[contains(text(),'ID93107')]");
+            await page.waitForTimeout(1000)
+            const Activestatus=await page.locator("(//div[contains(text(),'Active')])[1]");
+           
+            await page.waitForTimeout(1000)
+            const activestatustext=await Activestatus.textContent();
+            //const Inactivestatustext=await inactivestatus.textContent();
+             if(activestatustext.includes("Active")){
+
+               await expect(activestatustext).toContain("Active")
+                console.log("toggle Inactive to active is working correct")
+                }
+                else{
+
+                    console.log("toogle functionality is not working correct")
+                }
+       
+            })
+
+            // Test the Searching functionality by company name , utilitytype and category
+            
+            test("test serach by company,utility and category" , async({page})=>{
+
+                const serach= new Addcom(page);
+                await serach.login();
+                await serach.clickgroupmanagement();
+                await page.locator("//p[normalize-space()='grp13']").click();
+               const textbox= await page.locator("//body/div/div/div/div/div/div[1]/div[2]/div[1]").type(" Name 15");
+                await page.keyboard.press('Enter');
+                await page.waitForTimeout(10000);
+                //const textpresent= await page.waitForSelector('text=Name 15' , {timeout: 5000});
+                const textlocator=await page.locator('text=Name 15');
+                const textcontent=await textlocator.textContent();
+                if( await textlocator.isVisible()){
+
+                    expect(textcontent).toBe("Name 15");
+                    await page.waitForTimeout(10000);
+                    console.log("company name is:"+ textcontent)
+                  }
+                  else{
+
+                    console.log("searching for comoany is not working corret")
+                  }
 
 
+            })
+              
+
+            // Serach with a Category/utility type
+
+            test("test by utility serach" , async ({page})=>{
+
+                const utility= new Addcom(page);
+                await utility.login();
+                await utility.clickgroupmanagement();
+                await page.locator("//p[normalize-space()='grp13']").click();
+                const textbox= await page.locator("//body/div/div/div/div/div/div[1]/div[2]/div[1]").type("CCA");
+                await page.keyboard.press('Enter');
+                await page.waitForTimeout(10000);
+               //const utilitylocator= await page.locator('text=CCA').first().isVisible();
+               const utilitytext= await page.locator("(//div[contains(text(),'CCA')])[1]");
+               const utilitycontent= await utilitytext.textContent();
+               await page.waitForTimeout(10000);
+
+               if( await utilitytext.isVisible()){
+
+                expect(utilitycontent).toBe("CCA")
+               
+                console.log("Seraching for utility is: "+utilitycontent)
+               }
+
+               else{
+
+                console.log("Seraching is not working for utility")
+               }
+
+})
+
+         //Serach by utility/category
+
+         test("test the searching functionality" , async ({page})=>{
+
+            const utilitynew=new Addcom(page);
+            await utilitynew.login();
+            await utilitynew.clickgroupmanagement();
+            await page.locator("//button[normalize-space()='2']").click();
+            await page.locator("//p[normalize-space()='grp13']").click();
+            const entertextboxvalue= await page.locator("//input[contains(@placeholder,'| Search by Company name')]").type('Electric');
+            await page.waitForTimeout(10000);
+            await page.keyboard.press('Enter')
+            await page.waitForSelector('text=Electric');
+            await page.waitForSelector('text=GasandElectric')
+            const Electricisvisible= await page.locator('text=Electric').first().isVisible();
+            await page.waitForTimeout(10000);
+            const  isGasAndElectricVisible= await page.locator('text=GasAndElectric').isVisible();
+            if(Electricisvisible ||isGasAndElectricVisible ){
+            expect(Electricisvisible).toBeTruthy();
+                expect(isGasAndElectricVisible).toBeTruthy();
+                console.log("Searching by category:" +Electricisvisible ,isGasAndElectricVisible )
+             }
+
+            else{
+
+                console.log("seraching is not working correctly")
+            }
+
+ })
+
+    //Test the functionality by only searching keyword are show in a pge.
+
+    test.only("correct result for seraching" , async ({page})=>{
+
+        const correctserach= new Addcom(page);
+        await correctserach.login();
+        await correctserach.clickgroupmanagement();
+        await page.locator("//button[normalize-space()='2']").click();
+        await page.locator("//p[normalize-space()='grp13']").click();
+        const entertextboxvalue= await page.locator("//input[contains(@placeholder,'| Search by Company name')]").type('Electric');
+        await page.keyboard.press('Enter');
+        await page.waitForSelector('text=Electric');
+        await page.waitForSelector('text=GasandElectric');
+        const searchresult=await page.locator('text=Electric' ,'text=GasandElectric' ).allTextContents();
+        const areresutcorrect=searchresult.every(result=>result.includes("Electric","GasandElectric" ));
+        expect(searchresult.length).toBeGreaterThan(0);
+        expect(areresutcorrect).toBeTruthy();
+        console.log("search result is working correct" , +searchresult )
+
+        if (!areresutcorrect){
+
+            console.log("seraching is not working correct")
+        }
 
 
+    })
             
 
 
