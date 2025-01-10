@@ -70,15 +70,18 @@ class Forgotpassword{
         this.addnavigateurl='https://devecg.resourcifi.tech/super/group';
         this.addcompanyinfo="(//div[contains(text(),'Add')])[2]";
         this.addcompnavigateurlgrp13="https://devecg.resourcifi.tech/super/group/list?id=76&grp=ID67888&grpname=grp13";
+        
                 //this.emptygroupmessage="//*[@id="modal_body"]/div/div[3]/div/div[2]/div/div";
         //this.emptyemailaddress="/html[1]/body[1]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/div[5]/div[1]/div[1]/span[1]/div[1]/div[1]";
         
     }
 
-             async navigate(url){
-             await this.page.goto(url)
+             async navigate(urlone){
+             await this.page.goto(this.urlone)
             }
 
+          
+          
             async dashboardnavigate(addnavigateurl){
               await this.page.goto(addnavigateurl)
              }
@@ -185,7 +188,7 @@ class Forgotpassword{
           }
         
           
-        
+       
     
   
 
@@ -195,4 +198,5 @@ class Forgotpassword{
 
 module.exports = Forgotpassword;
 module.exports=Addgroup;
+
 
