@@ -1,5 +1,6 @@
 //const Addcom = require("./Addcom");
-const { Addinput } = require('./Clinput');
+
+//const { Addinput, Addgroup } = require('./forgotpassword');
 
 const Addgroup = require("./forgotpassword");
 class Addinput extends Addgroup{
@@ -26,11 +27,12 @@ class Addinput extends Addgroup{
 
    }
      
-  }
+}
 
   
 
-  module.exports = Addinput ;
+module.exports = Addinput;
+
  
   
   

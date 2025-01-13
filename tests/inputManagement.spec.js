@@ -1,10 +1,11 @@
 
-//const {inputsectionMBE} =require('./Clinput')
-
+ const Addinput = require('./Clinput');
+const Addgroup = require('./forgotpassword');
 const Addcom = require('./Addcom');
-const {Addinput} = require('./Clinput');
-//const { Addinput } = require('./forgotpassword'); // Ensure you're importing Addinput correctly
+//const Addinput = require('./Clinput'); // Correct import
 const { test, expect } = require('@playwright/test');
+
+//const { test, expect } = require('@playwright/test');
 
 // Test the functionality of inupt data magament
 test("click on input data mangement" , async({page})=>{
@@ -170,26 +171,27 @@ test("click on input data mangement" , async({page})=>{
             const MBEsection = new Addinput(page);
             await MBEsection.login();
             
-      //       await MBEsection.clickinputdatamangement();
-      //       await page.locator("#modal_body > div:nth-child(2) > div > div.inptCommRight > div:nth-child(2) > svg").click();
-      //       const feildtype= await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Alphabet"});
-      //       const Addfieldname=await page.locator("//input[@placeholder='Enter Field Name']");
-      //       await Addfieldname.type('Anshultestone');
-      //       const placeholeder=await page.locator("//input[@placeholder='Enter placeholder name']");
-      //       await placeholeder.type("Enter new test one");
-      //       await page.locator("//div[normalize-space()='Add']").click();
-      //       await page.locator("//div[contains(text(),'Save')]").click();
-      //       //await page.waitForTimeout(10000);
-      //       const isAddfieldnameadded=await Addfieldname.allTextContents();
-      //       const isplaceholderadded=await placeholeder.allTextContents();
-      //      if(isAddfieldnameadded && isplaceholderadded){
-      //          expect(isAddfieldnameadded).toBeTruthy();
-      //          expect(isplaceholderadded ).toBeTruthy();
-      //       console.log("Field is added successfully on a page")
-      //             }
-      //             else{
-      //             console.log("filed is not added");
-      //      }
+            await MBEsection.clickinputdatamangement();
+            await page.locator("#modal_body > div:nth-child(2) > div > div.inptCommRight > div:nth-child(2) > svg").click();
+            await page.waitForTimeout(10000);
+            const feildtype= await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Alphabet"});
+            const Addfieldname=await page.locator("//input[@placeholder='Enter Field Name']");
+            await Addfieldname.type('Anshultestone');
+            const placeholeder=await page.locator("//input[@placeholder='Enter placeholder name']");
+            await placeholeder.type("Enter new test one");
+            await page.locator("//div[normalize-space()='Add']").click();
+            await page.locator("//div[contains(text(),'Save')]").click();
+            //await page.waitForTimeout(10000);
+            const isAddfieldnameadded=await Addfieldname.allTextContents();
+            const isplaceholderadded=await placeholeder.allTextContents();
+           if(isAddfieldnameadded && isplaceholderadded){
+               expect(isAddfieldnameadded).toBeTruthy();
+               expect(isplaceholderadded ).toBeTruthy();
+            console.log("Field is added successfully on a page")
+                  }
+                  else{
+                  console.log("filed is not added");
+           }
        })
 
 
