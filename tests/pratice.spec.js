@@ -1,0 +1,53 @@
+const {chromium}=require('playwright');
+const { test , expect } = require('playwright/test');
+
+ 
+    // test("launch the browser" , async ({})=>{
+
+    //     const browser= chromium.launch()
+    //    const page =(await browser).newPage();
+    //    await page.goto("https://www.google.com/")
+    //    console.log(await page.title());
+    //    await (await browser).close();
+    
+
+    // })
+
+    //take a screen Shot
+
+//     await page.screenshot({path: 'screenshot.png'})
+//     await page.screenshot({path : 'fullscreenshot.png' , fullpage: true})
+
+//     this.bowserimage="defined xpath"
+//     this.iagepath=" image of thepath.png"
+
+//     async uploadimage()
+//     if(!this.filepath) throw new error('filepath not found');
+//     await page.setinputfile(this.bowserimage , this.iagepath);
+
+//  PWDEBUG=1 npx playwright test for bedbugging..PWDEBUG
+
+//  await page.pause() for pause the page where operation it is.
+
+module.exports={
+project :[
+
+{name: 'chromium', use :{browsername : 'chromium'}}
+
+]
+}
+
+
+module.exports={
+
+    projects:[
+
+        {name: 'chromium' , use:{browsername: 'chromium'}}
+    ]
+
+
+
+}
+
+
+
