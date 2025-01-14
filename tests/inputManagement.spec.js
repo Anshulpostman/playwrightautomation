@@ -1,7 +1,8 @@
 
  const Addinput = require('./Clinput');
 const Addgroup = require('./forgotpassword');
-const Addcom = require('./Addcom');
+//
+// const Addcom = require('./Addcom');
 //const Addinput = require('./Clinput'); // Correct import
 const { test, expect } = require('@playwright/test');
 
@@ -120,9 +121,10 @@ test("click on input data mangement" , async({page})=>{
        // This is test case failed
 
        test("test the cancel button functionality" , async ({page})=>{
-
+        
             const cancelbutton= new Addinput(page);
             await cancelbutton.login();
+           
             await cancelbutton.clickinputdatamangement();
             const cancelclick=await page.locator("//div[contains(text(),'Cancel')]");
             const clickcancel= await cancelclick.click();
@@ -169,30 +171,52 @@ test("click on input data mangement" , async({page})=>{
         test.only("Test the add functionality of MBE" , async ({page})=>{
 
             const MBEsection = new Addinput(page);
+            await page.setViewportSize({width : 1536 , height: 864 })
             await MBEsection.login();
-            
             await MBEsection.clickinputdatamangement();
-            await page.locator("#modal_body > div:nth-child(2) > div > div.inptCommRight > div:nth-child(2) > svg").click();
-            await page.waitForTimeout(10000);
-            const feildtype= await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Alphabet"});
-            const Addfieldname=await page.locator("//input[@placeholder='Enter Field Name']");
-            await Addfieldname.type('Anshultestone');
-            const placeholeder=await page.locator("//input[@placeholder='Enter placeholder name']");
-            await placeholeder.type("Enter new test one");
+
+            
+            
+          const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+          await page.waitForTimeout(1000);
+          await collapseclick.click();
+          
+           
+           const MBEexpandclick= await page.locator("//body/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]");
+           await MBEexpandclick.click();
+           const MBEAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+           await MBEAddInputbutton.click();
+           await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Numeric"});
+            const mbefieldname= await page.locator("//input[@placeholder='Enter Field Name']");
+            await mbefieldname.waitFor({ state: 'visible' }); 
+            await mbefieldname.type("Anshul doing test");
+            const mbeplaceholder=await page.locator("//input[@placeholder='Enter placeholder name']");
+            await mbeplaceholder.type("Enter Anshul as a placeholder name as a testing testing");
+            await page.waitForTimeout(1000)
             await page.locator("//div[normalize-space()='Add']").click();
+            await page.waitForTimeout(1000)
             await page.locator("//div[contains(text(),'Save')]").click();
-            //await page.waitForTimeout(10000);
-            const isAddfieldnameadded=await Addfieldname.allTextContents();
-            const isplaceholderadded=await placeholeder.allTextContents();
-           if(isAddfieldnameadded && isplaceholderadded){
-               expect(isAddfieldnameadded).toBeTruthy();
-               expect(isplaceholderadded ).toBeTruthy();
+            await page.waitForTimeout(10000)
+            
+            const MBEsectionsavefieldvalue=await mbefieldname.allTextContents();
+            const MBEsectionsaveplaceholdervalue=await mbeplaceholder.allTextContents();
+           if(MBEsectionsavefieldvalue && MBEsectionsaveplaceholdervalue){
             console.log("Field is added successfully on a page")
-                  }
-                  else{
-                  console.log("filed is not added");
-           }
-       })
+            expect(MBEsectionsavefieldvalue).toBeTruthy
+            expect(MBEsectionsaveplaceholdervalue ).toBeTruthy
+        }
+            
+          else{
+                 console.log("filed is not added");
+                  
+        }
+      
+        })
+            
+
+            
+
+           
 
 
         
