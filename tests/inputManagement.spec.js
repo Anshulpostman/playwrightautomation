@@ -212,6 +212,17 @@ test("click on input data mangement" , async({page})=>{
         }
       
         })
+
+        // test the Addinput fields in Diverse Groups Information successfully
+
+        test("test the functionality Diverse Groups Information" ,  async ({page})=>{
+        const DGIinfrmation = new Addinput(page);
+        await DGIinfrmation.login();
+        await DGIinfrmation.clickinputdatamangement();
+
+        
+
+        })
             
 
             
