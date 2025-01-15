@@ -34,12 +34,13 @@ jobs:
           path: playwright-report/
 
      
+  
   myjob:
     runs-on: self-hosted
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Run my job
-        uses: myjob
+      - name: Run my custom action
+        uses: ./Anshulpostman/playwrightautomation@main
 
 
