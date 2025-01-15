@@ -1,12 +1,14 @@
 name: Playwright Tests
+
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
   test:
-    runs-on: Ubuntu 24.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -18,6 +20,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
       - name: Install Playwright Browsers
         run: npx playwright install
 
@@ -25,7 +28,7 @@ jobs:
         run: npx playwright test --reporter=html
 
       - name: Debug Directory Structure
-        run: ls -R # Lists all files and directories
+        run: ls -R  # Lists all files and directories
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v3
@@ -33,14 +36,18 @@ jobs:
           name: playwright Report
           path: playwright-report/
 
-     
-  
   myjob:
     runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Run my custom action
-        uses: ./Anshulpostman/playwrightautomation@main/action.yml
+        with:
+          repository: Anshulpostman/playwrightautomation
+          ref: main
+          token: ${{ secrets.PAT_TOKEN }}  # Correct token reference
 
-
+      - name: Run Playwright Tests
+        run: |
+          npm install
+          npx playwright install
+          npx playwright test
