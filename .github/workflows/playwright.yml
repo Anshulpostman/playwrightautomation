@@ -32,5 +32,14 @@ jobs:
         with:
           name: playwright Report
           path: playwright-report/
-      
+
+     
+  myjob:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run my job
+        uses: myjob
+
 
