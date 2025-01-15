@@ -29,14 +29,14 @@ module.exports = defineConfig({
         viewport: null, // Disable viewport restrictions
       }
     },
-    //Uncomment the following if you want to test on additional browsers
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // //Uncomment the following if you want to test on additional browsers
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
   ]
 });
