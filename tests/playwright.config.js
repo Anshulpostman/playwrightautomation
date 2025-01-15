@@ -5,6 +5,10 @@ module.exports = defineConfig({
   testDir: './tests',
 })
 
+const config = {
+  reporter: [['html', { outputFolder: 'playwright-report' }]],
+};
+module.exports = config;
 
 
 /**
