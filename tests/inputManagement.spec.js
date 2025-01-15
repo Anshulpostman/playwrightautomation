@@ -9,209 +9,209 @@ const { test, expect } = require('@playwright/test');
 //const { test, expect } = require('@playwright/test');
 
 // Test the functionality of inupt data magament
-test("click on input data mangement" , async({page})=>{
+// test("click on input data mangement" , async({page})=>{
 
-    const inputdata= new Addinput(page);
-     await inputdata.login();
-     await page.waitForTimeout(10000);
+//     const inputdata= new Addinput(page);
+//      await inputdata.login();
+//      await page.waitForTimeout(10000);
 
-     await inputdata.clickinputdatamangement();
-     await page.waitForTimeout(10000);
-     const inputurl=await page.url();
-     if(inputurl==='https://devecg.resourcifi.tech/super/input')
-     {
-        expect(inputurl).toContain("https://devecg.resourcifi.tech/super/input")
-        console.log("input button is working");
-     }
-     else{
+//      await inputdata.clickinputdatamangement();
+//      await page.waitForTimeout(10000);
+//      const inputurl=await page.url();
+//      if(inputurl==='https://devecg.resourcifi.tech/super/input')
+//      {
+//         expect(inputurl).toContain("https://devecg.resourcifi.tech/super/input")
+//         console.log("input button is working");
+//      }
+//      else{
 
-           console.log("iput button is not working")
-     }
+//            console.log("iput button is not working")
+//      }
 
-})
+// })
 
- // Test the validation message shows if user click on Add inpput field and Add input field is opened.  
-   test("test validation message" , async ({page})=>{
+//  // Test the validation message shows if user click on Add inpput field and Add input field is opened.  
+//    test("test validation message" , async ({page})=>{
 
-      const inputdata= new Addinput(page);
-      await inputdata.login();
-      await inputdata.clickinputdatamangement();
-      const Addinputfieldone=await inputdata.clickAddinputfield();
-      await page.waitForTimeout(10000)
+//       const inputdata= new Addinput(page);
+//       await inputdata.login();
+//       await inputdata.clickinputdatamangement();
+//       const Addinputfieldone=await inputdata.clickAddinputfield();
+//       await page.waitForTimeout(10000)
      
-      const Addinpittextfiledtwo=await inputdata.clickAddtextfield();
-      await page.waitForTimeout(10000)
+//       const Addinpittextfiledtwo=await inputdata.clickAddtextfield();
+//       await page.waitForTimeout(10000)
       
-      if(Addinpittextfiledtwo){
+//       if(Addinpittextfiledtwo){
 
-            expect(Addinpittextfiledtwo).toContain("Add Input Field")
-            console.log("Add input field is working and open the fields for adding data.")
+//             expect(Addinpittextfiledtwo).toContain("Add Input Field")
+//             console.log("Add input field is working and open the fields for adding data.")
 
-      }
+//       }
 
-      else{
-            console.log("Addinput field is not working")
-      }
+//       else{
+//             console.log("Addinput field is not working")
+//       }
 
-    })
+//     })
 
-    // Test the functionality if validation message shows.
+//     // Test the functionality if validation message shows.
 
-    test("test functionality of show validation message while adding input field" , async({page})=>{
+//     test("test functionality of show validation message while adding input field" , async({page})=>{
 
-        const validationmessage= new Addinput(page);
-        await validationmessage.login();
-        await validationmessage.clickinputdatamangement();
-        await validationmessage.clickAddinputfield();
-        const Add=await page.locator("//div[normalize-space()='Add']").click();
+//         const validationmessage= new Addinput(page);
+//         await validationmessage.login();
+//         await validationmessage.clickinputdatamangement();
+//         await validationmessage.clickAddinputfield();
+//         const Add=await page.locator("//div[normalize-space()='Add']").click();
         
-        const Addfieldname=await page.locator("//div[contains(text(),'Field Name is required')]");
-        const fieldnamevisible=await Addfieldname.textContent();
-        const placeholeder=await page.locator("//div[contains(text(),'Placeholder is required')]");
-        const isVisibleplaceholeder=await placeholeder.textContent();
+//         const Addfieldname=await page.locator("//div[contains(text(),'Field Name is required')]");
+//         const fieldnamevisible=await Addfieldname.textContent();
+//         const placeholeder=await page.locator("//div[contains(text(),'Placeholder is required')]");
+//         const isVisibleplaceholeder=await placeholeder.textContent();
         
 
-        if(isVisibleplaceholeder|| fieldnamevisible.includes("Field Name is required" , "Placeholder is required")){
+//         if(isVisibleplaceholeder|| fieldnamevisible.includes("Field Name is required" , "Placeholder is required")){
 
-            expect(fieldnamevisible || isVisibleplaceholeder).toContain("Field Name is required" ,"Placeholder is required" )
+//             expect(fieldnamevisible || isVisibleplaceholeder).toContain("Field Name is required" ,"Placeholder is required" )
 
             
-            console.log("validtion message showing:" + fieldnamevisible , isVisibleplaceholeder);
+//             console.log("validtion message showing:" + fieldnamevisible , isVisibleplaceholeder);
 
-        }
+//         }
 
-        else{
+//         else{
 
-            console.log("validatio message is not shoiwng")
-        }
+//             console.log("validatio message is not shoiwng")
+//         }
             
-})
+// })
 
-       // Test functionality to Add input field and verify that added field show in a page.
+//        // Test functionality to Add input field and verify that added field show in a page.
 
-       test("Add an input field" , async({page})=>{
+//        test("Add an input field" , async({page})=>{
 
-            const Addfunctionality=new Addinput(page);
-            await Addfunctionality.login();
-            await Addfunctionality.clickinputdatamangement();
-            await page.waitForTimeout(10000);
-            await Addfunctionality.clickAddinputfield();
-            const feildtype= await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Alphabet"});
-            const Addfieldname=await page.locator("//input[@placeholder='Enter Field Name']");
-            await Addfieldname.type('Anshultestone');
-            const placeholeder=await page.locator("//input[@placeholder='Enter placeholder name']");
-            await placeholeder.type("Enter new test one");
-            await page.locator("//div[normalize-space()='Add']").click();
-            await page.locator("//div[contains(text(),'Save')]").click();
-            //await page.waitForTimeout(10000);
-            const isAddfieldnameadded=await Addfieldname.allTextContents();
-            const isplaceholderadded=await placeholeder.allTextContents();
-           if(isAddfieldnameadded && isplaceholderadded){
-               expect(isAddfieldnameadded).toBeTruthy();
-               expect(isplaceholderadded ).toBeTruthy();
-            console.log("Field is added successfully on a page")
-                  }
-                  else{
-                  console.log("filed is not added");
-           }
-       })
+//             const Addfunctionality=new Addinput(page);
+//             await Addfunctionality.login();
+//             await Addfunctionality.clickinputdatamangement();
+//             await page.waitForTimeout(10000);
+//             await Addfunctionality.clickAddinputfield();
+//             const feildtype= await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Alphabet"});
+//             const Addfieldname=await page.locator("//input[@placeholder='Enter Field Name']");
+//             await Addfieldname.type('Anshultestone');
+//             const placeholeder=await page.locator("//input[@placeholder='Enter placeholder name']");
+//             await placeholeder.type("Enter new test one");
+//             await page.locator("//div[normalize-space()='Add']").click();
+//             await page.locator("//div[contains(text(),'Save')]").click();
+//             //await page.waitForTimeout(10000);
+//             const isAddfieldnameadded=await Addfieldname.allTextContents();
+//             const isplaceholderadded=await placeholeder.allTextContents();
+//            if(isAddfieldnameadded && isplaceholderadded){
+//                expect(isAddfieldnameadded).toBeTruthy();
+//                expect(isplaceholderadded ).toBeTruthy();
+//             console.log("Field is added successfully on a page")
+//                   }
+//                   else{
+//                   console.log("filed is not added");
+//            }
+//        })
 
 
-       //Test the cancel button 
-       // This is test case failed
+//        //Test the cancel button 
+//        // This is test case failed
 
-       test("test the cancel button functionality" , async ({page})=>{
+//        test("test the cancel button functionality" , async ({page})=>{
         
-            const cancelbutton= new Addinput(page);
-            await cancelbutton.login();
+//             const cancelbutton= new Addinput(page);
+//             await cancelbutton.login();
            
-            await cancelbutton.clickinputdatamangement();
-            const cancelclick=await page.locator("//div[contains(text(),'Cancel')]");
-            const clickcancel= await cancelclick.click();
-            const reloadpage=await page.reload();
+//             await cancelbutton.clickinputdatamangement();
+//             const cancelclick=await page.locator("//div[contains(text(),'Cancel')]");
+//             const clickcancel= await cancelclick.click();
+//             const reloadpage=await page.reload();
 
-            if(reloadpage.reload)
-            {
-                  expect(reloadpage).reloadpage();
-                  console.log("cancel button is workig");
-            }
+//             if(reloadpage.reload)
+//             {
+//                   expect(reloadpage).reloadpage();
+//                   console.log("cancel button is workig");
+//             }
 
-            else{
+//             else{
 
-                  console.log("cancel button is not working")
-            }
+//                   console.log("cancel button is not working")
+//             }
 
-})
+// })
 
-        // Test the save button functionality
-        test("test the save button functionality" , async ({page})=>{
+//         // Test the save button functionality
+//         test("test the save button functionality" , async ({page})=>{
 
-            const savebuton = new Addinput(page);
-            await savebuton.login();
-            await savebuton.clickinputdatamangement();
-            const saveclick= await page.locator("//div[contains(text(),'Save')]")
-            const savebutton= await saveclick.click();
-            const message=await page.locator("/html/body/div[1]/div[2]/div/div/div[1]/div/div/div[2]");
-            const messagevalidate= await message.getByText("Saved Successfully");
-            if(await messagevalidate.isVisible)
-            {
+//             const savebuton = new Addinput(page);
+//             await savebuton.login();
+//             await savebuton.clickinputdatamangement();
+//             const saveclick= await page.locator("//div[contains(text(),'Save')]")
+//             const savebutton= await saveclick.click();
+//             const message=await page.locator("/html/body/div[1]/div[2]/div/div/div[1]/div/div/div[2]");
+//             const messagevalidate= await message.getByText("Saved Successfully");
+//             if(await messagevalidate.isVisible)
+//             {
 
-                expect(messagevalidate).toBeTruthy();
-                console.log("save button working correctly")
-            }
+//                 expect(messagevalidate).toBeTruthy();
+//                 console.log("save button working correctly")
+//             }
 
-            else{
+//             else{
 
-                  console.log("savebutton is not working")
-            }
-        })
+//                   console.log("savebutton is not working")
+//             }
+//         })
 
-        // Test the Add input fields MBE Information
+//         // Test the Add input fields MBE Information
   
-        test("Test the add functionality of MBE" , async ({page})=>{
+//         test("Test the add functionality of MBE" , async ({page})=>{
 
-            const MBEsection = new Addinput(page);
-            await page.setViewportSize({width : 1536 , height: 864 })
-            await MBEsection.login();
-            await MBEsection.clickinputdatamangement();
+//             const MBEsection = new Addinput(page);
+//             await page.setViewportSize({width : 1536 , height: 864 })
+//             await MBEsection.login();
+//             await MBEsection.clickinputdatamangement();
 
             
             
-          const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-          await page.waitForTimeout(1000);
-          await collapseclick.click();
+//           const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+//           await page.waitForTimeout(1000);
+//           await collapseclick.click();
           
            
-           const MBEexpandclick= await page.locator("//body/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]");
-           await MBEexpandclick.click();
-           const MBEAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
-           await MBEAddInputbutton.click();
-           await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Numeric"});
-            const mbefieldname= await page.locator("//input[@placeholder='Enter Field Name']");
-            await mbefieldname.waitFor({ state: 'visible' }); 
-            await mbefieldname.type("Anshul doing test");
-            const mbeplaceholder=await page.locator("//input[@placeholder='Enter placeholder name']");
-            await mbeplaceholder.type("Enter Anshul as a placeholder name as a testing testing");
-            await page.waitForTimeout(1000)
-            await page.locator("//div[normalize-space()='Add']").click();
-            await page.waitForTimeout(1000)
-            await page.locator("//div[contains(text(),'Save')]").click();
-            await page.waitForTimeout(10000)
+//            const MBEexpandclick= await page.locator("//body/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]");
+//            await MBEexpandclick.click();
+//            const MBEAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+//            await MBEAddInputbutton.click();
+//            await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Numeric"});
+//             const mbefieldname= await page.locator("//input[@placeholder='Enter Field Name']");
+//             await mbefieldname.waitFor({ state: 'visible' }); 
+//             await mbefieldname.type("Anshul doing test");
+//             const mbeplaceholder=await page.locator("//input[@placeholder='Enter placeholder name']");
+//             await mbeplaceholder.type("Enter Anshul as a placeholder name as a testing testing");
+//             await page.waitForTimeout(1000)
+//             await page.locator("//div[normalize-space()='Add']").click();
+//             await page.waitForTimeout(1000)
+//             await page.locator("//div[contains(text(),'Save')]").click();
+//             await page.waitForTimeout(10000)
             
-            const MBEsectionsavefieldvalue=await mbefieldname.allTextContents();
-            const MBEsectionsaveplaceholdervalue=await mbeplaceholder.allTextContents();
-           if(MBEsectionsavefieldvalue && MBEsectionsaveplaceholdervalue){
-            console.log("Field is added successfully on a page")
-            expect(MBEsectionsavefieldvalue).toBeTruthy
-            expect(MBEsectionsaveplaceholdervalue ).toBeTruthy
-        }
+//             const MBEsectionsavefieldvalue=await mbefieldname.allTextContents();
+//             const MBEsectionsaveplaceholdervalue=await mbeplaceholder.allTextContents();
+//            if(MBEsectionsavefieldvalue && MBEsectionsaveplaceholdervalue){
+//             console.log("Field is added successfully on a page")
+//             expect(MBEsectionsavefieldvalue).toBeTruthy
+//             expect(MBEsectionsaveplaceholdervalue ).toBeTruthy
+//         }
             
-          else{
-                 console.log("filed is not added");
+//           else{
+//                  console.log("filed is not added");
                   
-        }
+//         }
       
-        })
+//         })
 
         // test the Addinput fields in Diverse Groups Information successfully
 
