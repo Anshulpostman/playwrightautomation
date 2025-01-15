@@ -168,7 +168,7 @@ test("click on input data mangement" , async({page})=>{
 
         // Test the Add input fields MBE Information
   
-        test.only("Test the add functionality of MBE" , async ({page})=>{
+        test("Test the add functionality of MBE" , async ({page})=>{
 
             const MBEsection = new Addinput(page);
             await page.setViewportSize({width : 1536 , height: 864 })
@@ -215,10 +215,14 @@ test("click on input data mangement" , async({page})=>{
 
         // test the Addinput fields in Diverse Groups Information successfully
 
-        test("test the functionality Diverse Groups Information" ,  async ({page})=>{
+        test.only("test the functionality Diverse Groups Information" ,  async ({page})=>{
         const DGIinfrmation = new Addinput(page);
         await DGIinfrmation.login();
         await DGIinfrmation.clickinputdatamangement();
+        const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+          await page.waitForTimeout(1000);
+          await collapseclick.click();
+
 
         
 
