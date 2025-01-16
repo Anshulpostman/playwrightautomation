@@ -1,4 +1,4 @@
-
+const config = require('../config/environment'); 
  const Addinput = require('./Clinput');
 const Addgroup = require('./forgotpassword');
 const Addcom = require('./Addcom');
@@ -254,7 +254,7 @@ test("click on input data mangement" , async({page})=>{
 
       // Test the functionality Direct/Subcontracting Information
 
-      test.only("test the functionality Direct/Subcontracting Information" ,  async ({page})=>{
+      test("test the functionality Direct/Subcontracting Information" ,  async ({page})=>{
         const Subcontractinfrmation = new Addinput(page);
         await Subcontractinfrmation.login();
         await Subcontractinfrmation.clickinputdatamangement();
@@ -298,6 +298,95 @@ test("click on input data mangement" , async({page})=>{
 
          }
 })
+
+
+   // Test the functionality Revenue Reporting Information
+
+
+   test("test the functionality Revenue Reporting Information" ,  async ({page})=>{
+    const Revenueinfrmation = new Addinput(page);
+    await Revenueinfrmation.login();
+    await Revenueinfrmation.clickinputdatamangement();
+    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    await page.waitForTimeout(1000);
+    await collapseclick.click();
+    const Reevenuereporting =await page.locator("(//div[contains(text(),'Expand')])[5]");
+    await Reevenuereporting.click();
+    await page.waitForTimeout(1000);
+    await page.locator("#modal_body > div:nth-child(5) > div.inpCommFieldSection > div.addInpt > div:nth-child(2)").click();
+    await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label: "Boolean"});
+    const Revnuefieldname=await page.locator("//input[@placeholder='Enter Field Name']");
+    await Revnuefieldname.type("Revenue Reporting Information test the functionality");
+    const revenueplaceholder = await page.locator("//input[@placeholder='Enter placeholder name']");
+    await revenueplaceholder.type("enter dropdown field for revenue");
+    await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
+    await page.locator("(//div[normalize-space()='Add'])[1]").click();
+    await page.waitForTimeout(1000);
+    await page.locator("//div[contains(text(),'Save')]").click();
+    await page.waitForTimeout(1000);
+    const fieldvaluetextholddsg=await Revnuefieldname.allTextContents();
+    const placeholervalueholddsg=await revenueplaceholder.allTextContents();
+  
+    if (fieldvaluetextholddsg && placeholervalueholddsg){
+    console.log("field value is showing correctly");
+    expect(fieldvaluetextholddsg).toBeTruthy();
+    expect(placeholervalueholddsg).toBeTruthy();
+     }
+
+     else{
+       console.log("user enter information ot found")
+
+     }
+})
+
+
+   // Test the functionality Workforce/Board Diversity Information
+
+   test("test the functionality Workforce/Board Diversity Information" ,  async ({page})=>{
+    const workforce = new Addinput(page);
+    await workforce.login();
+    await workforce.clickinputdatamangement();
+    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    await page.waitForTimeout(1000);
+    await collapseclick.click();
+    const workforcereporting =await page.locator("#modal_body > div:nth-child(6) > div > div.inptCommRight > div.inpTxtComm");
+    await workforcereporting.click();
+    
+    await page.waitForTimeout(1000);
+    await page.locator("#modal_body > div:nth-child(6) > div.inpCommFieldSection > div.addInpt > div:nth-child(2)").click();
+    await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label: "Alphabet"});
+    const workforcefieldname=await page.locator("//input[@placeholder='Enter Field Name']");
+    await workforcefieldname.type(" Workforce/Board Diversity Information test the functionality");
+    const workforceplaceholder = await page.locator("//input[@placeholder='Enter placeholder name']");
+    await workforceplaceholder.type("Workforce/Board Diversity Information functionality");
+    await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
+    await page.locator("//div[normalize-space()='Add']").click();
+    await page.waitForTimeout(1000);
+    await page.locator("//div[contains(text(),'Save')]").click();
+    await page.waitForTimeout(1000);
+    const fieldvaluetextholddsg=await workforcefieldname.allTextContents();
+    const placeholervalueholddsg=await workforceplaceholder.allTextContents();
+  
+    if (fieldvaluetextholddsg && placeholervalueholddsg){
+    console.log("field value is showing correctly");
+    expect(fieldvaluetextholddsg).toBeTruthy();
+    expect(placeholervalueholddsg).toBeTruthy();
+     }
+
+     else{
+       console.log("user enter information ot found")
+
+     }
+})
+
+
+     
+
+      
+
+
             
 
             

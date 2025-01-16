@@ -2,17 +2,20 @@
   "name": "playwrightautomation",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:dev": "cross-env ENV=dev npx playwright test" 
+    
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.49.1",
-    "@types/node": "^22.10.2"
+    "@types/node": "^22.10.2",
+    "cross-env": "^7.0.3"
   },
   "dependencies": {
-    "cross-env": "^7.0.3",
     "mailosaur": "^8.7.0"
   }
 }
