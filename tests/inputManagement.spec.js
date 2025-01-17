@@ -381,6 +381,49 @@ test("click on input data mangement" , async({page})=>{
      }
 })
 
+   // Test the functionality of cancel button and cross button to make sure that user cancel and click on cross button
+
+   test.only("test the function of cancal and cross of Company Information" , async ({page})=>{
+    
+    const cancalbuttonofcompany = new Addinput(page);
+    await cancalbuttonofcompany.login();
+    await cancalbuttonofcompany.clickinputdatamangement();
+    
+    await cancalbuttonofcompany.clickAddinputfield();
+    
+    //await page.locator("#modal_body > div:nth-child(1) > div.inpCommFieldSection > div.addInpt > div:nth-child(2)").click();
+    const cancelclickbutton=await page.locator("(//div[contains(text(),'Cancel')])[2]");
+    const  crossclickbutton=await page.locator("#root > div.protectedContainer > div.main-content > div.content > div > div > div > div:nth-child(2) > div > div.headerAddCont > div.closeDiv > svg");
+    if (await cancelclickbutton.isVisible()){
+       await cancelclickbutton.click();
+    }
+      else if(crossclickbutton.isVisible()){
+        await crossclickbutton.click();
+
+      }
+
+        else{
+         throw new Error("both button is not working")
+
+    }
+
+    const Addinputsectionlocator=await page.locator("#root > div.protectedContainer > div.main-content > div.content > div > div > div > div:nth-child(2) > div > div.headerAddCont > div.titDesCont > div.title");
+    const Addinputsectionhide=await Addinputsectionlocator.isHidden();
+
+    if(Addinputsectionhide){
+      console.log("cancel and cross button is working")
+      expect(Addinputsectionhide).toBeTruthy();
+    }
+
+    else{
+      console.log("cancel and cross button is not working")
+      expect(Addinputsectionhide).toBeTruthy();
+    }
+   
+  
+  })
+
+
 
      
 
