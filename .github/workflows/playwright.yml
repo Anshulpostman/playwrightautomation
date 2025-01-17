@@ -50,4 +50,4 @@ jobs:
         run: |
           npm install
           npx playwright install
-          # npx playwright test
+       #  npx playwright test  # This line is now commented out and should not run
