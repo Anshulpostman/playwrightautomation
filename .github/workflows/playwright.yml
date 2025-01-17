@@ -37,7 +37,7 @@ jobs:
           path: playwright-report/
 
   myjob:
-    runs-on: self-hosted
+    runs-on: Self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
