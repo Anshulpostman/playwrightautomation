@@ -1,3 +1,4 @@
+const  {cancelcross}  = require('./Addcom');
 const config = require('../config/environment'); 
  const Addinput = require('./Clinput');
 const Addgroup = require('./forgotpassword');
@@ -383,15 +384,12 @@ test("click on input data mangement" , async({page})=>{
 
    // Test the functionality of cancel button and cross button to make sure that user cancel and click on cross button
 
-   test.only("test the function of cancal and cross of Company Information" , async ({page})=>{
+   test("test the function of cancal and cross of Company Information" , async ({page})=>{
     
     const cancalbuttonofcompany = new Addinput(page);
     await cancalbuttonofcompany.login();
     await cancalbuttonofcompany.clickinputdatamangement();
-    
     await cancalbuttonofcompany.clickAddinputfield();
-    
-    //await page.locator("#modal_body > div:nth-child(1) > div.inpCommFieldSection > div.addInpt > div:nth-child(2)").click();
     const cancelclickbutton=await page.locator("(//div[contains(text(),'Cancel')])[2]");
     const  crossclickbutton=await page.locator("#root > div.protectedContainer > div.main-content > div.content > div > div > div > div:nth-child(2) > div > div.headerAddCont > div.closeDiv > svg");
     if (await cancelclickbutton.isVisible()){
@@ -419,11 +417,110 @@ test("click on input data mangement" , async({page})=>{
       console.log("cancel and cross button is not working")
       expect(Addinputsectionhide).toBeTruthy();
     }
+   })
+   // Test the functionality of cancel button and cross button to make sure that user cancel and click on cross button MBE information
+
+  test("test the function of cancal and cross of MBE information" , async ({page})=>{
+    
+    const cancalbuttonofcompany = new Addinput(page);
+    await cancalbuttonofcompany.login();
+    await cancalbuttonofcompany.clickinputdatamangement();
+    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    await page.waitForTimeout(1000);
+    await collapseclick.click();
+    const MBEexpandclick= await page.locator("//body/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]");
+    await MBEexpandclick.click();
+    await page.waitForTimeout(1000);
+    const MBEAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+    await MBEAddInputbutton.click();
+    await page.waitForTimeout(1000);
+    await cancelcross(page);
+   })
+
+   //// Test the functionality of cancel button and cross button to make sure that user cancel and click on cross button of Diverse Groups Information
+
+   test("test the function of cancal and cross of Diverse Groups Information" , async ({page})=>{
+    
+    const cancalbuttonofdgi = new Addinput(page);
+    await cancalbuttonofdgi.login();
+    await cancalbuttonofdgi.clickinputdatamangement();
+    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    await page.waitForTimeout(1000);
+    await collapseclick.click();
+    const dgiexpandclick= await page.locator("#modal_body > div:nth-child(3) > div > div.inptCommRight > div.inpTxtComm");
+    await page.waitForTimeout(1000);
+    await dgiexpandclick.click();
    
-  
-  })
+    
+    const dgiAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+    await dgiAddInputbutton.click();
+    await page.waitForTimeout(1000);
+    await cancelcross(page);
+   })
 
 
+    //// Test the functionality of cancel button and cross button to make sure that user cancel and click on cross button of Direct/Subcontracting Information
+   test("test the function of cancal and cross of Direct/Subcontracting Information" , async ({page})=>{
+    
+    const cancalbuttonofdsg = new Addinput(page);
+    await cancalbuttonofdsg.login();
+    await cancalbuttonofdsg.clickinputdatamangement();
+    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    await page.waitForTimeout(1000);
+    await collapseclick.click();
+    const dsgexpandclick= await page.locator("#modal_body > div:nth-child(4) > div > div.inptCommRight > div.inpTxtComm");
+    await page.waitForTimeout(1000);
+    await dsgexpandclick.click();
+   
+    
+    const dgiAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+    await dgiAddInputbutton.click();
+    await page.waitForTimeout(1000);
+    await cancelcross(page);
+    
+   })
+
+    //// Test the functionality of cancel button and cross button to make sure that user cancel and click on cross button of Revenue Reporting Information
+    test("test the function of cancal and cross of Revenue Reporting Information" , async ({page})=>{
+    
+      const cancalbuttonofRRI = new Addinput(page);
+      await cancalbuttonofRRI.login();
+      await cancalbuttonofRRI.clickinputdatamangement();
+      const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+      await page.waitForTimeout(1000);
+      await collapseclick.click();
+      const RRIexpandclick= await page.locator("#modal_body > div:nth-child(5) > div > div.inptCommRight > div.inpTxtComm");
+      await page.waitForTimeout(1000);
+      await RRIexpandclick.click();
+     
+      
+      const RRRAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+      await RRRAddInputbutton.click();
+      await page.waitForTimeout(1000);
+      await cancelcross(page);
+     })
+
+     //// Test the functionality of cancel button and cross button to make sure that user cancel and click on cross button of Workforce/Board Diversity Information
+    test("test the function of cancal and cross of Workforce/Board Diversity Information" , async ({page})=>{
+    
+      const cancalbuttonofWDI = new Addinput(page);
+      await cancalbuttonofWDI.login();
+      await cancalbuttonofWDI.clickinputdatamangement();
+      const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+      await page.waitForTimeout(1000);
+      await collapseclick.click();
+      const WDIexpandclick= await page.locator("#modal_body > div:nth-child(6) > div > div.inptCommRight > div.inpTxtComm");
+      await page.waitForTimeout(1000);
+      await WDIexpandclick.click();
+     
+      
+      const WDIAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+      await WDIAddInputbutton.click();
+      await page.waitForTimeout(1000);
+      
+      //await page.locator("#modal_body > div:nth-child(1) > div.inpCommFieldSection > div.addInpt > div:nth-child(2)").click();
+      await cancelcross(page);
+     })
 
      
 
