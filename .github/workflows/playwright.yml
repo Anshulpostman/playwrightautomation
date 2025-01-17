@@ -31,7 +31,7 @@ jobs:
         run: ls -R  # Lists all files and directories
 
       - name: Upload Playwright Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: playwright Report
           path: playwright-report/
