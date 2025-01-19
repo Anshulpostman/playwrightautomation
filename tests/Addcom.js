@@ -52,7 +52,7 @@ class Addcom extends Addgroup{
           }
       
           else{
-            console.log("cancel and cross button is not working")
+            console.log("cancel and cross button is not working with test")
             expect(Addinputsectionhide).toBeTruthy();
           }
 }
