@@ -1,18 +1,19 @@
     const Addgroup = require('./forgotpassword')
     const{test , expect}= require('@playwright/test')
 
-    test("Add group " , async ({page})=>{
+    test.only("Add group " , async ({page})=>{
 
     const addgroup = new Addgroup(page);
-    const emailaddress='testing@zis1bxhm.mailosaur.net';
-    const pwd='Anshul@12345678'
+    // const emailaddress='testing@zis1bxhm.mailosaur.net';
+    // const pwd='Anshul@12345678'
     const dashboardurl='https://devecg.resourcifi.tech/super/dashboard'
     const currenturl='https://devecg.resourcifi.tech/super/dashboard';
 
     await addgroup.navigate("https://devecg.resourcifi.tech/login");
-    await addgroup.fillEmail("testing@zis1bxhm.mailosaur.net");
-    await addgroup.fillPassword("Anshul@12345678");
+    await addgroup.fillEmail("superadmin@gmail.com");
+    await addgroup.fillPassword("Anshul@superAdmin123");
     await addgroup.clickloginbutton();
+    await page.waitForTimeout(2000);
     await addgroup.clickgroupmanagement();
     expect(currenturl).toContain(dashboardurl);
     console.log("user redirect to dashboard correctly:" + dashboardurl);
@@ -49,14 +50,14 @@
 
         test("cancel return to the dshboard page" , async({page})=>{
             const addgroup = new Addgroup(page);
-            const pwd='Anshul@12345678'
+            
             const cancelbutton='https://devecg.resourcifi.tech/super/dashboard'
             const currenturl='https://devecg.resourcifi.tech/super/dashboard';
             const dashboardurl='https://devecg.resourcifi.tech/super/dashboard';
         
             await addgroup.navigate("https://devecg.resourcifi.tech/login");
-            await addgroup.fillEmail("testing@zis1bxhm.mailosaur.net");
-            await addgroup.fillPassword("Anshul@12345678");
+            await addgroup.fillEmail("superadmin@gmail.com");
+            await addgroup.fillPassword("superAdmin123");
             await addgroup.clickloginbutton();
             await addgroup.clickgroupmanagement();
            
@@ -196,7 +197,7 @@
 
          //validate if user created group sucessfully and make sure that is visible on the page.
          
-         test.only("validate if user created group sucessfully and make sure that is visible on the page"  , async ({page})=>{
+         test("validate if user created group sucessfully and make sure that is visible on the page"  , async ({page})=>{
 
             const addgroup=new Addgroup(page);
                     
