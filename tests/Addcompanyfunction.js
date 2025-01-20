@@ -1,4 +1,5 @@
-const Addgroup = require("./forgotpassword");
+const  Addcom  = require('./Addcompanymodule');
+
 const{test , expect}= require('@playwright/test')
 
 async function ECGcomp(page){

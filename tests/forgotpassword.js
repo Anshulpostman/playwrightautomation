@@ -196,7 +196,7 @@ class Forgotpassword{
   
 
 
-module.exports = Forgotpassword;
+//module.exports = Forgotpassword;
 module.exports=Addgroup;
 
 
