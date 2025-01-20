@@ -62,5 +62,6 @@ class Addcom extends Addgroup{
 
 
 
-module.exports = { cancelcross, Addcom };
+module.exports = {Addcom , Addgroup};
+module.exports = {cancelcross };
 

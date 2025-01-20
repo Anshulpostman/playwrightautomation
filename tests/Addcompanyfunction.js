@@ -1,4 +1,4 @@
-const  Addcom  = require('./Addcompanymodule');
+const Addcom  = require('./Addcompanyfunction');
 
 const{test , expect}= require('@playwright/test')
 
@@ -228,5 +228,6 @@ async function ECGcomp(page){
 
 
 module.exports = { ECGcomp , Actionofeditgroup };
+module.exports = {Addcom};
 
 

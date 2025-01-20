@@ -2,7 +2,7 @@ const  {ECGcomp}  = require('./Addcompanyfunction');
 const  {Actionofeditgroup}  = require('./Addcompanyfunction');
 
 //console.log('Imported Addcompanyfun:', Addcompanyfun);
-const Addcom=require('./Addcompanymodule');
+const Addcom=require('./Addcom');
 //const Addgroup=require('./Addcom')
 const{test , expect}= require('@playwright/test');
 const exp = require('constants');
