@@ -336,7 +336,7 @@ test("click on input data mangement" , async({page})=>{
      }
 
      else{
-       console.log("user enter information ot founding")
+       console.log("user enter information ot foundinging")
 
      }
 })
