@@ -57,7 +57,7 @@ class Forgotpassword{
         this.passwordinput="//input[@type='password']";
         this.loginbutton="//button[@type='button']";
 
-        this.groupmanagement="//div[contains(text(),'Group Management')]";
+        this.groupmanagement="(//div[contains(text(),'Group Management')])[1]";
         this.addgroupofcompany="//div[contains(text(),'Add Group')]";
         this.cancelclick="//body/div/div/div/div/div/div/div/div[2]/div[1]";
         this.browseimage="//body/div/div/div/div/div/div/div/div[1]/div[2]/div[1]";
@@ -124,7 +124,7 @@ class Forgotpassword{
 
           async clickgroupmanagement(){
           await this.page.click(this.groupmanagement)
-          await this.page.waitForTimeout(1000);
+          //await this.page.waitForTimeout(1000);
           }
 
           async clickaddgroup(){
