@@ -1,7 +1,5 @@
 const  {ECGcomp}  = require('./Addcompanyfunction');
 const  {Actionofeditgroup}  = require('./Addcompanyfunction');
-
-//console.log('Imported Addcompanyfun:', Addcompanyfun);
 const Addcom=require('./Addcom');
 //const Addgroup=require('./Addcom')
 const{test , expect}= require('@playwright/test');
@@ -270,8 +268,8 @@ const exp = require('constants');
                 const serach= new Addcom(page);
                 await serach.login();
                 await serach.clickgroupmanagement();
-                await page.locator("//p[normalize-space()='grp13']").click();
-               const textbox= await page.locator("//body/div/div/div/div/div/div[1]/div[2]/div[1]").type(" Name 15");
+                await page.locator("(//img[@alt='Group Icon'])[3]").click();
+               const textbox= await page.locator("//body/div/div/div/div/div/div[1]/div[2]/div[1]").type(" company 3");
                 await page.keyboard.press('Enter');
                 await page.waitForTimeout(10000);
                 //const textpresent= await page.waitForSelector('text=Name 15' , {timeout: 5000});
@@ -356,7 +354,7 @@ const exp = require('constants');
 
     test.only("correct result for seraching" , async ({page})=>{
 
-        const correctserach= new Addcom(page);
+        const correctserach=  new Addcom(page);
         await correctserach.login();
         await correctserach.clickgroupmanagement();
         await page.locator("//button[normalize-space()='2']").click();
