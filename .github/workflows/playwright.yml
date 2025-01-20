@@ -46,8 +46,8 @@ jobs:
           ref: main
           token: ${{ secrets.PAT_TOKEN }}  # Correct token reference
 
-      - name: Run Playwright Tests
-        run: |
-          npm install
-          npx playwright install
+      # name: Run Playwright Tests
+       # run: | 
+       #  npm install
+       #   npx playwright install
        #  npx playwright test  # This line is now commented out and should not run
