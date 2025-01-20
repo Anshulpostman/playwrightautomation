@@ -61,8 +61,9 @@ class Forgotpassword{
         this.addgroupofcompany="//div[contains(text(),'Add Group')]";
         this.cancelclick="//body/div/div/div/div/div/div/div/div[2]/div[1]";
         this.browseimage="//body/div/div/div/div/div/div/div/div[1]/div[2]/div[1]";
-        this.groupname="//input[@placeholder='Enter group name']";
-        this.emailaddress="//input[@placeholder='Enter your email address (Press Enter to add additional email addresses)']";
+        this.groupname="//input[@placeholder='Enter Group Name']";
+        this.Enternameuser="//input[@placeholder='Enter Name']";
+        this.emailaddress="//input[@placeholder='Enter Email']";
         this.updatecreate="//div[contains(text(),'Create')]";
         this.browseimage="//input[@type='file']";
         this.filePath="C:/Users/RNF-User/Documents/pic/image1.png";
@@ -95,6 +96,11 @@ class Forgotpassword{
             if (!email) throw new Error('Email is required');
             await this.page.fill(this.emailinputAddress, email);
             await this.page.waitForTimeout(1000);
+        }
+
+        async usernamegrp(username){
+
+          await this.page.fill(this.Enternameuser, username);
         }
 
         async entergrpemail(email) {

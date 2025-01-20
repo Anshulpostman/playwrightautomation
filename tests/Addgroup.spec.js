@@ -206,15 +206,19 @@
             await addgroup.clickaddgroup();
             await addgroup.uploadimage();
              await addgroup.Entergroupname("grp13")
+             await addgroup.usernamegrp("Anshul");
              await addgroup.entergrpemail("Anshul13@yopmail.com");
-             await page.keyboard.press( 'Enter');
+             //await page.keyboard.press( 'Enter');
+             await page.locator("//div[normalize-space()='Add']").click();
              await addgroup.clickupdatecreate();
+             
+             
              await addgroup.dashboardnavigate("https://devecg.resourcifi.tech/super/group");
              
-            const textpresent= await page.waitForSelector('text=grp13', { timeout: 5000 });
+           // const textpresent= await page.waitForSelector('text=grp13', { timeout: 5000 });
              const textIsVisible = await page.locator('text=grp13').first().isVisible();
 
-             if(textIsVisible){
+             if(await textIsVisible.isVisible){
 
                  console.log("text is present in page")
 
