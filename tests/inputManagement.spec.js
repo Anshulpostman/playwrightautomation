@@ -522,6 +522,77 @@ test("click on input data mangement" , async({page})=>{
       await cancelcross(page);
      })
 
+     //Test the functionality of delete button of Company Information and click on confirm button
+     //This needs to be tested when we add and then delete the field
+     // I have write only two test cases and same way we write all the test cases for all the fields
+
+     test("test the functionality of delete and confirm button of Company Information" , async ({page})=>{
+
+      const deletebuttonofcompany = new Addinput(page);
+      await deletebuttonofcompany.login();
+      await deletebuttonofcompany.clickinputdatamangement();
+      //await deletebuttonofcompany.clickAddinputfield();
+      await page.waitForTimeout(1000);
+      const avaiabletext =await page.locator("//div[contains(text(),'Anshultest one')]");
+      
+      await page.waitForTimeout(1000);
+      const clickavailbletext=await avaiabletext.click();
+      
+      await page.waitForTimeout(1000);
+      const deletebutton=await page.locator("#modal_body > div:nth-child(1) > div.inpCommFieldSection > div.contentForm > div:nth-child(8) > div:nth-child(2)");
+      await page.waitForTimeout(5000);
+      const deletebuttonvisible=await deletebutton.click();
+      const deleteconfirm=await page.locator("//button[normalize-space()='Confirm']")
+      const deleteconfirmbutton=await deleteconfirm.click();
+      await page.waitForTimeout(1000);
+      await page.locator("//div[contains(text(),'Save')]").click();
+      await page.waitForTimeout(1000);
+      const availabletext=await page.locator("//div[contains(text(),'Anshultest one')]").allTextContents();
+      if(await availabletext!=="Anshultestone"){
+        console.log("The expected is not found on the save page")
+        expect(availabletext).toBeTruthy();
+      }
+      else{
+        console.log("delete button is not working")
+        
+      }
+})
+
+  ////Test the functionality of delete button of Company Information and click on cancel
+     //This needs to be tested when we add and then delete the field
+
+     test.only("test the functionality of delete but cancel button of Company Information" , async ({page})=>{
+
+      const deletebuttonofcompany = new Addinput(page);
+      await deletebuttonofcompany.login();
+      await deletebuttonofcompany.clickinputdatamangement();
+      //await deletebuttonofcompany.clickAddinputfield();
+      await page.waitForTimeout(1000);
+      const avaiabletext =await page.locator("//div[contains(text(),'Anshultest')]");
+      
+      await page.waitForTimeout(1000);
+      const clickavailbletext=await avaiabletext.click();
+      
+      await page.waitForTimeout(1000);
+      const deletebutton=await page.locator("#modal_body > div:nth-child(1) > div.inpCommFieldSection > div.contentForm > div:nth-child(8) > div:nth-child(2)");
+      await page.waitForTimeout(5000);
+      const deletebuttonvisible=await deletebutton.click();
+      const deleteconfirm=await page.locator("//button[normalize-space()='Cancel']")
+      const deleteconfirmbutton=await deleteconfirm.click();
+      await page.waitForTimeout(1000);
+      await page.locator("//div[contains(text(),'Save')]").click();
+      await page.waitForTimeout(1000);
+      const availabletext=await page.locator("//div[contains(text(),'Anshultest')]").allTextContents();
+      if(await availabletext=="Anshultest"){
+        console.log("By cancel button the field is not deleted")
+        expect(availabletext).toBeTruthy();
+      }
+      else{
+        console.log("delete button is not working")
+        
+      }
+    })
+
      
 
       
