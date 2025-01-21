@@ -7,7 +7,7 @@ const exp = require('constants');
 
 
 
- //vaidate if user click on Add company successfully
+ //vaidate if user click on Add company button successfully
     test("click on Add company button" , async ({page})=>{
     const newaddcomp=new Addcom(page);
     await newaddcomp.login();

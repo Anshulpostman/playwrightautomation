@@ -174,7 +174,7 @@ async function ECGcomp(page){
         //Enter message and submit information and checking validation message for phone number and select value from dropdown.
         
         
-        const Firstname=await page.locator("//input[@placeholder='Enter company name']").type("Name 30");
+        const Firstname=await page.locator("//input[@placeholder='Enter Company Name']").fill("Test Anshul");
         await page.waitForTimeout(1000);
         const category=await page.locator("//div//div//div//div//div//div//div//div[3]//select[1]").selectOption({label : "Utility"});
         await page.waitForTimeout(1000);
@@ -182,29 +182,29 @@ async function ECGcomp(page){
         await page.waitForTimeout(1000);
         const typeofutility=await page.locator("//body//div//div//div//div//div//div//div[1]//div[1]//div[5]//select[1]").selectOption({label : "Gas"});
         await page.waitForTimeout(1000);
-        const userfirstname=await page.locator("//input[@placeholder='Enter first name']").fill("anshul32");
+        const userfirstname=await page.locator("//input[@placeholder='Enter First Name']").fill("Vs");
         await page.waitForTimeout(1000);
-        const userlastname=await page.locator("//input[@placeholder='Enter last name']").fill("xyzzz");
+        const userlastname=await page.locator("//input[@placeholder='Enter Last Name']").fill("user");
         await page.waitForTimeout(1000);
-        const validemail = await page.locator("//input[@placeholder='Enter email address']").fill("gjAkk56@yopmail.com");
+        const validemail = await page.locator("//input[@placeholder='Enter Email Address']").fill("vsuser01@yopmail.com");
         await page.waitForTimeout(1000);
         // const invalidemail=await page.locator("//input[@placeholder='Enter email address']").fill("a99@")
         // const blankemail =await page.locator("//input[@placeholder='Enter email address']").fill("");
         // await page.waitForTimeout(1000);
-        const phonenumber=await page.locator("//input[@placeholder='Enter phone number']").fill("6666666666")
+        const phonenumber=await page.locator("//input[@placeholder='Enter Phone Number']").fill("7777777777")
         // const invalidphonenumber=await page.locator("//input[@placeholder='Enter phone number']").fill("66666666")
         // await page.waitForTimeout(1000);
         const selectstatus=await page.locator("//div//div//div//div//div//div[2]//div[1]//div[5]//select[1]").selectOption({label : "Active"});
         await page.waitForTimeout(1000);
-        const enteraddress=await page.locator("//input[@placeholder='Enter address']").fill("logix cyber park");
+        const enteraddress=await page.locator("//input[@placeholder='Enter Address']").fill("logixx cyber park");
         await page.waitForTimeout(1000);
-        const cityname=await page.locator("//input[@placeholder='Enter city name']").fill("Noida");
+        const cityname=await page.locator("//input[@placeholder='Enter City Name']").fill("Noida");
         await page.waitForTimeout(1000);
-        const statename=await page.locator("//input[@placeholder='Enter state']").fill("UP");
+        const statename=await page.locator("//input[@placeholder='Enter State']").fill("UP");
         await page.waitForTimeout(1000);
-        const zipcodenumber=await page.locator("//input[@placeholder='Enter Zip code']").fill("20101")
+        const zipcodenumber=await page.locator("//input[@placeholder='Enter Zip Code']").fill("11001")
         await page.waitForTimeout(1000);
-        const country=await page.locator("#modal_body > div > form > div:nth-child(3) > div > div:nth-child(5) > select").selectOption({label : "United States"});
+        const country=await page.locator("//input[@placeholder='United States']");
         await page.waitForTimeout(1000);
 }
 
@@ -227,7 +227,7 @@ async function ECGcomp(page){
 }
 
 
-module.exports = { ECGcomp , Actionofeditgroup };
-module.exports = {Addcom};
+module.exports = { Addcom , ECGcomp , Actionofeditgroup,  };
+
 
 
