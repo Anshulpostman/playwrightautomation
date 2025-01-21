@@ -1,7 +1,7 @@
     const Addgroup = require('./forgotpassword')
     const{test , expect}= require('@playwright/test')
 
-    test.only("Add group " , async ({page})=>{
+    test("Add group " , async ({page})=>{
 
     const addgroup = new Addgroup(page);
     // const emailaddress='testing@zis1bxhm.mailosaur.net';
@@ -11,10 +11,11 @@
 
     await addgroup.navigate("https://devecg.resourcifi.tech/login");
     await addgroup.fillEmail("superadmin@gmail.com");
-    await addgroup.fillPassword("Anshul@superAdmin123");
+    await addgroup.fillPassword("superAdmin123");
     await addgroup.clickloginbutton();
     await page.waitForTimeout(2000);
     await addgroup.clickgroupmanagement();
+    await page.pause();
     expect(currenturl).toContain(dashboardurl);
     console.log("user redirect to dashboard correctly:" + dashboardurl);
     const isVisible = await addgroup.page.isVisible(addgroup.groupmanagement);
@@ -83,13 +84,13 @@
            await addgroup.login();
            await addgroup.clickgroupmanagement();
            await addgroup.clickaddgroup();
-           await addgroup.browseimageclick();
-           await addgroup.Entergroupname();
-           await addgroup.validEmailaddress();
-           await addgroup.clickupdatecreate();
+        //    await addgroup.browseimageclick();
+        //    await addgroup.Entergroupname();
+        //    await addgroup.validEmailaddress();
+              await addgroup.clickupdatecreate();
            //locator for error messages
-           const groupnameerrormessage=await page.locator("//div[contains(text(),'This is a required field.')]");
-           const Emailaddresserrormessage=await page.locator("//div[contains(text(),'Atleast one email is required')]");
+           const groupnameerrormessage=await page.locator("//div[contains(text(),'Group name is required')]");
+           const Emailaddresserrormessage=await page.locator("//div[contains(text(),'Please add atleast one email & one name')]");
            const Browseimageerrormessage=await page.locator("//div[contains(text(),'Image is required')]");
            //check for error message
 
@@ -97,10 +98,10 @@
            const Emailaddresstext= await Emailaddresserrormessage.textContent();
            const Browseimageerrortext=await Browseimageerrormessage.textContent();
 
-           if(grouperrortext==="This is a required field."){
+           if(grouperrortext==="Group name is required."){
             
-            expect(grouperrortext).toBe("This is a required field.")
-            console.log("This is a required field.")
+            expect(grouperrortext).toBe("Group name is required.")
+            console.log("Group name is required")
            }
            
            else{
@@ -117,10 +118,10 @@
             console.log("Messaeg is not correct")
            }
 
-           if(Emailaddresstext==="Atleast one email is required"){
+           if(Emailaddresstext==="Please add atleast one email & one name"){
             
-            expect(Emailaddresstext).toBe("Atleast one email is required")
-            console.log("Atleast one email is required")
+            expect(Emailaddresstext).toBe("Please add atleast one email & one name")
+            console.log("Please add atleast one email & one name")
            }
            
            else{

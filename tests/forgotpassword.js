@@ -62,6 +62,7 @@ class Forgotpassword{
         this.cancelclick="//body/div/div/div/div/div/div/div/div[2]/div[1]";
         this.browseimage="//body/div/div/div/div/div/div/div/div[1]/div[2]/div[1]";
         this.groupname="//input[@placeholder='Enter Group Name']";
+        this.addbutton="//div[normalize-space()='Add']";
         this.Enternameuser="//input[@placeholder='Enter Name']";
         this.emailaddress="//input[@placeholder='Enter Email']";
         this.updatecreate="//div[contains(text(),'Create')]";
@@ -124,7 +125,7 @@ class Forgotpassword{
 
           async clickgroupmanagement(){
           await this.page.click(this.groupmanagement)
-          //await this.page.waitForTimeout(1000);
+          await this.page.waitForTimeout(1000);
           }
 
           async clickaddgroup(){
@@ -143,7 +144,12 @@ class Forgotpassword{
 
           async Entergroupname(groupName){
             await this.page.fill(this.groupname , groupName);
-            await this.page.waitForTimeout(200);
+            //await this.page.waitForTimeout(200);
+          }
+
+          async clickAdd(addbutton){
+            await this.page.fill(this.addbutton , addbutton);
+            //await this.page.waitForTimeout(200);
           }
 
           async validEmailaddress(){
