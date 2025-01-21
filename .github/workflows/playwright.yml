@@ -2,9 +2,9 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [main, master]
+    branches: [ main, master ]
   pull_request:
-    branches: [main, master]
+    branches: [ main, master ]
 
 jobs:
   test:
@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch full history
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -26,33 +24,30 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
 
-      - name: Identify Changed Files
-        id: changes
-        run: |
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed-files.txt
-          if grep -q '^tests/' changed-files.txt; then
-            echo "Changed test files detected"
-          else
-            echo "No relevant test file changes detected"
-            echo "::set-output name=skip::true"
-          fi
-
       - name: Run Playwright Tests
-        if: ${{ steps.changes.outputs.skip != 'true' }}
-        run: |
-          CHANGED_TESTS=$(grep '^tests/' changed-files.txt || echo '')
-          if [ -n "$CHANGED_TESTS" ]; then
-            npx playwright test $CHANGED_TESTS --reporter=html
-          else
-            echo "No specific test files to run."
-          fi
+        run: npx playwright test --reporter=html
 
       - name: Debug Directory Structure
         run: ls -R  # Lists all files and directories
 
       - name: Upload Playwright Report
-        if: ${{ steps.changes.outputs.skip != 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: playwright Report
           path: playwright-report/
+
+  myjob:
+    runs-on: Self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          repository: Anshulpostman/playwrightautomation
+          ref: main
+          token: ${{ secrets.PAT_TOKEN }}  # Correct token reference
+
+      - name: Run Playwright Tests
+        run: | 
+          npm install
+          npx playwright install
+          npx playwright test  # This line is now commented out and should not run
