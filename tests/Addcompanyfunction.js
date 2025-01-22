@@ -186,7 +186,7 @@ async function ECGcomp(page){
         await page.waitForTimeout(1000);
         const userlastname=await page.locator("//input[@placeholder='Enter Last Name']").fill("user");
         await page.waitForTimeout(1000);
-        const validemail = await page.locator("//input[@placeholder='Enter Email Address']").fill("vsuser01@yopmail.com");
+        const validemail = await page.locator("//input[@placeholder='Enter Email Address']").fill("vsuser@zis1bxhm.mailosaur.net");
         await page.waitForTimeout(1000);
         // const invalidemail=await page.locator("//input[@placeholder='Enter email address']").fill("a99@")
         // const blankemail =await page.locator("//input[@placeholder='Enter email address']").fill("");
@@ -205,7 +205,7 @@ async function ECGcomp(page){
         const zipcodenumber=await page.locator("//input[@placeholder='Enter Zip Code']").fill("11001")
         await page.waitForTimeout(1000);
         const country=await page.locator("//input[@placeholder='United States']");
-        await page.waitForTimeout(1000);
+       //
 }
 
          async function Actionofeditgroup(page){
