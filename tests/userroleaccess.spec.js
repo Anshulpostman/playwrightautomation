@@ -108,11 +108,11 @@ test("Test the functionality of login ifcompany  user is active", async ({ page 
 
 test.only("Test the functionality of copy password and click on the link and reset password", async ({ page }) => {
      
-  const apiKey = 'p8eEa1mNH1BEpi9PMbTerGA6kphp40cX';
-  const mailosaur =  new MailosaurClient(apiKey);
-  const serverid='zis1bxhm';
+     const apiKey = 'p8eEa1mNH1BEpi9PMbTerGA6kphp40cX';
+     const mailosaur =  new MailosaurClient(apiKey);
+     const serverid='zis1bxhm';
 
-  const addcompany= new Addcom(page);
+    const addcompany= new Addcom(page);
     await addcompany.login();
     await page.waitForTimeout(1000);
     await addcompany.clickgroupmanagement();
@@ -127,8 +127,10 @@ test.only("Test the functionality of copy password and click on the link and res
     await addcompany.clickAddcompanyinfo();
     
      // Declare searchCriteria with a subject or other metadata (no body search possible directly)
-  const searchCriteria = {
-    receivedAfter: new Date().toISOString() // Optional: Search for recent emails
+    const searchCriteria = {
+      sentTo: "vsuser@zis1bxhm.mailosaur.net", // Replace with your test email
+      bodytextread: "You have been registered as a company manager for group Anshul Testing Group.",
+       receivedAfter: new Date().toISOString() // Optional: Search for recent emails
   };
 
   // Retrieve the email based on the search criteria
@@ -141,7 +143,7 @@ test.only("Test the functionality of copy password and click on the link and res
     console.error("Error retrieving email: ", error);
   }
    
-    const emailbody=bodytextread?.text;
+    const emailbody=bodytextread?.html?.body;
     if (emailbody) {
       
     const passwordRegex = /Your temporary password is:\s*([\w^().!]+)/;
