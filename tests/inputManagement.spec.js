@@ -9,6 +9,7 @@ const { test, expect } = require('@playwright/test');
 //Test the functionality of inupt data magament
 test("click on input data mangement" , async({page})=>{
 
+
     const inputdata= new Addinput(page);
      await inputdata.login();
      await page.waitForTimeout(10000);
@@ -29,7 +30,7 @@ test("click on input data mangement" , async({page})=>{
 })
 
  // Test the validation message shows if user click on Add inpput field and Add input field is opened.  
-   test("test validation message" , async ({page})=>{
+   test("Test the validation message shows if user click on Add inpput field and Add input field is opened" , async ({page})=>{
 
       const inputdata= new Addinput(page);
       await inputdata.login();
@@ -87,7 +88,7 @@ test("click on input data mangement" , async({page})=>{
 
 //        // Test functionality to Add input field and verify that added field show in a page.
 
-       test("Add an input field" , async({page})=>{
+       test("Test functionality to Add input field and verify that added field show in a page." , async({page})=>{
 
             const Addfunctionality=new Addinput(page);
             await Addfunctionality.login();
@@ -214,7 +215,7 @@ test("click on input data mangement" , async({page})=>{
 
         // test the Addinput fields in Diverse Groups Information successfully
 
-        test("test the functionality Diverse Groups Information" ,  async ({page})=>{
+        test("test the Addinput fields in Diverse Groups Information successfully" ,  async ({page})=>{
         const DGIinfrmation = new Addinput(page);
         await DGIinfrmation.login();
         await DGIinfrmation.clickinputdatamangement();
@@ -561,7 +562,7 @@ test("click on input data mangement" , async({page})=>{
   ////Test the functionality of delete button of Company Information and click on cancel
      //This needs to be tested when we add and then delete the field
 
-     test.only("test the functionality of delete but cancel button of Company Information" , async ({page})=>{
+     test("test the functionality of delete but cancel button of Company Information" , async ({page})=>{
 
       const deletebuttonofcompany = new Addinput(page);
       await deletebuttonofcompany.login();

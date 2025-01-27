@@ -1,7 +1,7 @@
     const Addgroup = require('./forgotpassword')
     const{test , expect}= require('@playwright/test')
-
-    test("Add group " , async ({page})=>{
+   // Test the Add Groupmanagement button and Add group is  clickable or not 
+    test("Test the Add Groupmanagement button and Add group is  clickable or not " , async ({page})=>{
 
     const addgroup = new Addgroup(page);
     // const emailaddress='testing@zis1bxhm.mailosaur.net';
@@ -15,7 +15,7 @@
     await addgroup.clickloginbutton();
     await page.waitForTimeout(2000);
     await addgroup.clickgroupmanagement();
-    await page.pause();
+    //await page.pause();
     expect(currenturl).toContain(dashboardurl);
     console.log("user redirect to dashboard correctly:" + dashboardurl);
     const isVisible = await addgroup.page.isVisible(addgroup.groupmanagement);
@@ -47,9 +47,9 @@
     })
     
 
-        //Cancel return to the dashboard page   
+        //Test that by click on Cancel button in Add group return to the dashboard page   
 
-        test("cancel return to the dshboard page" , async({page})=>{
+        test("Test that by click on Cancel button in Add group return to the dashboard page" , async({page})=>{
             const addgroup = new Addgroup(page);
             
             const cancelbutton='https://devecg.resourcifi.tech/super/dashboard'
@@ -79,7 +79,7 @@
         });
         // verify the validation message shows correct if we user click on create without upload and enter anything.
 
-           test("verify all mandatory message" , async ({page})=>{
+           test("verify the validation message shows correct if we user click on create without upload and enter anything" , async ({page})=>{
            const addgroup=new Addgroup(page)
            await addgroup.login();
            await addgroup.clickgroupmanagement();
@@ -98,9 +98,9 @@
            const Emailaddresstext= await Emailaddresserrormessage.textContent();
            const Browseimageerrortext=await Browseimageerrormessage.textContent();
 
-           if(grouperrortext==="Group name is required."){
+           if(grouperrortext==="Group name is required"){
             
-            expect(grouperrortext).toBe("Group name is required.")
+            expect(grouperrortext).toBe("Group name is required")
             console.log("Group name is required")
            }
            
@@ -153,18 +153,18 @@
                }
 
                const requiredmessage=await addgroup.clickupdatecreate();
-               const messagevisible= await page.locator("(//div[contains(text(),'This is a required field.')])[1]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
-               const emailerrorvisible=await page.locator("//div[contains(text(),'Atleast one email is required')]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
+               const messagevisible= await page.locator("//div[contains(text(),'Group name is required')]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
+               const emailerrorvisible=await page.locator("//div[contains(text(),'Please add atleast one email & one name')]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
              
                if (requiredmessage===messagevisible) {
-                console.log("This is a required field");
+                console.log("Group name is required");
                 expect(requiredmessage).toBe(messagevisible);
             } else {
                 console.log("Message is not correct");
             }
 
             if (requiredmessage===emailerrorvisible) {
-                console.log("Atleast one email is required");
+                console.log("Please add atleast one email & one name");
                 expect(requiredmessage).toBe(emailerrorvisible);
             } else {
                 console.log("Message is not correct");
@@ -174,7 +174,7 @@
         
         // validate if user browse image and enter groupname and click on create.
 
-            test("click create after uplaod image and enter groupname"  , async ({page})=>{
+            test("validate if user browse image and enter groupname and click on create."  , async ({page})=>{
 
             const addgroup=new Addgroup(page);
             await addgroup.login();
@@ -184,12 +184,12 @@
             await addgroup.Entergroupname("grp1");
             
             await addgroup.clickupdatecreate();
-            const emailerrorvisible=await page.locator("//div[contains(text(),'Atleast one email is required')]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
+            const emailerrorvisible=await page.locator("//div[contains(text(),'Please add atleast one email & one name')]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
             const requiredmessage=await addgroup.clickupdatecreate();
             //const imageVisible  = await page.locator("(//img[@alt='Selected'])[1]").waitFor({ state: "visible", timeout: 5000 }).catch(() => false);
             
             if (requiredmessage===emailerrorvisible) {
-                console.log("Atleast one email is required");
+                console.log("Please add atleast one email & one name");
                 expect(requiredmessage).toBe(emailerrorvisible);
             } else {
                 console.log("Message is not correct");
@@ -198,7 +198,7 @@
 
          //validate if user created group sucessfully and make sure that is visible on the page.
          
-         test("validate if user created group sucessfully and make sure that is visible on the page"  , async ({page})=>{
+         test.only("validate if user created group sucessfully and make sure that is visible on the page"  , async ({page})=>{
 
             const addgroup=new Addgroup(page);
                     
@@ -207,9 +207,9 @@
             await addgroup.clickgroupmanagement();
             await addgroup.clickaddgroup();
             await addgroup.uploadimage();
-             await addgroup.Entergroupname("grp13")
-             await addgroup.usernamegrp("Anshul");
-             await addgroup.entergrpemail("Anshul13@yopmail.com");
+             await addgroup.Entergroupname("grp15")
+             await addgroup.usernamegrp("Demoone");
+             await addgroup.entergrpemail("demo14@yopmail.com");
              //await page.keyboard.press( 'Enter');
              await page.locator("//div[normalize-space()='Add']").click();
              await addgroup.clickupdatecreate();
@@ -218,7 +218,7 @@
              await addgroup.dashboardnavigate("https://devecg.resourcifi.tech/super/group");
              
            // const textpresent= await page.waitForSelector('text=grp13', { timeout: 5000 });
-             const textIsVisible = await page.locator('text=grp13').first().isVisible();
+             const textIsVisible = await page.locator('text=grp14').first().isVisible();
 
              if(await textIsVisible.isVisible){
 

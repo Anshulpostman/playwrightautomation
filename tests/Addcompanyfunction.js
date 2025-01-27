@@ -14,8 +14,8 @@ async function ECGcomp(page){
     const basicemailerrorinfo=await page.locator("//div[contains(text(),'Email is a required field.')]").isVisible();
     const basicstatuserror=await page.locator("//div[contains(text(),'Status is required')]").isVisible();
     const useraddress=await page.locator("//div[contains(text(),'Address is required')]").isVisible();
-    const usercity=await page.locator("//input[@placeholder='Enter city name']").isVisible();
-    const userstate=await page.locator("//input[@placeholder='Enter state']").isVisible();
+    const usercity=await page.locator("//div[contains(text(),'City is required')]").isVisible();
+    const userstate=await page.locator("//div[contains(text(),'State is required')]").isVisible();
     const zipcodeerror=await page.locator("//div[contains(text(),'Zip code should have only 5 digits')]").isVisible();
     const  countryerror=await page.locator("//div[contains(text(),'Country is required')]").isVisible();
    
@@ -210,12 +210,13 @@ async function ECGcomp(page){
 
          async function Actionofeditgroup(page){
 
-         const grp13=await page.locator("//p[normalize-space()='grp13']").click();
+         const grp13=await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
+         
          const Actionclick=await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
          const editactionclick=await page.locator("//div[normalize-space()='Edit Company']").click();
-         await page.waitForTimeout(1000);
-         await page.locator("//input[@placeholder='Enter company name']").fill('');
-         await page.locator("//input[@placeholder='Enter company name']").fill('Name 27');
+         //await page.waitForTimeout(1000);
+         await page.locator("//input[@placeholder='Enter Company Name']").fill('');
+         await page.locator("//input[@placeholder='Enter Company Name']").fill('Name 27');
          await page.waitForTimeout(1000);
          await page.locator("//div//div//div//div//div//div//div//div[3]//select[1]").selectOption({label : "CCA"});
          await page.waitForTimeout(1000);

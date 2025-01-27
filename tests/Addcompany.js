@@ -1,10 +1,10 @@
-const Addgroup = require("./forgotpassword");
+const Addgroup = require("./Addgroup");
 const{test , expect}= require('@playwright/test')
 
 
   
 
-class Addcom extends Addgroup{
+class Addcompany extends Addgroup{
 
     
     constructor(page){
@@ -63,7 +63,7 @@ class Addcom extends Addgroup{
 
 
 
-module.exports = { Addgroup, Addcom, cancelcross };
+module.exports = { Addcompany, Addgroup, cancelcross };
 
 
 

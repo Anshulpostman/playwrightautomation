@@ -60,7 +60,7 @@ test('valid login test case' , async  ({page}) => {
 
 // Login with valid email id and invalid password
 
-test.only("login with valid email id and invalid password" , async function({page}){
+test("login with valid email id and invalid password" , async function({page}){
 
     await page.goto("https://devecg.resourcifi.tech/login");
 

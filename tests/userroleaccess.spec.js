@@ -106,7 +106,7 @@ test("Test the functionality of login ifcompany  user is active", async ({ page 
 
 //Test the functionality copy password and click on the link and reset password
 
-test.only("Test the functionality of copy password and click on the link and reset password", async ({ page }) => {
+test("Test the functionality of copy password and click on the link and reset password", async ({ page }) => {
      
      const apiKey = 'p8eEa1mNH1BEpi9PMbTerGA6kphp40cX';
      const mailosaur =  new MailosaurClient(apiKey);
