@@ -2,7 +2,7 @@ const Addcom  = require('./Addcompanyfunction');
 
 const{test , expect}= require('@playwright/test')
 
-async function ECGcomp(page){
+async function ECGcompvalidationmessage(page){
 
    //Validate for the Error message for Adding company information
     const usercompanynameerror= await page.locator("//div[contains(text(),'Company name')]").isVisible();
@@ -169,11 +169,14 @@ async function ECGcomp(page){
              }
             else{
             console.log("countryerror  is required message is not visible correct");
-             }
+             
+
+            }
+          }
          
         //Enter message and submit information and checking validation message for phone number and select value from dropdown.
         
-        
+        async function ECGcompanyfillform(page){
         const Firstname=await page.locator("//input[@placeholder='Enter Company Name']").fill("Test Anshul");
         await page.waitForTimeout(1000);
         const category=await page.locator("//div//div//div//div//div//div//div//div[3]//select[1]").selectOption({label : "Utility"});
@@ -228,7 +231,7 @@ async function ECGcomp(page){
 }
 
 
-module.exports = { Addcom , ECGcomp , Actionofeditgroup,  };
+module.exports = { Addcom , ECGcompvalidationmessage ,ECGcompanyfillform, Actionofeditgroup,  };
 
 
 

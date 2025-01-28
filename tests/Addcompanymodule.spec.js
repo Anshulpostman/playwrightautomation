@@ -1,5 +1,6 @@
-const  {ECGcomp}  = require('./Addcompanyfunction');
+const  {ECGcompvalidationmessage}  = require('./Addcompanyfunction');
 const  {Actionofeditgroup}  = require('./Addcompanyfunction');
+const  {ECGcompanyfillform}  = require('./Addcompanyfunction');
 const {Addcompany, cancelcross}=require('./Addcompany');
 const { Addgroup } = require('./Addgroup');
 
@@ -33,7 +34,7 @@ const exp = require('constants');
         await newaddcom.clickAddcompanybutton();
         await newaddcom.clickAddcompanyinfo();
         
-        await ECGcomp(page);
+        await ECGcompvalidationmessage(page);
 })
 
   
@@ -46,44 +47,20 @@ const exp = require('constants');
         await newaddcom.login();
         await newaddcom.clickgroupmanagement();
         const Anshultesting=await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
-        const id=114;
-        const grpid="ID11611";
-        const grpname="Anshul Testing Group";
+       // const grpname="Anshul Testing Group";
         await page.waitForTimeout(1000);
         await newaddcom.clickAddcompanybutton();
-        const urlcomapny="https://devecg.resourcifi.tech/super/group/list?id=114&grp=ID11611&grpname=Anshul+Testing+Group";
+        //const urlcomapny="https://devecg.resourcifi.tech/super/group/list?id=114&grp=ID11611&grpname=Anshul+Testing+Group";
         
-        await ECGcomp(page);
+        await ECGcompanyfillform(page);
         await newaddcom.clickAddcompanyinfo();
         await page.waitForTimeout(1000);
+        const companyname=await page.locator("//div[contains(text(),'Test Anshul')]");
+        const compcontaintext=await companyname.isVisible();
 
+        expect(compcontaintext).toBeTruthy();
+        console.log("company is created:"+ compcontaintext)
         
-
-        if(urlcomapny){
-
-            expect(urlcomapny).toContain(grpname);
-            console.log("correcturl:"+urlcomapny)
-        }
-        else{
-            console.log("user not redirect to correct url")
-        }
-
-        try {
-            const newcompadd = await page.waitForSelector('text=Test Anshul', { timeout: 10000 });
-            const textIsVisible = await newcompadd.isVisible();
-            
-            // Verify visibility of the "Test Anshul" text
-            if (textIsVisible) {
-                expect(textIsVisible).toBeTruthy();
-                console.log("Test case passed");
-            } else {
-                console.log("Test case failed");
-            }
-        } catch (err) {
-            console.log("Error waiting for 'Test Anshul' text: " + err.message);
-        }
-    
-    
     })
 
     //Edit Test functionality of a company, change inactive to Active and inactive to Active
@@ -145,7 +122,7 @@ const exp = require('constants');
         }
     })
 
-
+    // Test functionality of company Active to Inactive
     test("test the toggle Active to Inactive functionality" , async ({page})=>{
 
         const edittoggle=new Addcompany(page);
@@ -158,11 +135,11 @@ const exp = require('constants');
         await page.waitForTimeout(1000)
         const activetoinactive=await page.locator("//button[normalize-space()='Confirm']").click();
         await page.waitForTimeout(1000);
-        const activecompanyid=await page.locator("//div[contains(text(),'ID74742')]");
+        const activecompanyid=await page.locator("//div[contains(text(),'ID40022')]");
         await page.waitForTimeout(1000)
         const inactivestatus=await page.locator("//div[contains(text(),'Inactive')]");
         await page.waitForTimeout(1000)
-        const Activestatustext=await activecompanyid.textContent();
+        const Activestatustext=await activecompanyid.isVisible();
         const Inactivestatustext=await inactivestatus.textContent();
          if(Inactivestatustext.includes("Inactive")){
 
@@ -174,7 +151,7 @@ const exp = require('constants');
                 console.log("toogle functionality is not working correct")
             }
    })
-
+         // Test the functionality of company from InActive to Active
          test("test the toggle inactive to Active functionality" , async ({page})=>{
 
     const edittoggle=new Addcompany(page);
@@ -187,16 +164,16 @@ const exp = require('constants');
     await page.waitForTimeout(1000)
     const activetoinactive=await page.locator("//button[normalize-space()='Confirm']").click();
     await page.waitForTimeout(1000);
-    const activecompanyid=await page.locator("//div[contains(text(),'ID74742')]");
+    const activecompanyid=await page.locator("//div[contains(text(),'ID87052')]");
     await page.waitForTimeout(1000)
     const Activestatus=await page.locator("(//div[contains(text(),'Active')])[1]");
    
     await page.waitForTimeout(1000)
-    const activestatustext=await Activestatus.textContent();
-    //const Inactivestatustext=await inactivestatus.textContent();
-     if(activestatustext.includes("Active")){
+    const activestatustext=await activecompanyid.isVisible();
+    const Inactivestatustext=await Activestatus.textContent();
+     if(Inactivestatustext.includes("Active")){
 
-       await expect(activestatustext).toContain("Active")
+       await expect(Inactivestatustext).toContain("Active")
         console.log("toggle Inactive to active is working correct")
         }
         else{
@@ -268,11 +245,7 @@ const exp = require('constants');
 })
 
     
-        // Test the toggle on/off functionality.
-
-       
-         
-       // Test the inactive to active
+        
 
         
             // Test the Searching functionality by company name , utilitytype and category
@@ -282,13 +255,13 @@ const exp = require('constants');
                 const serach= new Addcompany(page);
                 await serach.login();
                 await serach.clickgroupmanagement();
-                await page.locator("(//img[@alt='Group Icon'])[3]").click();
-               const textbox= await page.locator("//body/div/div/div/div/div/div[1]/div[2]/div[1]").type(" Test Anshul");
+                await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
+               const textbox= await page.locator("//input[contains(@placeholder,'| Search by Company name')]").fill(" Test Anshul");
                 await page.keyboard.press('Enter');
                 await page.waitForTimeout(10000);
                 //const textpresent= await page.waitForSelector('text=Name 15' , {timeout: 5000});
                 const textlocator=await page.locator('text=Test Anshul');
-                const textcontent=await textlocator.textContent();
+                const textcontent=await textlocator.isVisible();
                 if( await textlocator.isVisible()){
 
                     expect(textcontent).toBe("Test Anshul");
@@ -306,13 +279,13 @@ const exp = require('constants');
 
             // Serach with a Category/utility type
 
-            test("test by utility serach" , async ({page})=>{
+            test("test searching by entering utility as keywords for serach" , async ({page})=>{
 
                 const utility= new Addcompany(page);
                 await utility.login();
                 await utility.clickgroupmanagement();
-                await page.locator("//p[normalize-space()='grp13']").click();
-                const textbox= await page.locator("//body/div/div/div/div/div/div[1]/div[2]/div[1]").type("Utility");
+                await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
+                const textbox= await page.locator("//input[contains(@placeholder,'| Search by Company name')]").fill("Utility");
                 await page.keyboard.press('Enter');
                 await page.waitForTimeout(10000);
                //const utilitylocator= await page.locator('text=CCA').first().isVisible();
@@ -323,7 +296,7 @@ const exp = require('constants');
 
                if( await utilitytext.isVisible()){
 
-                expect(utilitycontent).toBe("Utility")
+                expect(utilitycontent).toContain("Utility")
                
                 console.log("Seraching for utility is: "+utilitycontent)
                }
@@ -337,21 +310,21 @@ const exp = require('constants');
 
          //Serach by utility/category
 
-         test.only("test the searching functionality" , async ({page})=>{
+         test("test the searching functionality" , async ({page})=>{
 
             const utilitynew=new Addcompany(page);
             await utilitynew.login();
             await utilitynew.clickgroupmanagement();
-            await page.locator("//button[normalize-space()='2']").click();
-            await page.locator("//p[normalize-space()='grp13']").click();
-            const entertextboxvalue= await page.locator("//input[contains(@placeholder,'| Search by Company name')]").type('Electric');
+            
+            await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
+            const entertextboxvalue= await page.locator("//input[contains(@placeholder,'| Search by Company name')]").fill('Gas');
             await page.waitForTimeout(10000);
             await page.keyboard.press('Enter')
-            await page.waitForSelector('text=Electric');
-            await page.waitForSelector('text=GasandElectric')
+            await page.waitForSelector('text=Gas');
+            await page.waitForSelector('text=Gas & Electric')
             const Electricisvisible= await page.locator('text=Electric').first().isVisible();
             await page.waitForTimeout(10000);
-            const  isGasAndElectricVisible= await page.locator('text=GasAndElectric').isVisible();
+            const  isGasAndElectricVisible= await page.locator('text=Gas & Electric').isVisible();
             if(Electricisvisible ||isGasAndElectricVisible ){
             expect(Electricisvisible).toBeTruthy();
                 expect(isGasAndElectricVisible).toBeTruthy();
