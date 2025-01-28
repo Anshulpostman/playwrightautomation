@@ -1,15 +1,17 @@
 //const Addcom = require("./Addcom");
 
+const Addgroup = require("./Addgroup");
+
 //const { Addinput, Addgroup } = require('./forgotpassword');
 
-const Addgroup = require("./forgotpassword");
+
 class Addinput extends Addgroup{
 
     constructor(page){
         super(page);
        
 
-    this.inputdatamanagment="(//div[contains(text(),'Input Data Management')])[1]";
+    this.inputdatamanagment="//div[contains(text(),'Input Data Management')]";
     this.Addinputfield="//div[contains(text(),'Add Input Fields')]";
     this.Addtextfield="//div[normalize-space()='Add Input Field']";
 
@@ -31,7 +33,7 @@ class Addinput extends Addgroup{
 
   
 
-module.exports = Addinput;
+module.exports = {Addinput , Addgroup};
 
  
   

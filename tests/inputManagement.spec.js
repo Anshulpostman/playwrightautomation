@@ -1,22 +1,23 @@
 const  {cancelcross}  = require('./Addcompany');
 //const config = require('../config/environment'); 
- const Addinput = require('./Clinput');
-//const Addgroup = require('./Addgroup');
+const { Addinput } = require('./Clinput');
+ const {Addgroup} = require('./Clinput');
+ //const Addgroup=require('./Addgroup')
 const Addcompany = require('./Addcompany');
+
 
 const { test, expect } = require('@playwright/test');
 const { ADDRGETNETWORKPARAMS } = require('dns');
 
 //Test the functionality of inupt data magament
-test.only("click on input data mangement" , async({page})=>{
+test("click on input data mangement" , async({page})=>{
 
 
     const inputdata= new Addinput(page);
-    const inputdataa=new Addcompany.Addgroup(page);
-     await inputdataa.login();
-     await page.waitForTimeout(10000);
-
+   
+     await inputdata.login();
      await inputdata.clickinputdatamangement();
+     
      await page.waitForTimeout(10000);
      const inputurl=await page.url();
      if(inputurl==='https://devecg.resourcifi.tech/super/input')
@@ -35,7 +36,7 @@ test.only("click on input data mangement" , async({page})=>{
    test("Test the validation message shows if user click on Add inpput field and Add input field is opened" , async ({page})=>{
 
     const inputdata= new Addinput(page);
-    const inputdataa=new Addcompany.Addgroup(page);
+    
       await inputdata.login();
       await inputdata.clickinputdatamangement();
       const Addinputfieldone=await inputdata.clickAddinputfield();
