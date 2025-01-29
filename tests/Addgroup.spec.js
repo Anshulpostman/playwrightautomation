@@ -1,4 +1,5 @@
-    const Addgroup = require('./forgotpassword')
+const Addgroup = require('./Addgroup')
+   // const Addgroup = require('./forgotpassword')
     const{test , expect}= require('@playwright/test')
    // Test the Add Groupmanagement button and Add group is  clickable or not 
     test("Test the Add Groupmanagement button and Add group is  clickable or not " , async ({page})=>{
@@ -198,7 +199,7 @@
 
          //validate if user created group sucessfully and make sure that is visible on the page.
          
-         test.only("validate if user created group sucessfully and make sure that is visible on the page"  , async ({page})=>{
+         test("validate if user created group sucessfully and make sure that is visible on the page"  , async ({page})=>{
 
             const addgroup=new Addgroup(page);
                     
@@ -218,7 +219,7 @@
              await addgroup.dashboardnavigate("https://devecg.resourcifi.tech/super/group");
              
            // const textpresent= await page.waitForSelector('text=grp13', { timeout: 5000 });
-             const textIsVisible = await page.locator('text=grp14').first().isVisible();
+             const textIsVisible = await page.locator('text=grp15').first().isVisible();
 
              if(await textIsVisible.isVisible){
 

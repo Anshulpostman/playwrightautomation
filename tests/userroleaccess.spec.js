@@ -1,7 +1,7 @@
 
 const { test, expect } = require('@playwright/test');
-const {Addcom}=require('./Addcom');
-const { ECGcomp } = require('./Addcompanyfunction');
+const {Addcompany}=require('./Addcompany');
+const { ECGcompvalidationmessage } = require('./Addcompanyfunction');
 const  {Actionofeditgroup}  = require('./Addcompanyfunction');
 const config = require('../config/environment'); 
  const Addinput = require('./Clinput');
@@ -10,10 +10,10 @@ const config = require('../config/environment');
  const MailosaurClient = require('mailosaur');
 //const Addinput = require('./Clinput'); // Correct im
 
-
+// test the login functionality from sub-admin
 test("test the functionality verify that sub-admin prsenet and login with sub-admin", async ({ page }) => {
    
-    const subadmin= new Addcom(page);
+    const subadmin= new Addcompany(page);
     await subadmin.login();
     await page.waitForTimeout(1000);
     await subadmin.clickgroupmanagement();
@@ -53,7 +53,7 @@ test("Test the functionality of login ifcompany  user is active", async ({ page 
   const mailosaur =  new MailosaurClient(apiKey);
   const serverid='zis1bxhm';
  
-    const addcompany= new Addcom(page);
+    const addcompany= new Addcompany(page);
     await addcompany.login();
     await page.waitForTimeout(1000);
     await addcompany.clickgroupmanagement();
@@ -63,7 +63,7 @@ test("Test the functionality of login ifcompany  user is active", async ({ page 
     //await page.locator("//div[contains(text(),'Add Company')]").click();
     await addcompany.clickAddcompanybutton();
     await page.waitForTimeout(1000);
-    await ECGcomp(page);
+    await ECGcompvalidationmessage(page);
     await page.waitForTimeout(1000);
     await addcompany.clickAddcompanyinfo();
     //wait for an email to be sent
@@ -112,7 +112,7 @@ test("Test the functionality of copy password and click on the link and reset pa
      const mailosaur =  new MailosaurClient(apiKey);
      const serverid='zis1bxhm';
 
-    const addcompany= new Addcom(page);
+    const addcompany= new Addcompany(page);
     await addcompany.login();
     await page.waitForTimeout(1000);
     await addcompany.clickgroupmanagement();
@@ -122,7 +122,7 @@ test("Test the functionality of copy password and click on the link and reset pa
     //await page.locator("//div[contains(text(),'Add Company')]").click();
     await addcompany.clickAddcompanybutton();
     await page.waitForTimeout(1000);
-    await ECGcomp(page);
+    await ECGcompvalidationmessage(page);
     await page.waitForTimeout(1000);
     await addcompany.clickAddcompanyinfo();
     
