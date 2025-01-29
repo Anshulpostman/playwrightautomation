@@ -2,7 +2,7 @@ const{test , expect} = require('@playwright/test');
 //const Addcom  = require('./Addcompanyfunction');
 
 
-const {Addcom}=require('./Addcom');
+const {Addcompany}=require('./Addcompany');
 const config = require('../config/environment');
 const Addinput = require('./Clinput');
 const Addgroup = require('./forgotpassword');
@@ -10,9 +10,9 @@ const exp = require("constants")
 /** @type {import('@playwright/test').Locator} */
 
 //Test the functionality of try to changing name and email id of my profile of Super admin
-test("Test the functionality of changing name and email id of my profile of Super admin", async ({ page }) => {
+test.only("Test the functionality of changing name and email id of my profile of Super admin", async ({ page }) => {
 
-    const profile= new Addcom(page);
+    const profile= new Addcompany(page);
     await profile.login();
     await page.waitForTimeout(1000);
     await page.locator("//body/div/div/div/div/div/div[1]/div[1]/div[2]//*[name()='svg']").click();
@@ -46,7 +46,7 @@ test("Test the functionality of changing name and email id of my profile of Supe
 
   test("test the functionality of changing name and email id of subadmin my profile  company user", async ({ page }) => {
     
-    const subadminprofile= new Addcom(page);
+    const subadminprofile= new Addcompany(page);
     //await subadminprofile.login();
     await subadminprofile.navigate();
    // await page.waitForTimeout(1000);
@@ -93,12 +93,12 @@ test("Test the functionality of changing name and email id of my profile of Supe
 
     test("Test the functionality of changing name and email id of company user of my profile", async ({ page }) => {
     
-        const subadminprofile= new Addcom(page);
+        const subadminprofile= new Addcompany(page);
         //await subadminprofile.login();
         await subadminprofile.navigate();
        // await page.waitForTimeout(1000);
-        await page.getByPlaceholder("Email Address").fill("auser01@yopmail.com");
-        await page.getByPlaceholder("Password").fill("Anshul@1234");
+        await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
+        await page.getByPlaceholder("Password").fill("Anshul11@123");
         const click=await page.locator("//span[normalize-space()='Log In']");
         const clicklogin=await click.click();
         await page.waitForTimeout(1000);
@@ -142,12 +142,12 @@ test("Test the functionality of changing name and email id of my profile of Supe
 
         test("Test the functionality of cancel after click on change password company user", async ({ page }) => {
     
-            const companypwdfun= new Addcom(page);
+            const companypwdfun= new Addcompany(page);
             //await subadminprofile.login();
             await companypwdfun.navigate();
            // await page.waitForTimeout(1000);
-           await page.getByPlaceholder("Email Address").fill("auser01@yopmail.com");
-           await page.getByPlaceholder("Password").fill("Anshul@1234");
+           await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
+           await page.getByPlaceholder("Password").fill("Anshul11@123");
            const click=await page.locator("//span[normalize-space()='Log In']");
            const clicklogin=await click.click();
            await page.waitForTimeout(1000);
@@ -178,12 +178,12 @@ test("Test the functionality of changing name and email id of my profile of Supe
      })       // Test the validation message if user click on change password without entering anything
                  test("Test the functionality of validation meesage shows if user not enter anything ", async ({ page }) => {
     
-                 const companypwdfun= new Addcom(page);
+                 const companypwdfun= new Addcompany(page);
                 //await subadminprofile.login();
                  await companypwdfun.navigate();
                  // await page.waitForTimeout(1000);
-                await page.getByPlaceholder("Email Address").fill("auser01@yopmail.com");
-                await page.getByPlaceholder("Password").fill("Anshul@1234");
+                await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
+                await page.getByPlaceholder("Password").fill("Anshul11@123");
                 const click=await page.locator("//span[normalize-space()='Log In']");
                 const clicklogin=await click.click();
                 await page.waitForTimeout(1000);
@@ -236,11 +236,11 @@ test("Test the functionality of changing name and email id of my profile of Supe
         // Test the functionality if user enter correct old password and click on submit.
 
         test("Test the functionality if user correct enter old password and click on submit.", async ({ page }) => {
-        const companypwdfun= new Addcom(page);
+        const companypwdfun= new Addcompany(page);
         await companypwdfun.navigate();
         //login with company user
-        await page.getByPlaceholder("Email Address").fill("auser01@yopmail.com");
-        await page.getByPlaceholder("Password").fill("Anshul@1234");
+        await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
+        await page.getByPlaceholder("Password").fill("Anshul11@123");
         const click=await page.locator("//span[normalize-space()='Log In']");
         const clicklogin=await click.click();
         await page.waitForTimeout(1000);
@@ -280,11 +280,11 @@ test("Test the functionality of changing name and email id of my profile of Supe
     // test the functionlity of by entering correct old pwd and new but not confirm pwd
 
     test("Test the functionality of by entering correct old pwd and new pwd but not confirm pwd", async ({ page }) => {
-        const companypwdfun= new Addcom(page);
+        const companypwdfun= new Addcompany(page);
         await companypwdfun.navigate();
         //login with company user
-        await page.getByPlaceholder("Email Address").fill("auser01@yopmail.com");
-        await page.getByPlaceholder("Password").fill("Anshul@1234");
+        await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
+        await page.getByPlaceholder("Password").fill("Anshul11@123");
         const click=await page.locator("//span[normalize-space()='Log In']");
         const clicklogin=await click.click();
         await page.waitForTimeout(1000);
@@ -294,10 +294,10 @@ test("Test the functionality of changing name and email id of my profile of Supe
 
         // Enter old password and click on submit
         const oldpwd=await page.locator("//input[@placeholder='Enter old password']");
-        const oldpwdenter=await oldpwd.fill("Anshul@1234");
+        const oldpwdenter=await oldpwd.fill("Anshul11@123");
        // Enter new password
         const newpwd=await page.locator("//input[@placeholder='Enter new password']");
-        const newpwdenter=await newpwd.fill("Anshul11@1234");
+        const newpwdenter=await newpwd.fill("Anshul11@123");
         
         //click on change password
         const changepasswordbutton=await page.locator("//button[@type='button'][normalize-space()='Change Password']");
@@ -325,14 +325,15 @@ test("Test the functionality of changing name and email id of my profile of Supe
     //Test the functionality if new and confirm password is not same
 
     test("Test the functionality if new and confirm password is not same", async ({ page }) => {
-        const companypwdfun= new Addcom(page);
+        const companypwdfun= new Addcompany(page);
         await companypwdfun.navigate();
         //login with company user
-       
+        await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
+        await page.getByPlaceholder("Password").fill("Anshul11@123");
 
          // Enter old password and click on submit
          const oldpwd=await page.locator("//input[@placeholder='Enter old password']");
-         const oldpwdenter=await oldpwd.fill("Anshul@1234");
+         const oldpwdenter=await oldpwd.fill("Anshul11@123");
         // Enter new password
          const newpwd=await page.locator("//input[@placeholder='Enter new password']");
          await newpwd.fill("Anshul11@1234");
@@ -354,10 +355,10 @@ test("Test the functionality of changing name and email id of my profile of Supe
 
     //test the functionality if user able to change password successfully
         test("test the functionality of change password successfully" , async ({page})=> {
-        const successfulllogin = new Addcom(page)
+        const successfulllogin = new Addcompany(page)
         await successfulllogin.navigate();
-        await page.getByPlaceholder("Email Address").fill("auser01@yopmail.com");
-        await page.getByPlaceholder("Password").fill("Anshul@1234");
+        await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
+        await page.getByPlaceholder("Password").fill("Anshul11@123");
         const click=await page.locator("//span[normalize-space()='Log In']");
         const clicklogin=await click.click();
         await page.waitForTimeout(1000);
@@ -366,7 +367,7 @@ test("Test the functionality of changing name and email id of my profile of Supe
         await page.locator("//button[normalize-space()='Change Password']").click();
          // Enter old password and click on submit
          const oldpwd=await page.locator("//input[@placeholder='Enter old password']");
-         const oldpwdenter=await oldpwd.fill("Anshul@1234");
+         const oldpwdenter=await oldpwd.fill("Anshul11@123");
         // Enter new password
          const newpwd=await page.locator("//input[@placeholder='Enter new password']");
          await newpwd.fill("Anshul@12345");
@@ -388,9 +389,9 @@ test("Test the functionality of changing name and email id of my profile of Supe
    // Test the functionality if company user enter incorrect old pwd , new and confirm same password.
     
    test("test the functionality if old, new and confirm pwd is same" , async ({page})=> {
-    const successfulllogin = new Addcom(page)
+    const successfulllogin = new Addcompany(page)
     await successfulllogin.navigate();
-    await page.getByPlaceholder("Email Address").fill("auser01@yopmail.com");
+    await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
     await page.getByPlaceholder("Password").fill("Anshul@12345");
     const click=await page.locator("//span[normalize-space()='Log In']");
     const clicklogin=await click.click();
@@ -403,10 +404,10 @@ test("Test the functionality of changing name and email id of my profile of Supe
      const oldpwdenter=await oldpwd.fill("Anshul@1234");
     // Enter new password
      const newpwd=await page.locator("//input[@placeholder='Enter new password']");
-     await newpwd.fill("Anshul@1234");
+     await newpwd.fill("Anshul@12346");
     // Enter confirm password
       const confipwd=await page.locator("//input[@placeholder='Confirm new password']");
-      await confipwd.fill("Anshul@1234");
+      await confipwd.fill("Anshul@12346");
     // Click on change password
     const changepasswordbutton=await page.locator("//button[@type='button'][normalize-space()='Change Password']");
     await changepasswordbutton.click();
@@ -422,9 +423,9 @@ test("Test the functionality of changing name and email id of my profile of Supe
   // Test functionality with wrong old pwd with correct new and confirm pwd
 
   test("test the functionality with wrong old and new and confirm pwd is same" , async ({page})=> {
-    const successfulllogin = new Addcom(page)
+    const successfulllogin = new Addcompany(page)
     await successfulllogin.navigate();
-    await page.getByPlaceholder("Email Address").fill("auser01@yopmail.com");
+    await page.getByPlaceholder("Email Address").fill("usercomp99@yopmail.com");
     await page.getByPlaceholder("Password").fill("Anshul@12345");
     const click=await page.locator("//span[normalize-space()='Log In']");
     const clicklogin=await click.click();
@@ -434,7 +435,7 @@ test("Test the functionality of changing name and email id of my profile of Supe
     await page.locator("//button[normalize-space()='Change Password']").click();
      // Enter old password and click on submit
      const oldpwd=await page.locator("//input[@placeholder='Enter old password']");
-     const oldpwdenter=await oldpwd.fill("Anshul@12345");
+     const oldpwdenter=await oldpwd.fill("Anshul@123458");
     // Enter new password
      const newpwd=await page.locator("//input[@placeholder='Enter new password']");
      await newpwd.fill("Anshul@123");

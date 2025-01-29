@@ -29,7 +29,7 @@ test("click on input data mangement" , async({page})=>{
 
            console.log("iput button is not working")
      }
-
+      
 })
 
  // Test the validation message shows if user click on Add inpput field and Add input field is opened.  
