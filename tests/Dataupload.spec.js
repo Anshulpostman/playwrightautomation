@@ -133,7 +133,7 @@ test("Test that company user login successfully" , async ({page})=>{
 
           // Test the functionality by clicking Enter manually data by clikcing on manually data button
 
-          test.only("Test the functionality by clicking Enter manually data by clikcing on manually data button" , async({page})=>{
+          test("Test the functionality by clicking Enter manually data by clikcing on manually data button" , async({page})=>{
 
           const enterdata=new Addgroup(page);
           await enterdata.companylogin();
@@ -166,5 +166,173 @@ test("Test that company user login successfully" , async ({page})=>{
 
 
           })
+
+         // Test the functionality by clicking on download to make sure that file is downloaded in valid format
+
+        test("test the functionality by clicking on download file and make sure that file has been downloaded" , async({page})=>{
+
+        const download=new Addgroup(page)
+        await download.companylogin();
+        const dataManagementClick = await page.locator("(//div[contains(text(),'Data Management')])[1]");
+        await dataManagementClick.click();
+        await page.waitForTimeout(1000);
+        await page.locator("//div[contains(text(),'Add Data')]").click();
+        
+        const [downloadsave]= await Promise.all([
+          
+            page.waitForEvent('download'),
+            page.locator("//p[normalize-space()='Download Template']").click(),
+          //await page.locator("//p[normalize-space()='Download Template']").click()
+          await page.waitForTimeout(10000)
+
+        ])
+        
+        const filename= downloadsave.suggestedFilename();
+        const savepath = `./downloads/${filename}`;
+
+         console.log(`✅ File downloaded successfully: ${savepath}`);           
+        
+      
+})
+
+        // Test the functionality by click on cancel and user redirect to the correct page
+
+        test("Test the functionality by clicking on cancel and user redirect to the correct page" , async({page})=>{
+        const cancel=new Addgroup(page);
+        await cancel.companylogin();
+        await page.locator("//div[contains(text(),'Add Data')]").click();
+        const enternanually=await page.locator("//button[normalize-space()='Enter Data Manually']");
+        await enternanually.click();
+        const cancelclick=await page.locator("//div[normalize-space()='Cancel']");
+        const cancelbutton=await cancelclick.click();
+        const enduserdashboardurl="https://devecg.resourcifi.tech/end/data";
+        const headerurl=await page.url();
+        if(headerurl===enduserdashboardurl){
+        console.log("user redirect to the correct page")
+        expect(headerurl).toBe(enduserdashboardurl)
+        }
+        else{
+            console.log("user not redirect successfully")
+        }
+})
+        // Test the functionality by clicking on save as Draft and make sure that record saved as draft
+
+        test("Test the functionality by clicking on save as Draft and make sure that record saved as draft" , async({page})=>{
+
+        const saveasdraft=new Addgroup(page);
+        await saveasdraft.companylogin();
+        await page.locator("//div[contains(text(),'Add Data')]").click();
+        await page.locator("//button[normalize-space()='Enter Data Manually']").click();
+        await page.waitForTimeout(1000);
+        await page.locator("//body/div/div/div/div/div/div/div/div/div/div/div/div/div[1]/div[2]/div[1]/select[1]").selectOption({label: '2025'});
+        await page.waitForTimeout(1000);
+        await page.locator("//input[@placeholder='Enter company name']");
+        await page.waitForTimeout(1000);
+        await page.locator("//body/div/div/div/div/div/div/div/div/div/div/div/div/div[1]/div[2]/div[1]/select[1]");
+        await page.locator("//body/div/div/div/div/div/div/div/div/div/div/div/div/div[1]/div[2]/div[1]/select[1]");
+        await page.locator("//body/div/div/div/div/div/div/div/div/div/div/div/div/div[1]/div[2]/div[1]/select[1]");
+        await page.locator("//input[@placeholder='Enter total spend (ex-00.00)']").fill("1000");
+        await page.waitForTimeout(1000);
+        await page.locator("//input[@placeholder='Enter total DBE (ex-00.00)']").fill("100");
+        await page.waitForTimeout(1000);
+        await page.locator("//input[@placeholder='Enter total DBE % (ex-0.0%)']").fill("12");
+        await page.waitForTimeout(1000);
+        const saveasdraftone=await page.locator("//div[normalize-space()='Save as Draft']");
+        const saveasdraftbutton=await saveasdraftone.click();
+        await page.waitForTimeout(1000);
+        
+        const recorddraft=await page.getByText('2025');
+        await recorddraft.waitFor(); 
+        
+        const saverecord = await recorddraft.innerText(); 
+        await page.waitForTimeout(1000);
+       
+        if (saverecord==="2025"){
+        console.log("Record saved as draft successfully")
+        expect(saverecord).toBe("2025")
+        }
+        else{
+          console.log("Record not saved as draft")
+        }
+        
+})
+
+      // Test the functionality of edit/view save draft record
+      
+      test("test the functuinality of edit/view record" , async({page})=>{
+
+        const editfunctionality=new Addgroup(page);
+        await editfunctionality.companylogin();
+        const edit=await page.locator("//div[3]//div[1]//div[2]//div[2]//*[name()='svg']");
+        const editclick=await edit.click();
+        const editdata=await page.locator("//li[normalize-space()='Edit Data']");
+        await editdata.waitFor();  // ✅ Waits until the element appears
+        await editdata.click();
+        const inputmanagementpageurl="https://devecg.resourcifi.tech/end/data/add-data";
+        const editdataurl=await page.url();
+        if (editdataurl===inputmanagementpageurl){
+        console.log("user redirect to correct page")
+        expect(editdataurl).toBe(inputmanagementpageurl)
+        }
+        else{
+          console.log("user not redirect successfully")
+        }
+      
+})
+
+       // Test the functionality of delete record and click on cancel record
+       test("test the functuinality of delete and click on cancel record" , async({page})=>{
+       const deletefunctionality=new Addgroup(page);
+        await deletefunctionality.companylogin();
+        const deleteone=await page.locator("//div[3]//div[1]//div[2]//div[2]//*[name()='svg']");
+        const deleteclick=await deleteone.click();
+        const deldata=await page.locator("//li[normalize-space()='Delete Data']");
+        await deldata.waitFor();  // ✅ Waits until the element appears
+        await deldata.click();
+        const deletecancel=await page.locator("//button[normalize-space()='Cancel']");
+        const deletecancelclick=await deletecancel.click();
+        const currentURL = page.url();
+        const enduserdashboardurl="https://devecg.resourcifi.tech/end/data";
+        
+        
+        if (await currentURL===enduserdashboardurl){
+          console.log("user redirect to correct page")
+          expect(currentURL).toBe(enduserdashboardurl)
+        }
+        else{
+            console.log("user not redirect successfully")
+        }
+})
+
+       // Test the functionality of delete record and click on delete record
+
+       test("test the functuinality of delete and click on confirm record" , async({page})=>{
+        const deletefunctionality=new Addgroup(page);
+         await deletefunctionality.companylogin();
+         const deleteone=await page.locator("//div[3]//div[1]//div[2]//div[2]//*[name()='svg']");
+         const deleteclick=await deleteone.click();
+         const deldata=await page.locator("//li[normalize-space()='Delete Data']");
+         await deldata.waitFor();  // ✅ Waits until the element appears
+         await deldata.click();
+         const deleteconfirm=await page.locator("//button[normalize-space()='Confirm']");
+         const deleteconfirmclick=await deleteconfirm.click();
+         
+         const recorddelet=await page.locator("/html/body/div[1]/div[2]/div/div/div[1]/div/div/div[2]");
+         const recorddelete = (await recorddelet.innerText()).trim();
+         console.log("Fetched Text:", recorddelete);
+
+         if (await recorddelete.includes("Record deleted successfully")){
+           console.log("record deleted successfully")
+           expect(recorddelete).toContain("Record deleted successfully")
+         }
+         else{
+             console.log("Record not deleted successfully")
+         }
+ })
+
+
+
+
+
 
 

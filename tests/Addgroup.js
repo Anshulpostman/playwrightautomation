@@ -137,9 +137,9 @@ class Addgroup{
            async companylogin(Email , paword){
 
             await this.navigate(this.urlone);
-            await this.fillEmail("usercomp99@yopmail.com" );
+            await this.fillEmail("repo2ab@yopmail.com" );
             await this.page.waitForTimeout(200);
-            await this.fillPassword("Anshul11@123");
+            await this.fillPassword("Anshul11@1234");
             await this.page.waitForTimeout(200);
             await this.clickloginbutton();
             await this.page.waitForTimeout(200);
