@@ -1,10 +1,9 @@
      //const { default: test } = require('node:test')
 
-
-         const Addgroup = require('./Addgroup')
+     
     //  const{test , expect , request}=require('@playwright/test')
       
-        const{test , expect }=require('@playwright/test')
+        
     
 
     //  let AuthToken='';
@@ -41,8 +40,8 @@
     //     await requestContext.dispose();
     // });
     
-
-
+    const { Addgroup, fillmandatoryfields, mandatoryfields } = require('./Addgroup');
+    const{test , expect }=require('@playwright/test')
  
 //  test the login functionality with valid email id and pwd
 test("Test that company user login successfully" , async ({page})=>{
@@ -263,7 +262,7 @@ test("Test that company user login successfully" , async ({page})=>{
 
         const editfunctionality=new Addgroup(page);
         await editfunctionality.companylogin();
-        const edit=await page.locator("//div[3]//div[1]//div[2]//div[2]//*[name()='svg']");
+        const edit=await page.locator("//body/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[2]//*[name()='svg']");
         const editclick=await edit.click();
         const editdata=await page.locator("//li[normalize-space()='Edit Data']");
         await editdata.waitFor();  // ✅ Waits until the element appears
@@ -284,7 +283,7 @@ test("Test that company user login successfully" , async ({page})=>{
        test("test the functuinality of delete and click on cancel record" , async({page})=>{
        const deletefunctionality=new Addgroup(page);
         await deletefunctionality.companylogin();
-        const deleteone=await page.locator("//div[3]//div[1]//div[2]//div[2]//*[name()='svg']");
+        const deleteone=await page.locator("//body/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[2]//*[name()='svg']");
         const deleteclick=await deleteone.click();
         const deldata=await page.locator("//li[normalize-space()='Delete Data']");
         await deldata.waitFor();  // ✅ Waits until the element appears
@@ -309,15 +308,15 @@ test("Test that company user login successfully" , async ({page})=>{
        test("test the functuinality of delete and click on confirm record" , async({page})=>{
         const deletefunctionality=new Addgroup(page);
          await deletefunctionality.companylogin();
-         const deleteone=await page.locator("//div[3]//div[1]//div[2]//div[2]//*[name()='svg']");
+         const deleteone=await page.locator("//body/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[2]//*[name()='svg']");
          const deleteclick=await deleteone.click();
          const deldata=await page.locator("//li[normalize-space()='Delete Data']");
          await deldata.waitFor();  // ✅ Waits until the element appears
          await deldata.click();
          const deleteconfirm=await page.locator("//button[normalize-space()='Confirm']");
+         await page.waitForTimeout(1000);
          const deleteconfirmclick=await deleteconfirm.click();
-         
-         const recorddelet=await page.locator("/html/body/div[1]/div[2]/div/div/div[1]/div/div/div[2]");
+         const recorddelet=await page.locator("//div[contains(text(),'Record deleted successfully')]");
          const recorddelete = (await recorddelet.innerText()).trim();
          console.log("Fetched Text:", recorddelete);
 
@@ -329,6 +328,71 @@ test("Test that company user login successfully" , async ({page})=>{
              console.log("Record not deleted successfully")
          }
  })
+
+        // Test the functionality if user click on submit without enter anything
+
+        test("Test the functionality if user click on submit without enter anything" , async({page})=>{
+
+       const submit= new Addgroup(page);
+        await submit.companylogin();
+        await page.waitForTimeout(1000);
+        await page.locator("//div[contains(text(),'Add Data')]").click();
+        await page.waitForTimeout(1000);
+        await page.locator("//button[normalize-space()='Enter Data Manually']").click();
+        await page.waitForTimeout(1000);
+        const submitbutton=await page.locator("//div[normalize-space()='Submit']");
+        await submitbutton.click();
+        await page.waitForTimeout(1000);
+        const toastMessageLocator=await page.locator("xpath=//div[contains(text(),'Please fill mandatory field!')]");
+        await toastMessageLocator.waitFor({ state: 'visible' });
+        await expect(toastMessageLocator).toBeVisible({ timeout: 10000 });
+
+        const toastmessage=(await toastMessageLocator.innerText()).trim();
+        console.log("fetch error text" + toastmessage);
+        if(toastmessage.includes("Please fill mandatory field!")){
+          console.log("Error message displayed successfully")
+          expect(toastmessage).toContain("Please fill mandatory field!")
+        }
+        else{
+          console.log("Error message not displayed")
+        }
+
+        })
+
+       // Test the functionality user click on submit if all mandatory message shows
+       
+       test("Test the functionality user click on submit if all mandatory message shows" , async({page})=>{
+        
+        const mandatory= new Addgroup(page);
+        await mandatory.companylogin();
+        await page.waitForTimeout(1000);
+        await page.locator("//div[contains(text(),'Add Data')]").click();
+        await page.waitForTimeout(1000);
+        await page.locator("//button[normalize-space()='Enter Data Manually']").click();
+        await page.waitForTimeout(1000);
+        await page.locator("//div[normalize-space()='Submit']").click();
+        await mandatoryfields(page);
+
+       })
+
+       //// Test the functionality user click on submit if all mandatory message shows
+       
+       test.only("Test the functionality user click on submit after fill the data" , async({page})=>{
+        
+        const fillmandatory= new Addgroup(page);
+        await fillmandatory.companylogin();
+        await page.waitForTimeout(1000);
+        await page.locator("//div[contains(text(),'Add Data')]").click();
+        await page.waitForTimeout(1000);
+        await page.locator("//button[normalize-space()='Enter Data Manually']").click();
+        await page.waitForTimeout(1000);
+        await page.locator("//div[normalize-space()='Submit']").click();
+        await fillmandatoryfields(page);
+        console.log("✅ All mandatory fields have been filled successfully.");
+      });
+      
+
+       
 
 
 

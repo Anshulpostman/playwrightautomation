@@ -88,3 +88,56 @@
 
 //   ]
 // }
+
+
+// launch the browser chrome
+const{chromium}=require('playwright');
+const{test , expect}=require('@playwright/test');
+const { Interface } = require('readline');
+const browser=new chrome.launch();
+await page.browser.newpage();
+await page.goto("www.google.com");
+console.launch("google chrome is launch");
+
+// define the method and call this method in our code
+class callmethod{
+    constructor(page){
+        this.page=page;
+        this.browseimage="xpath of the browser image";
+        this.imagepath="image of the path"
+    }
+
+    async browserimage(){
+        await this.page.click(this.browserimage , this.imagepath)
+
+    }
+
+    async screenshot(){
+        await this.page.screenshot({path: 'screenshot.png'})
+        await this.page.screenshot({path:'fullscreenshot.png' , fullpage:true})
+    
+
+  // set the viewport size
+     await page.setviewportsize({weight : 1536 , height: 864})  // this set your page to specific resolution
+     // we can define in the project config file
+        module.exports[{
+
+            project:[
+                {name:'chromium' , use: {browsername:'chromium'}}
+            ]
+        }
+
+
+        ]
+    }
+}
+
+  // switching Iframe
+  await page.locator("xpath").locator("submitbutton").click();
+  
+        
+
+
+
+
+  
