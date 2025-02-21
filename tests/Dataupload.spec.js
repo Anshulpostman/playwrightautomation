@@ -385,9 +385,12 @@ test("Test that company user login successfully" , async ({page})=>{
         await page.locator("//div[contains(text(),'Add Data')]").click();
         await page.waitForTimeout(1000);
         await page.locator("//button[normalize-space()='Enter Data Manually']").click();
-        await page.waitForTimeout(1000);
-        await page.locator("//div[normalize-space()='Submit']").click();
+        
         await fillmandatoryfields(page);
+        await page.waitForTimeout(10000);
+        await page.locator("//div[normalize-space()='Submit']").click();
+        //
+         await page.pause();
         console.log("✅ All mandatory fields have been filled successfully.");
       });
       

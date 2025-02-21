@@ -721,12 +721,13 @@ class Addgroup{
            //const exp = require('constants');
             async function fillmandatoryfields(page){
 
-            const inputfeilds={
+            const inputFields ={
 
-                             "year":{locator:"//input[@placeholder='Year']", value:"2024"},
-                             "Total Spend":{locator:"//input[@placeholder='Enter total spend (ex-00.00)']" , value:"8000000"},
-                             "Total DBE" : {locator:"//input[@placeholder='Enter total DBE (ex-00.00)']", value:"666666"},
-                             "Total DBE %":{locator:"//input[@placeholder='Enter total DBE % (ex-00.00)']", value:"80"}, 
+                             "Year *":{locator:"//body/div/div/div/div/div/div/div/div/div/div/div/div/div[1]/div[2]/div[1]/select[1]", value:"2001"},
+                             
+                             "Total Spend *":{locator:"//input[@placeholder='Enter total spend (ex-00.00)']", value:"80000"},
+                              "Total DBE *" :{locator:"//input[@placeholder='Enter total DBE (ex-00.00)']", value:"666666"},
+                             "Total DBE % *":{locator:"//input[@placeholder='Enter total DBE % (ex-0.0%)']", value:"80"}, 
                              //MBE information
                              "MBE Spend":{locator:"//input[@placeholder='Spend for Minority Business Enterprises.']" , value:"7000"},
                               "MBE % ":{locator:"//input[@placeholder='Percentage of spend for MBEs.']" , value:"70"},
@@ -752,37 +753,37 @@ class Addgroup{
                               "MBE (Hispanic American) %":{locator:"//input[@placeholder='Percentage of spend for (Hispanic American) MBEs.']" , value:"20"},
                               "MBE (Hispanic American) Direct Spend *":{locator:"//input[@placeholder='Direct Spend for (Hispanic American) Minority Business Enterprises.']" , value:"20000"},
                               "MBE (Hispanic American) Sub Spend *":{locator:"//input[@placeholder='Sub Spend for (Hispanic American) Minority Business Enterprises.']", value:"30000"},
-                              //Diverse Group Information
+                              
                               "WMBE Spend":{locator:"//input[@placeholder='Spend for Women Minority Business Enterprises.']" , value:"3333333"},
-                              "WMBE #":{Locator:"//input[@placeholder='Number of spend for WMBEs.']" , value:"2222"},
-                              "WMBE %":{Locator:"//input[@placeholder='Number of spend for WMBEs.']" , value:"44"},
-                              "Direct Spend (WMBE) *":{Locator:"//input[@placeholder='Direct Spend for Minority Women Business Enterprises.']" , value:"444444"},
-                              "Sub Spend (WMBE) *":{Locator:"//input[@placeholder='Sub Spend for Minority Women Business Enterprises.']" , value:"22222"},
-                              "WBE Spend":{Locator:"//input[@placeholder='Spend for Women Business Enterprises.']" , value:"2222"},
-                              "WBE #":{Locator:"//input[@placeholder='Number of spend for WBEs.']" , value:"1111"},
-                              "WBE %":{Locator:"//input[@placeholder='Percentage of spend for WBEs.']" , value:"15"},
-                              "WBE Direct Spend *":{Locator:"//input[@placeholder='Direct Spend for Women Business Enterprises.']" , value:"7777777"},
-                              "WBE Sub Spend *":{Locator:"//input[@placeholder='Subcontracting Spend for Women Business Enterprises.']" , value:"555555"},
-                              "PBDBE Spend":{Locator:"//input[@placeholder='Spend for Person with Disabilities Business Enterprises.']" , value:"111111"},
-                              "PBDBE #":{Locator:"//input[@placeholder='Number of spend for PBDBEs.']" , value:"3333"},
-                              "PBDBE %":{Locator:"//input[@placeholder='Percentage of spend for PBDBEs.']" , value:"10"},
-                              "PBDBE Direct Spend *":{Locator:"//input[@placeholder='Direct Spend for Person with Disabilities Business Enterprises.']" , value:"1111111"},
-                              "PBDBE Sub Spend *":{Locator:"//input[@placeholder='Subcontracting Spend for Person with Disabilities Business Enterprises.']" , value:"22222"},
-                              "LGBTBE Spend":{Locator:"//input[@placeholder='Spend for LGBT Business Enterprises.']" , value:"22222"},
-                              "LGBTBE #":{Locator:"//input[@placeholder='Number of spend for LGBTBEs.']" , value:"2222"},
-                              "LGBTBE %":{Locator:"//input[@placeholder='Percentage of spend for LGBTBEs.']" , value:"11"},
-                              "LGBTBE Direct Spend *":{Locator:"//input[@placeholder='Direct Spend for LGBTBE']" , value:"8888888"},
-                              "LGBTBE Sub Spend *":{Locator:"//input[@placeholder='Sub Spend for LGBTBE']" , value:"33333"},
-                              "DVBE Spend":{Locator:"//input[@placeholder='Spend for Disabled Veteran Business Enterprises.']" , value:"99999"},
-                              "DVBE #":{Locator:"//input[@placeholder='Number of spend for DVBEs.']" , value:"1111"},
-                              "DVBE %":{Locator:"//input[@placeholder='Percentage of spend for DVBEs.']" , value:"11"},
-                              "DVBE Direct Spend *":{Locator:"//input[@placeholder='Direct Spend for Disabled Veteran Business Enterprises.']" , value:"22222"},
-                              "DVBE Sub Spend *":{Locator:"//input[@placeholder='Sub Spend for Disabled Veteran Business Enterprises.']" , value:"22222"},
-                              "Other 8 (a) Spend":{Locator:"//input[@placeholder='Spend for other 8(a) small businesses.']" , value:"44444"},
-                              "Other 8 (a) %":{Locator:"//input[@placeholder='Number of spend for other 8(a) small businesses.']" , value:"10"},
-                              "Other 8 (a) #":{Locator:"//input[@placeholder='Percentage of spend for other 8(a) small businesses.']" , value:"3333"},
-                              "Other 8 (a) Direct Spend *":{Locator:"//input[@placeholder='Direct Spend for other 8(a) small businesses.']" , value:"3333333"},
-                              "Other 8 (a) Sub Spend *":{Locator:"//input[@placeholder='Sub Spend for other 8(a) small businesses.']" , value:"3333"},
+                              "WMBE #":{locator:"//input[@placeholder='Number of spend for WMBEs.']" , value:"2000"},
+                              "WMBE %":{locator:"//input[@placeholder='Percentage of spend for WMBEs.']" , value:"44"},
+                              "Direct Spend (WMBE) *":{locator:"//input[@placeholder='Direct Spend for Minority Women Business Enterprises.']" , value:"444444"},
+                              "Sub Spend (WMBE) *":{locator:"//input[@placeholder='Sub Spend for Minority Women Business Enterprises.']" , value:"22222"},
+                              "WBE Spend":{locator:"//input[@placeholder='Spend for Women Business Enterprises.']" , value:"2222"},
+                              "WBE #":{locator:"//input[@placeholder='Number of spend for WBEs.']" , value:"1111"},
+                              "WBE %":{locator:"//input[@placeholder='Percentage of spend for WBEs.']" , value:"15"},
+                              "WBE Direct Spend *":{locator:"//input[@placeholder='Direct Spend for Women Business Enterprises.']" , value:"7777777"},
+                              "WBE Sub Spend *":{locator:"//input[@placeholder='Subcontracting Spend for Women Business Enterprises.']" , value:"555555"},
+                              "PBDBE Spend":{locator:"//input[@placeholder='Spend for Person with Disabilities Business Enterprises.']" , value:"111111"},
+                              "PBDBE #":{locator:"//input[@placeholder='Number of spend for PBDBEs.']" , value:"3333"},
+                              "PBDBE %":{locator:"//input[@placeholder='Percentage of spend for PBDBEs.']" , value:"10"},
+                              "PBDBE Direct Spend *":{locator:"//input[@placeholder='Direct Spend for Person with Disabilities Business Enterprises.']" , value:"1111111"},
+                              "PBDBE Sub Spend *":{locator:"//input[@placeholder='Subcontracting Spend for Person with Disabilities Business Enterprises.']" , value:"22222"},
+                              "LGBTBE Spend":{locator:"//input[@placeholder='Spend for LGBT Business Enterprises.']" , value:"22222"},
+                              "LGBTBE #":{locator:"//input[@placeholder='Number of spend for LGBTBEs.']" , value:"2222"},
+                              "LGBTBE %":{locator:"//input[@placeholder='Percentage of spend for LGBTBEs.']" , value:"11"},
+                              "LGBTBE Direct Spend *":{locator:"//input[@placeholder='Direct Spend for LGBTBE']" , value:"8888888"},
+                              "LGBTBE Sub Spend *":{locator:"//input[@placeholder='Sub Spend for LGBTBE']" , value:"33333"},
+                              "DVBE Spend":{locator:"//input[@placeholder='Spend for Disabled Veteran Business Enterprises.']" , value:"99999"},
+                              "DVBE #":{locator:"//input[@placeholder='Number of spend for DVBEs.']" , value:"1111"},
+                              "DVBE %":{locator:"//input[@placeholder='Percentage of spend for DVBEs.']" , value:"11"},
+                              "DVBE Direct Spend *":{locator:"//input[@placeholder='Direct Spend for Disabled Veteran Business Enterprises.']" , value:"22222"},
+                              "DVBE Sub Spend *":{locator:"//input[@placeholder='Sub Spend for Disabled Veteran Business Enterprises.']" , value:"22222"},
+                              "Other 8 (a) Spend":{locator:"//input[@placeholder='Spend for other 8(a) small businesses.']" , value:"44444"},
+                              "Other 8 (a) %":{locator:"//input[@placeholder='Number of spend for other 8(a) small businesses.']" , value:"10"},
+                              "Other 8 (a) #":{locator:"//input[@placeholder='Percentage of spend for other 8(a) small businesses.']" , value:"3333"},
+                              "Other 8 (a) Direct Spend *":{locator:"//input[@placeholder='Direct Spend for other 8(a) small businesses.']" , value:"3333333"},
+                              "Other 8 (a) Sub Spend *":{locator:"//input[@placeholder='Sub Spend for other 8(a) small businesses.']" , value:"3333"},
                               //Direct/Subcontracting Information
                               "Total Direct Spend *":{locator:"//input[@placeholder='Total direct spending by the company.']",value:"2000000"},
                               "Total Direct % *":{locator:"//input[@placeholder='Percentage of direct spending.']",value:"12"},
@@ -806,17 +807,32 @@ class Addgroup{
                               //Workforce/Board Diversity Information
      "9.1.2 Description of Diverse Suppliers with Majority Workforce in California (# OF DIVERSE SUPPLIERS IN CA) *":{locator:"//input[@placeholder='Number of diverse suppliers with a majority workforce in California.']", value:"20000"},
      "WORKFORCE AND BOARD DIVERSITY (# AND % OF WOMEN) * " :{locator:"//input[@placeholder='Number and percentage of women in the workforce and for the board.']", value:"12"},                     
-     "WORKFORCE AND BOARD DIVERSITY (# AND % OF PPL OF COLOR) *":{locator:"//input[@placeholder='Number and percentage of people of color in the workforce and for the board.']", Value:"12"},
+     "WORKFORCE AND BOARD DIVERSITY (# AND % OF PPL OF COLOR) *":{locator:"//input[@placeholder='Number and percentage of people of color in the workforce and for the board.']", value:"11111"},
      "Total Number Of Boards Of Directors *":{locator:"//input[@placeholder='Total number of boards of Directors.']", value:"1000"}
-
             }
+            
+          
+          
 
-     for (const [field, data] of Object.entries(inputfeilds)) {
+     for (const [field, data] of Object.entries(inputFields )) {
       const inputElement = page.locator(data.locator);
-      await inputElement.fill(data.value);  // ✅ Corrected with async/await
-      console.log(`✅ Entered '${data.value}' for: ${field}`);
-  }
+      if (data.locator.includes("select")) { 
+        // ✅ Use selectOption for dropdowns
+        await inputElement.selectOption({ label: data.value });
+    } else {
+        // ✅ Use fill() for text inputs
+        await inputElement.fill(data.value);
+    }
+  
+    console.log(`✅ Entered '${data.value}' for: ${field}`);
 }
+            
+}
+ 
+        
+
+  
+
             
   
 
