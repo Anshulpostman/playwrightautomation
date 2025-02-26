@@ -168,55 +168,48 @@ test.only("Test the functionality of Superadmin unlock report the same report un
     await page.locator("//tbody/tr[2]/td[8]/div[1]/div[1]/div[2]//*[name()='svg']").click();
     await page.waitForTimeout(1000);
     await page.locator("//div[normalize-space()='Unlock Report']").click();
-    const confirm=await page.locator("//button[normalize-space()='Confirm']").click();
+    await page.locator("//button[normalize-space()='Confirm']").click();
+    const Active= page.locator("(//div[contains(text(),'Active')])[2]")
+    const activesave= await Active.innerText("Active");
+    if(activesave==="Active"){
+
+        console.log("Active the report successfully"+activesave)
     
-   
-    const Active = page.locator("xpath=/html/body/div[1]/div[1]/div[3]/div[2]/div/div[2]/div[1]/table/tbody/tr[2]/td[7]/div/div"); // Refined XPath
+    expect(activesave).toBe("Active")
+    }
 
-    await Active.waitFor({ state: "visible" }); // Ensure element is loaded
-
-    const activesave = (await Active.innerText()).trim(); // Get text properly
-
-    console.log("Extracted Text:", activesave); // Debugging
-
-if (activesave === "Active") {
-    console.log("✅ Unlock report successful:", activesave);
-    expect(activesave).toBe("Active");
-} else {
-    console.log("❌ Unlock report failed! Extracted:", activesave);
-}
-     
-
+    else{
+        console.log("Active report is not working")
+    }
+   //Open a new window properly
     
-    // Open a new window properly
-    
-//     const{chromium}=require('playwright');
-//     const browser = await chromium.launch({ headless: false }); // Launch new browser
+    const{chromium}=require('playwright');
+    const browser = await chromium.launch({ headless: false }); // Launch new browser
 
-//    const newcontext=await browser.newContext();
-//    const newPage = await newcontext.newPage();
-//    await newPage.goto("https://devecg.resourcifi.tech/login");
+   const newcontext=await browser.newContext();
+   const newPage = await newcontext.newPage();
+   await newPage.goto("https://devecg.resourcifi.tech/login");
 
-//    const newReportAccess = new Addgroup(newPage);
-//    await newReportAccess.companylogin();
+   const newReportAccess = new Addgroup(newPage);
+   await newReportAccess.companylogin();
    
 
-//    const ActiveParent=await page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div/div/div[2]/div/div/div[1]/div[2]/button")
-//    const Activechild=await page.getByText('Active').first();
-//    const ActiveText = await Activechild.textContent();
+   const ActiveParent=await page.locator("(//button[normalize-space()='Active'])[1]")
+   const Activechild=await page.getByText('Active')
+   const ActiveText =  (await Activechild.first().textContent()).trim();
 
-//    if (ActiveText) {
-//      console.log("Expected:", activesave);
-//      console.log("Actual:", ActiveText.trim());
+   if (ActiveText) {
+     console.log("Expected:", activesave);
+     console.log("Actual:", ActiveText.trim());
    
-//      if (activesave.trim() === ActiveText.trim()) {
-//        console.log("✅ Active from unlock Status changed successfully");
-//        expect(activesave).toBeTruthy();
-//        expect(ActiveText.trim()).toBeTruthy();
-//      } else {
-//        console.log("❌ Status not updated correctly");
-//      }
-//    } else {
-//      console.error("❌ Failed to fetch ActiveText (element might be missing)");
-//    }
+     if (activesave.trim() === ActiveText.trim()) {
+       console.log("✅ Active from unlock Status changed successfully");
+       expect(activesave).toBeTruthy();
+       expect(ActiveText.trim()).toBeTruthy();
+     } else {
+       console.log("❌ Status not updated correctly");
+     }
+   } else {
+     console.error("❌ Failed to fetch ActiveText (element might be missing)");
+   }
 })
