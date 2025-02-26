@@ -810,6 +810,7 @@ class Addgroup{
      "WORKFORCE AND BOARD DIVERSITY (# AND % OF PPL OF COLOR) *":{locator:"//input[@placeholder='Number and percentage of people of color in the workforce and for the board.']", value:"11111"},
      "Total Number Of Boards Of Directors *":{locator:"//input[@placeholder='Total number of boards of Directors.']", value:"1000"}
             }
+          
             
           
           
@@ -827,12 +828,12 @@ class Addgroup{
     console.log(`✅ Entered '${data.value}' for: ${field}`);
 }
             
-}
+
  
         
 
   
-
+            }
             
   
 
@@ -840,11 +841,8 @@ class Addgroup{
           // module.exports = Addgroup;
           // module.exports.mandatoryfields = mandatoryfields; // ✅ Correct way
           // module.exports={fillMandatoryFields}
-          module.exports = {
-            Addgroup,  // Export Class
-            fillmandatoryfields,  // Export Function
-            mandatoryfields  // Export Array
-        };
+          module.exports = Addgroup;// Export Array
+        
 
     
   

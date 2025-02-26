@@ -1,17 +1,25 @@
-const  {ECGcompvalidationmessage}  = require('./Addcompanyfunction');
-const  {Actionofeditgroup}  = require('./Addcompanyfunction');
-const  {ECGcompanyfillform}  = require('./Addcompanyfunction');
-const {Addcompany, cancelcross}=require('./Addcompany');
-const { Addgroup } = require('./Addgroup');
+// const  {ECGcompvalidationmessage}  = require('./Addcompanyfunction');
+// const  {Actionofeditgroup}  = require('./Addcompanyfunction');
+// const  {ECGcompanyfillform}  = require('./Addcompanyfunction');
+// const {Addcompany, cancelcross}=require('./Addcompany');
+// const { Addgroup } = require('./Addgroup');
+
+const { ECGcompvalidationmessage, Actionofeditgroup, ECGcompanyfillform } = require('./Addcompanyfunction'); 
+const { Addcompany, cancelcross } = require('./Addcompany');
+const { Addgroup } = require('./Addgroup');  // ✅ Only needed if used separately
+
+const { test, expect } = require('@playwright/test');  
 
 
-const{test , expect}= require('@playwright/test');
+
+
+
 const exp = require('constants');
 
 
 
  //vaidate if user click on Add company button successfully
-    test("vaidate if user click on Add company button successfully" , async ({page})=>{
+    test.only("vaidate if user click on Add company button successfully" , async ({page})=>{
     const newaddcomp=new Addcompany(page);
     await newaddcomp.login();
     await newaddcomp.clickgroupmanagement();
@@ -41,7 +49,7 @@ const exp = require('constants');
 //Test to validate form fill successfully with all fields
 
      
-        test("fill form successfully" , async({page})=>{
+        test("test the functionality with fill form successfully" , async({page})=>{
 
         const newaddcom= new Addcompany(page);
         await newaddcom.login();
