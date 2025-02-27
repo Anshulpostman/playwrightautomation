@@ -215,7 +215,7 @@ async function ECGcompvalidationmessage(page){
 
          const grp13=await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
          
-         const Actionclick=await page.locator("//tbody/tr[1]/td[7]/div[1]/div[1]/div[1]").click();
+         const Actionclick=await page.locator("//tbody/tr[1]/td[8]/div[1]/div[1]/div[2]//*[name()='svg']").click();
          const editactionclick=await page.locator("//div[normalize-space()='Edit Company']").click();
          //await page.waitForTimeout(1000);
          await page.locator("//input[@placeholder='Enter Company Name']").fill('');
