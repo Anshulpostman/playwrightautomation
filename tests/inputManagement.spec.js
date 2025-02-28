@@ -43,7 +43,7 @@ test("click on input data mangement" , async({page})=>{
       await page.waitForTimeout(10000)
      
       const Addinpittextfiledtwo=await inputdata.clickAddtextfield();
-      await page.waitForTimeout(10000)
+      
       
       if(Addinpittextfiledtwo){
 
@@ -177,19 +177,14 @@ test("click on input data mangement" , async({page})=>{
             await page.setViewportSize({width : 1536 , height: 864 })
             await MBEsection.login();
             await MBEsection.clickinputdatamangement();
-
-            
-            
-          const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-          await page.waitForTimeout(1000);
-          await collapseclick.click();
-          
-           
-           const MBEexpandclick= await page.locator("//body/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]");
-           await MBEexpandclick.click();
-           const MBEAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
-           await MBEAddInputbutton.click();
-           await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Numeric"});
+            const collapseclick= await page.locator("(//div[contains(text(),'Collapse')])[1]");
+            await page.waitForTimeout(1000);
+            await collapseclick.click();
+            const MBEexpandclick= await page.locator("//body/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]");
+            await MBEexpandclick.click();
+            const MBEAddInputbutton =await page.locator("(//div[contains(text(),'Add Input Fields')])[1]");
+            await MBEAddInputbutton.click();
+            await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label : "Numeric"});
             const mbefieldname= await page.locator("//input[@placeholder='Enter Field Name']");
             await mbefieldname.waitFor({ state: 'visible' }); 
             await mbefieldname.type("Anshul doing test");
@@ -223,16 +218,13 @@ test("click on input data mangement" , async({page})=>{
         const DGIinfrmation = new Addinput(page);
         await DGIinfrmation.login();
         await DGIinfrmation.clickinputdatamangement();
-        const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-        await page.waitForTimeout(1000);
+        const collapseclick= await page.locator("(//div[contains(text(),'Collapse')])[1]");
         await collapseclick.click();
-        const Diversegroup =await page.locator("(//div[contains(text(),'Expand')])[3]");
-        await Diversegroup.click();
-        await page.locator("//div[contains(text(),'Add Input Fields')]").click();
+        // const Diversegroup =await page.locator("(//div[contains(text(),'Expand')])[3]");
+        // await Diversegroup.click();
+        await page.locator("(//div[contains(text(),'Add Input Fields')])[1]").click();
         await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label: "Date Picker"});
-      
         const diversefieldname=await page.locator("//input[@placeholder='Enter Field Name']");
-        
         await diversefieldname.type("Diverse Groups Information");
         const diverseplaceholder = await page.locator("//input[@placeholder='Enter placeholder name']");
         await diverseplaceholder.type("mm-dd-yyyy");
@@ -264,25 +256,23 @@ test("click on input data mangement" , async({page})=>{
         const Subcontractinfrmation = new Addinput(page);
         await Subcontractinfrmation.login();
         await Subcontractinfrmation.clickinputdatamangement();
-        const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-        await page.waitForTimeout(1000);
-        await collapseclick.click();
-        const DSgcontract =await page.locator("(//div[contains(text(),'Expand')])[2]");
-        await DSgcontract.click();
-        await page.locator("//div[contains(text(),'Add Input Fields')]").click();
+        // const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+        // await page.waitForTimeout(1000);
+        // await collapseclick.click();
+        // const DSgcontract =await page.locator("(//div[contains(text(),'Expand')])[2]");
+        // await DSgcontract.click();
+        await page.locator("(//div[contains(text(),'Add Input Fields')])[1]").click();
         await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label: "Dropdown"});
         const dsgfieldname=await page.locator("//input[@placeholder='Enter Field Name']");
-       await dsgfieldname.type("Direct/Subcontracting Information");
+        await dsgfieldname.type("Direct/Subcontracting Information");
         const dsgeplaceholder = await page.locator("//input[@placeholder='Enter placeholder name']");
         await dsgeplaceholder.type("enter dropdown field");
-
         await page.locator("//input[@placeholder='Input 1']").type("value1")
         await page.locator("//div[normalize-space()='Add field']").click();
          //await dsgaddfiledbutton.type("enter dsc info")
          await page.waitForTimeout(1000);
         const Addclick= await page.locator("//input[@placeholder='Input 2']").type("value 2")
         await page.waitForTimeout(1000);
-        
         await page.waitForTimeout(1000);
         await page.locator("//div[normalize-space()='Add']").click();
         await page.waitForTimeout(1000);
@@ -313,13 +303,15 @@ test("click on input data mangement" , async({page})=>{
     const Revenueinfrmation = new Addinput(page);
     await Revenueinfrmation.login();
     await Revenueinfrmation.clickinputdatamangement();
-    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-    await page.waitForTimeout(1000);
-    await collapseclick.click();
-    const Reevenuereporting =await page.locator("(//div[contains(text(),'Expand')])[5]");
-    await Reevenuereporting.click();
-    await page.waitForTimeout(1000);
-    await page.locator("#modal_body > div:nth-child(5) > div.inpCommFieldSection > div.addInpt > div:nth-child(2)").click();
+    // const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    // await page.waitForTimeout(1000);
+    // await collapseclick.click();
+    // const Reevenuereporting =await page.locator("(//div[contains(text(),'Expand')])[5]");
+    // await Reevenuereporting.click();
+    // await page.waitForTimeout(1000);
+    await page.locator("(//div[contains(text(),'Add Input Fields')])[1]").click();
+
+    await page.locator("//body/div/div/div/div/div/div/div/div/div/div/div/div/select[1]").click();
     await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label: "Boolean"});
     const Revnuefieldname=await page.locator("//input[@placeholder='Enter Field Name']");
     await Revnuefieldname.type("Revenue Reporting Information test the functionality");
@@ -353,14 +345,14 @@ test("click on input data mangement" , async({page})=>{
     const workforce = new Addinput(page);
     await workforce.login();
     await workforce.clickinputdatamangement();
-    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-    await page.waitForTimeout(1000);
-    await collapseclick.click();
-    const workforcereporting =await page.locator("#modal_body > div:nth-child(6) > div > div.inptCommRight > div.inpTxtComm");
+    // const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    // await page.waitForTimeout(1000);
+    // await collapseclick.click();
+    const workforcereporting =await page.locator("(//div[contains(text(),'Add Input Fields')])[4]");
     await workforcereporting.click();
     
-    await page.waitForTimeout(1000);
-    await page.locator("#modal_body > div:nth-child(6) > div.inpCommFieldSection > div.addInpt > div:nth-child(2)").click();
+   
+    await page.locator("//body/div/div/div/div/div/div/div/div/div/div/div/div/select[1]").click();
     await page.locator("#modal_body > div:nth-child(2) > div.input_group_input > select").selectOption({label: "Alphabet"});
     const workforcefieldname=await page.locator("//input[@placeholder='Enter Field Name']");
     await workforcefieldname.type(" Workforce/Board Diversity Information test the functionality");
@@ -425,18 +417,18 @@ test("click on input data mangement" , async({page})=>{
    })
    // Test the functionality of cancel button and cross button to make sure that user cancel and click on cross button MBE information
 
-  test("test the function of cancal and cross of MBE information" , async ({page})=>{
+    test("test the function of cancal and cross of MBE information" , async ({page})=>{
     
     const cancalbuttonofcompany = new Addinput(page);
     await cancalbuttonofcompany.login();
     await cancalbuttonofcompany.clickinputdatamangement();
-    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-    await page.waitForTimeout(1000);
-    await collapseclick.click();
-    const MBEexpandclick= await page.locator("//body/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]");
-    await MBEexpandclick.click();
-    await page.waitForTimeout(1000);
-    const MBEAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+    // const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    // await page.waitForTimeout(1000);
+    // await collapseclick.click();
+    // const MBEexpandclick= await page.locator("//body/div/div/div/div/div/div/div/div/div/div[2]/div[1]/div[2]/div[1]");
+    // await MBEexpandclick.click();
+    // await page.waitForTimeout(1000);
+    const MBEAddInputbutton =await page.locator("(//div[contains(text(),'Add Input Fields')])[1]");
     await MBEAddInputbutton.click();
     await page.waitForTimeout(1000);
     await cancelcross(page);
@@ -449,15 +441,13 @@ test("click on input data mangement" , async({page})=>{
     const cancalbuttonofdgi = new Addinput(page);
     await cancalbuttonofdgi.login();
     await cancalbuttonofdgi.clickinputdatamangement();
-    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-    await page.waitForTimeout(1000);
-    await collapseclick.click();
-    const dgiexpandclick= await page.locator("#modal_body > div:nth-child(3) > div > div.inptCommRight > div.inpTxtComm");
-    await page.waitForTimeout(1000);
-    await dgiexpandclick.click();
-   
-    
-    const dgiAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+    // const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
+    // await page.waitForTimeout(1000);
+    // await collapseclick.click();
+    // const dgiexpandclick= await page.locator("#modal_body > div:nth-child(3) > div > div.inptCommRight > div.inpTxtComm");
+    // await page.waitForTimeout(1000);
+    // await dgiexpandclick.click();
+    const dgiAddInputbutton =await page.locator("(//div[contains(text(),'Add Input Fields')])[2]");
     await dgiAddInputbutton.click();
     await page.waitForTimeout(1000);
     await cancelcross(page);
@@ -470,15 +460,7 @@ test("click on input data mangement" , async({page})=>{
     const cancalbuttonofdsg = new Addinput(page);
     await cancalbuttonofdsg.login();
     await cancalbuttonofdsg.clickinputdatamangement();
-    const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-    await page.waitForTimeout(1000);
-    await collapseclick.click();
-    const dsgexpandclick= await page.locator("#modal_body > div:nth-child(4) > div > div.inptCommRight > div.inpTxtComm");
-    await page.waitForTimeout(1000);
-    await dsgexpandclick.click();
-   
-    
-    const dgiAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+    const dgiAddInputbutton =await page.locator("(//div[contains(text(),'Add Input Fields')])[3]");
     await dgiAddInputbutton.click();
     await page.waitForTimeout(1000);
     await cancelcross(page);
@@ -491,15 +473,7 @@ test("click on input data mangement" , async({page})=>{
       const cancalbuttonofRRI = new Addinput(page);
       await cancalbuttonofRRI.login();
       await cancalbuttonofRRI.clickinputdatamangement();
-      const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-      await page.waitForTimeout(1000);
-      await collapseclick.click();
-      const RRIexpandclick= await page.locator("#modal_body > div:nth-child(5) > div > div.inptCommRight > div.inpTxtComm");
-      await page.waitForTimeout(1000);
-      await RRIexpandclick.click();
-     
-      
-      const RRRAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+      const RRRAddInputbutton =await page.locator("(//div[contains(text(),'Add Input Fields')])[4]");
       await RRRAddInputbutton.click();
       await page.waitForTimeout(1000);
       await cancelcross(page);
@@ -511,15 +485,7 @@ test("click on input data mangement" , async({page})=>{
       const cancalbuttonofWDI = new Addinput(page);
       await cancalbuttonofWDI.login();
       await cancalbuttonofWDI.clickinputdatamangement();
-      const collapseclick= await page.locator("//div[contains(text(),'Collapse')]");
-      await page.waitForTimeout(1000);
-      await collapseclick.click();
-      const WDIexpandclick= await page.locator("#modal_body > div:nth-child(6) > div > div.inptCommRight > div.inpTxtComm");
-      await page.waitForTimeout(1000);
-      await WDIexpandclick.click();
-     
-      
-      const WDIAddInputbutton =await page.locator("//div[contains(text(),'Add Input Fields')]");
+      const WDIAddInputbutton =await page.locator("(//div[contains(text(),'Add Input Fields')])[5]");
       await WDIAddInputbutton.click();
       await page.waitForTimeout(1000);
       
@@ -537,7 +503,7 @@ test("click on input data mangement" , async({page})=>{
       await deletebuttonofcompany.login();
       await deletebuttonofcompany.clickinputdatamangement();
       //await deletebuttonofcompany.clickAddinputfield();
-      await page.waitForTimeout(1000);
+     
       const avaiabletext =await page.locator("//div[contains(text(),'Anshultest one')]");
       
       await page.waitForTimeout(1000);
