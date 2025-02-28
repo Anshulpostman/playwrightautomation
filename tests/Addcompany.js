@@ -63,7 +63,7 @@ class Addcompany extends Addgroup{
 
 
 
-module.exports = { Addgroup,Addcompany, cancelcross };
+module.exports = { Addgroup,Addcompany, cancelcross  };
 
 
 

@@ -1,6 +1,9 @@
+const { expect } = require('@playwright/test');
 class Addgroup{
 
     constructor(page){
+
+      
 
 
         this.page=page;// initalize the page object;
@@ -168,558 +171,104 @@ class Addgroup{
          
          
 
-        }
+        
 
-        const{test , expect}= require('@playwright/test');
-        const exp = require('constants');
-
-        async function mandatoryfields(page){
-        const mandatoryfields = await page.locator("//div[contains(text(),'Year is a required field.')]").isVisible()
-        const TotalSpend=await page.locator("//div[contains(text(),'Total Spend is a required field.')]").isVisible()
-        const TotalDBE = await page.locator("//div[contains(text(),'Total DBE is a required field.')]").isVisible()
-        const TotalDBEPER=await page.locator("//div[contains(text(),'Total DBE % is a required field.')]").isVisible()
-        const TotalMbespend=await page.locator("//div[contains(text(),'MBE Spend is a required field.')]").isVisible()
-        const Mbeper=await page.locator("//div[contains(text(),'MBE % is a required field.')]").isVisible()
-        const TotalMbedirectspend=await page.locator("//div[contains(text(),'MBE Total Direct Spend is a required field.')]").isVisible()
-        const Totalsubspend=await page.locator("//div[contains(text(),'MBE Total Sub Spend is a required field.')]").isVisible()
-        const TotalAmmericanAfricandirect=await page.locator("//div[contains(text(),'MBE (African American) Direct Spend is a required ')]").isVisible()
-        const TotalAmericanAfricanSub=await page.locator("//div[contains(text(),'MBE (African American) Sub Spend is a required fie')]").isVisible()
-        const TotalAsianpacificAmericandirect=await page.locator("//div[contains(text(),'MBE (Asian Pacific American) Direct Spend is a req')]").isVisible()
-        const TotalAsianpacificAmericansub=await page.locator("//div[contains(text(),'MBE (Asian Pacific American) Direct Spend is a req')]").isVisible()
-        const TotalNativeAmericandirect=await page.locator("//div[contains(text(),'MBE (Native American) Direct Spend is a required f')]").isVisible()
-        const TotalNativeAmericansub=await page.locator("//div[contains(text(),'MBE (Native American) Sub Spend is a required fiel')]").isVisible()
-        const MbeHispanicAmericandirect=await page.locator("//div[contains(text(),'MBE (Hispanic American) Direct Spend is a required')]").isVisible()
-        const MbeHispanicAmericansub=await page.locator("//div[contains(text(),'MBE (Hispanic American) Sub Spend is a required fi')]").isVisible()
-        const Directspendmbe=await page.locator("//div[contains(text(),'Direct Spend (WMBE) is a required field.')]").isVisible()
-        const subspendmbe=await page.locator("//div[contains(text(),'Sub Spend (WMBE) is a required field.')]").isVisible()
-        const Pdbedirect=await page.locator("//div[contains(text(),'PBDBE Direct Spend is a required field.')]").isVisible()
-        const pdbesub=await page.locator("//div[contains(text(),'PBDBE Sub Spend is a required field.')]").isVisible()
-        const totallgtbedirect=await page.locator("//div[contains(text(),'LGBTBE Direct Spend is a required field.')]").isVisible()
-        const totalLGBTBESub=await page.locator("//div[contains(text(),'LGBTBE Sub Spend is a required field.')]").isVisible()
-        const Dvbedirectspend=await page.locator("//div[contains(text(),'DVBE Direct Spend is a required field.')]").isVisible()
-        const Dvbesubspend=await page.locator("//div[contains(text(),'DVBE Sub Spend is a required field.')]").isVisible()
-        const totalother8adirect=await page.locator("//div[contains(text(),'Other 8 (a) Direct Spend is a required field.')]").isVisible()
-        const totalother8asub=await page.locator("//div[contains(text(),'Other 8 (a) Sub Spend is a required field.')]").isVisible()
+       
+        
+        async  mandatoryfields(page){
+          console.log("Checking mandatory fields...");
+        const locators = ["//div[contains(text(),'Year is a required field.')]",
+                          "//div[contains(text(),'Total Spend is a required field.')]",
+                          "//div[contains(text(),'Total DBE is a required field.')]",
+                          "//div[contains(text(),'Total DBE % is a required field.')]",
+        "//div[contains(text(),'MBE Spend is a required field.')]",
+        "//div[contains(text(),'MBE % is a required field.')]",
+        "//div[contains(text(),'MBE Total Direct Spend is a required field.')]",
+        "//div[contains(text(),'MBE Total Sub Spend is a required field.')]",
+       "//div[contains(text(),'MBE (African American) Direct Spend is a required ')]",
+        "//div[contains(text(),'MBE (African American) Sub Spend is a required fie')]",
+        "//div[contains(text(),'MBE (Asian Pacific American) Direct Spend is a req')]",
+        "//div[contains(text(),'MBE (Asian Pacific American) Direct Spend is a req')]",
+        "//div[contains(text(),'MBE (Native American) Direct Spend is a required f')]",
+       "//div[contains(text(),'MBE (Native American) Sub Spend is a required fiel')]",
+        "//div[contains(text(),'MBE (Hispanic American) Direct Spend is a required')]",
+        "//div[contains(text(),'MBE (Hispanic American) Sub Spend is a required fi')]",
+        "//div[contains(text(),'Direct Spend (WMBE) is a required field.')]",
+        "//div[contains(text(),'Sub Spend (WMBE) is a required field.')]",
+        "//div[contains(text(),'PBDBE Direct Spend is a required field.')]",
+        "//div[contains(text(),'PBDBE Sub Spend is a required field.')]",
+        "//div[contains(text(),'LGBTBE Direct Spend is a required field.')]",
+        "//div[contains(text(),'LGBTBE Sub Spend is a required field.')]",
+        "//div[contains(text(),'DVBE Direct Spend is a required field.')]",
+       "//div[contains(text(),'DVBE Sub Spend is a required field.')]",
+       "//div[contains(text(),'Other 8 (a) Direct Spend is a required field.')]",
+        "//div[contains(text(),'Other 8 (a) Sub Spend is a required field.')]",
         
         //Direct/Subcontracting Information
-        const Totaldirectspend=await page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div/div/div/div[2]/div/div/div[4]/div[2]/div/div[1]/div[2]/div/div").isVisible()
-        const Totaldirectper=await page.locator("//div[contains(text(),'Total Direct % is a required field.')]").isVisible()
-        const Totaldirectsupplier=await page.locator("xpath=//div[contains(text(),'Total Direct # Suppliers is a required field.')]").isVisible()
-        const SubcontractingTotalsubspend=await page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div/div/div/div[2]/div/div/div[4]/div[2]/div/div[4]/div[2]/div/div").isVisible()
-        const SubcontractingTotalsub=await page.locator("//div[contains(text(),'Total Sub # is a required field.')]").isVisible()
-        const Subcontractingtotalsubper=await page.locator("//div[contains(text(),'Total Sub % is a required field.')]").isVisible()
-        const newdiversesupplierdollar=await page.locator("//div[contains(text(),'New Diverse Suppliers $ is a required field.')]").isVisible()
-        const newdiversesupplierhash=await page.locator("//div[contains(text(),'New Diverse Suppliers # is a required field.')]").isVisible()
+        "xpath=/html/body/div[1]/div[1]/div[2]/div/div/div/div[2]/div/div/div[4]/div[2]/div/div[1]/div[2]/div/div",
+        "//div[contains(text(),'Total Direct % is a required field.')]",
+        "xpath=//div[contains(text(),'Total Direct # Suppliers is a required field.')]",
+        "xpath=/html/body/div[1]/div[1]/div[2]/div/div/div/div[2]/div/div/div[4]/div[2]/div/div[4]/div[2]/div/div",
+        "//div[contains(text(),'Total Sub # is a required field.')]",
+        "//div[contains(text(),'Total Sub % is a required field.')]",
+        "//div[contains(text(),'New Diverse Suppliers $ is a required field.')]",
+      "//div[contains(text(),'New Diverse Suppliers # is a required field.')]",
 
         // Revenue Information
 
-        const revenueunderonemillonhash=await page.locator("//div[contains(text(),'Rev - Under $1M -# is a required field.')]").isVisible()
-        const revenueunderonemillondollar=await page.locator("//div[contains(text(),'Rev - Under $1M - $ is a required field.')]").isVisible()
-        const revenueunderfivemillonhash=await page.locator("//div[contains(text(),'Rev - Under $5M -# is a required field.')]").isVisible()
-        const revenueunderfivemillondollar=await page.locator("//div[contains(text(),'Rev - Under $5M - $ is a required field.')]").isVisible()
-        const revenueundertenmillonhash=await page.locator("//div[contains(text(),'Rev - Under $10M -# is a required field.')]").isVisible()
-        const revenueundertenmillonhdollar=await page.locator("//div[contains(text(),'Rev - Under $10M - $ is a required field.')]").isVisible()
-        const revenueabove10millonhash=await page.locator("//div[contains(text(),'Rev - Above $10M -# is a required field.')]").isVisible()
-        const revenueabove10millondollar=await page.locator("//div[contains(text(),'Rev - Above $10M - $ is a required field.')]").isVisible()
-        const revenegrandtotalhash=await page.locator("//div[contains(text(),'Grand Total $ is a required field.')]").isVisible()
-        const revenegrandtotaldollar=await page.locator("//div[contains(text(),'Grand Total # is a required field.')]").isVisible()
+        "//div[contains(text(),'Rev - Under $1M -# is a required field.')]",
+        "//div[contains(text(),'Rev - Under $1M - $ is a required field.')]",
+        "//div[contains(text(),'Rev - Under $5M -# is a required field.')]",
+        "//div[contains(text(),'Rev - Under $5M - $ is a required field.')]",
+        "//div[contains(text(),'Rev - Under $10M -# is a required field.')]",
+        "//div[contains(text(),'Rev - Under $10M - $ is a required field.')]",
+        "//div[contains(text(),'Rev - Above $10M -# is a required field.')]",
+       "//div[contains(text(),'Rev - Above $10M - $ is a required field.')]",
+        "//div[contains(text(),'Grand Total $ is a required field.')]",
+        "//div[contains(text(),'Grand Total # is a required field.')]",
 
         //validate error message for Workforce/Board Diversity Information
 
-        const WorkforceBoardDiversity=await page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div/div/div/div[2]/div/div/div[6]/div[2]/div/div[1]/div[2]/div/div").isVisible()
-        const workforcediversity=await page.locator("//div[contains(text(),'WORKFORCE AND BOARD DIVERSITY (# AND % OF WOMEN) i')]").isVisible()
-        const workforcediversityhash=await page.locator("xpath=/html/body/div[1]/div[1]/div[2]/div/div/div/div[2]/div/div/div[6]/div[2]/div/div[3]/div[2]/div/div").isVisible()
-        const totalboradofdirectors=await page.locator("//div[contains(text(),'Total number of boards of Directors is a required ')]").isVisible()
+        "xpath=/html/body/div[1]/div[1]/div[2]/div/div/div/div[2]/div/div/div[6]/div[2]/div/div[1]/div[2]/div/div",
+        "//div[contains(text(),'WORKFORCE AND BOARD DIVERSITY (# AND % OF WOMEN) i')]",
+       "xpath=/html/body/div[1]/div[1]/div[2]/div/div/div/div[2]/div/div/div[6]/div[2]/div/div[3]/div[2]/div/div",
+      "//div[contains(text(),'Total number of boards of Directors is a required ')]",
 
         //validate error message for mandatory field
-        const mandatoryfieldsrequired = await page.locator("//div[contains(text(),'Please fill mandatory field!')]").isVisible()
+       "//div[contains(text(),'Please fill mandatory field!')]"
+        ]
 
         
         
         //validate error message for Year
-               if(mandatoryfields)
-              {
-                expect(mandatoryfields).toBeTruthy();
-                console.log("Year is a required field.");
-              }
-
-
-              else{
-                console.log("Message is not");
-              }
-
-              //Validate for the Total Spend error message
-
-              if(TotalSpend)
-              {
-                expect(TotalSpend).toBeTruthy();
-                console.log("Total Spend is a required field.");
-              }
-
-              else{
-                console.log("Total Spend Message is not visible correct");
-              }
-
-              //Validate for the Total DBE error message
-
-              if(TotalDBE)
-              {
-                expect(TotalDBE).toBeTruthy();
-                console.log("Total DBE is a required field.");
-              }
-
-              else{
-                console.log("Total DBE Message is not visible correct");
-              }
-
-              //Validate for the Total DBE % error message
-              if(TotalDBEPER)
-              {
-                expect(TotalDBEPER).toBeTruthy();
-                console.log("Total DBE % is a required field.");
-              }
-              
-              else{
-                console.log("Total DBE % Message is not visible correct");  
-              }
-
-              //Validate for the Total MBE Spend error message
-
-              if (TotalMbespend){
-                expect(TotalMbespend).toBeTruthy();
-                console.log("MBE Spend is a required field.")
-              }
-              else{
-                console.log("MBE Spend Message is not visible correct");
-              }
-              //Validate for the Total MBE % error message
-              if (Mbeper){
-                expect(Mbeper).toBeTruthy();
-                console.log("MBE % is a required field.")
-              
-              }
-              else{
-                console.log("MBE % Message is not visible correct");
-              }
-
-              //Validate for the Total MBE direct spend error message
-
-              if(TotalMbedirectspend){
-                expect(TotalMbedirectspend).toBeTruthy();
-                console.log("MBE Total Direct Spend is a required field.")
-              }
-
-            else{
-              console.log("MBE Total Direct Spend Message is not visible correct")
-            }
-
-            //Validate for the Total MBE sub spend error message
-           
-            if(Totalsubspend){
-              expect(Totalsubspend).toBeTruthy();
-              console.log("MBE Total Sub Spend is a required field.")
-            }
-            else{
-              console.log("MBE Total Sub Spend Message is not visible correct")
-            }
-
-            //Validate for the Total American Direct spend error message
-
-            if(TotalAmmericanAfricandirect){
-              expect(TotalAmmericanAfricandirect).toBeTruthy();
-              console.log("MBE (African American) Direct Spend is a required field.")
-            }
-
-            else{
-                console.log("MBE (African American) Direct Spend Message is not visible correct")
-            }
-
-            //Validate for the Total American sub error message
-
-            if(TotalAmericanAfricanSub){
-              expect(TotalAmericanAfricanSub).toBeTruthy();
-              console.log("MBE (African American) Sub Spend is a required field.")
-            }
-            
-            else{
-              console.log("MBE (African American) Sub Spend Message is not visible correct")
-            }
-
-            //Validate for the Total Asian pacific American Direct error message
-
-            if(TotalAsianpacificAmericandirect){
-              expect(TotalAsianpacificAmericandirect).toBeTruthy();
-              console.log("MBE (Asian Pacific American) Direct Spend is a required field.")
-            }
-            else{
-              console.log("MBE (Asian Pacific American) Direct Spend Message is not visible correct")
-            }
-
-            //Validate for the Total Asian pacific American sub error message
-
-            if(TotalAsianpacificAmericansub){
-              expect(TotalAsianpacificAmericansub).toBeTruthy();
-              console.log("MBE (Asian Pacific American) Sub Spend is a required field.")
-            }
-            else{
-              console.log("MBE (Asian Pacific American) Sub Spend Message is not visible correct")
-            }
-            
-            //Validate for the Total Native American Direct error message
-
-            if(TotalNativeAmericandirect){
-              expect(TotalNativeAmericandirect).toBeTruthy();
-              console.log("MBE (Native American) Direct Spend is a required field.")
-            }
-            else{
-            console.log("MBE (Native American) Direct Spend Message is not visible correct")
-            }
-
-            //Validate for the Total Native American Sub error message
-
-            if(TotalNativeAmericansub){
-              expect(TotalNativeAmericansub).toBeTruthy();
-              console.log("MBE (Native American) Sub Spend is a required field.")
-            }
-
-            else{
-              console.log("MBE (Native American) Sub Spend Message is not visible correct")
-            }
-
-            //Validate for the Total MBE Hispanic American Direct error message
-
-            if(MbeHispanicAmericandirect){
-              expect(MbeHispanicAmericandirect).toBeTruthy();
-              console.log("MBE (Hispanic American) Direct Spend is a required field.")
-            }
-
-            else{
-              console.log("MBE (Hispanic American) Direct Spend Message is not visible correct")
-            }
-            
-            //Validate for the Total MBE Hispanic American Sub error message
-
-            if(MbeHispanicAmericansub){
-              expect(MbeHispanicAmericansub).toBeTruthy();
-              console.log("MBE (Hispanic American) Sub Spend is a required field.")
-            }
-            else{
-              console.log("MBE (Hispanic American) Sub Spend Message is not visible correct")
-            }
-
-            //Validate for the Direct Spend WMBE error message
-            if(Directspendmbe){
-              expect(Directspendmbe).toBeTruthy();
-              console.log("Direct Spend (WMBE) is a required field.")
-            } 
-            else{
-              console.log("Direct Spend (WMBE) Message is not visible correct")
-            }
-
-            //Validate for the Sub Spend WMBE error message
-            if(subspendmbe){
-              expect(subspendmbe).toBeTruthy();
-              console.log("Sub Spend (WMBE) is a required field.")
-            }
-            else{
-              console.log("Sub Spend (WMBE) Message is not visible correct")
-            }
-
-            //Validate for the PBD Direct error message
-            if(Pdbedirect){
-              expect(Pdbedirect).toBeTruthy();
-              console.log("PBDBE Direct Spend is a required field.")
-            }
-            else{
-              console.log("PBDBE Direct Spend Message is not visible correct")
-            }
-
-            //Validate for the PBD Sub error message
-            if(pdbesub){
-              expect(pdbesub).toBeTruthy();
-              console.log("PBDBE Sub Spend is a required field.")
-            } 
-            else{
-              console.log("PBDBE Sub Spend Message is not visible correct")
-            }
-
-            //Validate for the Total LGBTBE Direct error message
-            if(totallgtbedirect){
-              expect(totallgtbedirect).toBeTruthy();
-              console.log("LGBTBE Direct Spend is a required field.")
-            } 
-            else{
-              console.log("LGBTBE Direct Spend Message is not visible correct")
-            }
-           
-            //Validate for the Total LGBTBE Direct error message
-            if(totalLGBTBESub)
-            {
-              expect(totalLGBTBESub).toBeTruthy();
-              console.log("LGBTBE Sub Spend is a required field.")
-            }
-            else{
-              console.log("LGBTBE Sub Spend Message is not visible correct")
-            }
-           // Validate for the Total DVBE Direct error message
-           if(Dvbedirectspend){
-            expect(Dvbedirectspend).toBeTruthy();
-            console.log("DVBE Direct Spend is a required field.")
-           }
-           else{
-            console.log("DVBE Direct Spend Message is not visible correct")
-           }
-           //validate for the Total DVBE Sub error message
-           if(Dvbesubspend){
-            expect(Dvbesubspend).toBeTruthy();
-            console.log("DVBE Sub Spend is a required field.")
-           }
-           else{
-            console.log("DVBE Sub Spend Message is not visible correct")
-           }
-            //Validate for the Total Other 8(a) Direct error message
-            if(totalother8adirect){
-              expect(totalother8adirect).toBeTruthy();
-              console.log("Other 8 (a) Direct Spend is a required field.")
-            } 
-            else{
-              console.log("Other 8 (a) Direct Spend Message is not visible correct")
-            }
-
-            //validate for the Total Other 8(a) Sub error message
-            if(totalother8asub)
-            {
-              expect(totalother8asub).toBeTruthy();
-              console.log("Other 8 (a) Sub Spend is a required field.")
-            }
-            else{
-              console.log("Other 8 (a) Sub Spend Message is not visible correct")
-            }
-
-            //Validate for the Total Direct Spend error message
-            if(Totaldirectspend){
-              expect(Totaldirectspend).toBeTruthy();
-              console.log("Total Direct Spend is a required field.")
-            }
-            else{
-              console.log("Total Direct Spend Message is not visible correct")
-            }
-
-            //Validate for the Total Direct % error message
-            if(Totaldirectper){
-              expect(Totaldirectper).toBeTruthy();
-              console.log("Total Direct % is a required field.")
-            }
-            else{
-              console.log("Total Direct % Message is not visible correct")
-            }
-            //validate for the Total Direct Supplier error message
-            if(Totaldirectsupplier){
-              expect(Totaldirectsupplier).toBeTruthy();
-              console.log("Total Direct # Suppliers is a required field.")
-            }
-            else{
-              console.log("Total Direct # Suppliers Message is not visible correct")
-            }
-            
-            //validate for the Total Subcontracting Total Sub Spend error message
-            if(SubcontractingTotalsubspend){
-              expect(SubcontractingTotalsubspend).toBeTruthy();
-              console.log("Total Sub Spend is a required field.")
-            }
-            else{
-              console.log("Total Sub Spend Message is not visible correct")
-            }
-
-            //validate for the Total Subcontracting Total Sub # error message
-            if(SubcontractingTotalsub)
-            {
-              expect(SubcontractingTotalsub).toBeTruthy();
-              console.log("Total Sub # is a required field.")
-            }
-            else{
-              console.log("Total Sub # Message is not visible correct")
-            }
-
-            //Validate for the Total Subcontracting Total Sub % error message
-            if(Subcontractingtotalsubper)
-            {
-              expect(Subcontractingtotalsubper).toBeTruthy();
-              console.log("Total Sub % is a required field.")
-
-            }
-            else{
-              console.log("Total Sub % Message is not visible correct")
-            }
-
-            //Validate for the New Diverse Supplier $ error message
-            if(newdiversesupplierdollar){
-              expect(newdiversesupplierdollar).toBeTruthy();
-              console.log ("New Diverse Suppliers $ is a required field.")
-            }
-            else{
-              console.log("New Diverse Suppliers $ Message is not visible correct")
-            }
-             
-            //validate for the New Diverse Suppliers # error message
-
-            if(newdiversesupplierhash){
-              expect(newdiversesupplierhash).toBeTruthy();
-
-              console.log("New Diverse Suppliers # is a required field.")
-            }
-            else{
-              console.log("New Diverse Suppliers # Message is not visible correct")
-            }
-
-            //validate for the Revenue Under $1M # error message
-            if(revenueunderonemillonhash){
-              expect(revenueunderonemillonhash).toBeTruthy();
-              console.log("Rev - Under $1M -# is a required field.")
-            }
-            else{
-              console.log("Rev - Under $1M -# Message is not visible correct")
-            }
-
-            //validate for the Revenue Under $1M $ error message
-            if(revenueunderonemillondollar){
-              expect(revenueunderonemillondollar).toBeTruthy();
-              console.log("Rev - Under $1M - $ is a required field.")
-            }
-            else{
-              console.log("Rev - Under $1M - $ Message is not visible correct")
-            }
-
-            //validate for the Revenue Under $5M # error message
-            if(revenueunderfivemillonhash)
-            {
-              expect(revenueunderfivemillonhash).toBeTruthy();
-              console.log("Rev - Under $5M -# is a required field.")
-            }
-            else{
-              console.log("Rev - Under $5M -# Message is not visible correct")
-            }
-
-            //Validate for the Revenue Under $5M $ error message
-            if(revenueunderfivemillondollar){
-              expect(revenueunderfivemillondollar).toBeTruthy();
-              console.log("Rev - Under $5M - $ is a required field.")
-            }
-            else{
-              console.log("Rev - Under $5M - $ Message is not visible correct")
-            }
-
-            //validate for the Revenue Under $10M # error message
-            if(revenueundertenmillonhash){
-              expect(revenueundertenmillonhash).toBeTruthy();
-              console.log("Rev - Above $10M -# is a required field.")
-            }
-            else{
-              console.log("Rev - Under $10M -# Message is not visible correct")
-            }
-
-            //validate for the Revenue Under $10M $ error message
-            if(revenueundertenmillonhdollar){
-              expect(revenueundertenmillonhdollar).toBeTruthy();
-              console.log("Rev - Above $10M - $ is a required field.")
-            }
-            else{
-              console.log("Rev - Under $10M - $ Message is not visible correct")
-            }
-
-            //Validate for the under $10M # error message
-            if(revenueabove10millonhash){
-              expect(revenueabove10millonhash).toBeTruthy();
-              console.log("Rev - Above $10M -# is a required field.")
-            } 
-            else{
-              console.log("Rev - Above $10M -# Message is not visible correct")
-            }
-
-            //Validate for the under $10M $ error message
-            if(revenueabove10millondollar){
-              expect(revenueabove10millondollar).toBeTruthy();
-              console.log("Rev - Above $10M - $ is a required field.")
-            }
-
-            else{
-              console.log("Rev - Above $10M - $ Message is not visible correct")
-            }
-
-            //Validate for the Grand Total $ error message
-            if(revenegrandtotalhash){
-              expect(revenegrandtotalhash).toBeTruthy();
-              console.log("Grand Total $ is a required field.")
-            }
-            else{
-              console.log("Grand Total $ Message is not visible correct")
-            }
-
-            //validate for the Grand Total # error message
-            if(revenegrandtotaldollar){
-              expect(revenegrandtotaldollar).toBeTruthy();
-              console.log("Grand Total # is a required field.")
-            }
-            else{
-              console.log("Grand Total # Message is not visible correct")
-            }
-
-            //Validate for the Workforce Board Diversity error message
-            if(WorkforceBoardDiversity){
-              expect(WorkforceBoardDiversity).toBeTruthy();
-              console.log("9.1.2 Description of Diverse Suppliers with Majority Workforce in California (# OF DIVERSE SUPPLIERS IN CA) is a required field.");
-            }
-            else{
-              console.log("9.1.2 Description of Diverse Suppliers with Majority Workforce in California (# OF DIVERSE SUPPLIERS IN CA) Message is not visible correct");
-            }
-
-            //Validate for the Workforce Diversity error message
-            if(workforcediversity){
-              expect(workforcediversity).toBeTruthy();
-              console.log("WORKFORCE AND BOARD DIVERSITY (# AND % OF WOMEN) is a required field.");
-            }
-            else{
-              console.log("WORKFORCE AND BOARD DIVERSITY (# AND % OF WOMEN) is a required field is not visible correct")
-            }
-
-            //validate for the WORKFORCE AND BOARD DIVERSITY error message
-
-            if(workforcediversityhash){
-              expect(workforcediversityhash).toBeTruthy();
-              console.log("WORKFORCE AND BOARD DIVERSITY (# AND % OF PPL OF COLOR) is a required field.");
-            }
-            else{
-              console.log("WORKFORCE AND BOARD DIVERSITY (# AND % OF PPL OF COLOR) is a required field.")
-            }
-
-            //validate for the Total number of boards of Directors error message
-            if(totalboradofdirectors){
-              expect(totalboradofdirectors).toBeTruthy();
-              console.log("Total number of boards of Directors is a required field.");
-            }
-            else{
-              console.log("Total number of boards of Directors is a required field is not visible correct");
-            }
-
-            //validate for the mandatory fields required error message
-            if(mandatoryfieldsrequired)
-            {
-              expect(mandatoryfieldsrequired).toBeTruthy();
-              console.log("Please fill mandatory field!");
-            }
-
-            else{
-              console.log("Please fill mandatory field! Message is not visible correct");
-            }
-
-          } 
+              // Use Promise.all to improve performance
+        const results = await Promise.all(locators.map(async (locator) => {
+          return {
+              locator,
+              isVisible: await this.page.locator(locator).isVisible()
+          };
+      }));
+
+      // Log and validate each required field
+      results.forEach(({ locator, isVisible }) => {
+          if (isVisible) {
+              console.log(`❗ Missing field detected: ${locator}`);
+              expect(isVisible).toBeTruthy();
+          }
+      });
+
+      return results.some(({ isVisible }) => isVisible); // Return true if any field is missing
+  }
+
+
+        
            
         
            //const{test , expect}= require('@playwright/test');
            //const{test , expect}= require('@playwright/test');
            
            //const exp = require('constants');
-            async function fillmandatoryfields(page){
+            async  fillmandatoryfields(){
 
             const inputFields ={
 
@@ -836,12 +385,12 @@ class Addgroup{
             }
             
   
-
+          }
         
-          // module.exports = Addgroup;
-          // module.exports.mandatoryfields = mandatoryfields; // ✅ Correct way
-          // module.exports={fillMandatoryFields}
-          module.exports = Addgroup;// Export Array
+         
+         
+            module.exports = Addgroup; 
+          
         
 
     

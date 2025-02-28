@@ -40,11 +40,13 @@
     //     await requestContext.dispose();
     // });
     
-    const { Addgroup, fillmandatoryfields, mandatoryfields } = require('./Addgroup');
+    const  Addgroup=  require('./Addgroup');
+    // const { fillmandatoryfields}= require('./Addgroup');
+    // const  {mandatoryfields } =require('./Addgroup');
     const{test , expect }=require('@playwright/test')
  
-//  test the login functionality with valid email id and pwd
-test("Test that company user login successfully" , async ({page})=>{
+     //  test the login functionality with valid email id and pwd
+    test("Test that company user login successfully" , async ({page})=>{
 
     const uploaddata=new Addgroup(page)
     await uploaddata.companylogin()
@@ -240,10 +242,10 @@ test("Test that company user login successfully" , async ({page})=>{
         const saveasdraftbutton=await saveasdraftone.click();
         await page.waitForTimeout(1000);
         
-        const recorddraft=await page.getByText('2025');
-        await recorddraft.waitFor(); 
+        const recorddraft=await page.getByText('2025').first();
         
-        const saverecord = await recorddraft.innerText(); 
+        
+        const saverecord = await recorddraft.textContent("2025"); 
         await page.waitForTimeout(1000);
        
         if (saverecord==="2025"){
@@ -361,7 +363,7 @@ test("Test that company user login successfully" , async ({page})=>{
 
        // Test the functionality user click on submit if all mandatory message shows
        
-       test("Test the functionality user click on submit if all mandatory message shows" , async({page})=>{
+       test.only("Test the functionality user click on submit if all mandatory message shows" , async({page})=>{
         
         const mandatory= new Addgroup(page);
         await mandatory.companylogin();
@@ -371,13 +373,15 @@ test("Test that company user login successfully" , async ({page})=>{
         await page.locator("//button[normalize-space()='Enter Data Manually']").click();
         await page.waitForTimeout(1000);
         await page.locator("//div[normalize-space()='Submit']").click();
-        await mandatoryfields(page);
+        const result=await mandatory.mandatoryfields(page);
+        expect(result).toBeTruthy();  // ✅ Validate result
+      });
 
-       })
+      
 
        //// Test the functionality user click on submit if all mandatory message shows
        
-       test.only("Test the functionality user click on submit after fill the data" , async({page})=>{
+       test("Test the functionality user click on submit after fill the data" , async({page})=>{
         
         const fillmandatory= new Addgroup(page);
         await fillmandatory.companylogin();
