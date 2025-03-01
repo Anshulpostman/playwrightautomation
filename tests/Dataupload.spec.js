@@ -363,7 +363,8 @@
 
        // Test the functionality user click on submit if all mandatory message shows
        
-       test.only("Test the functionality user click on submit if all mandatory message shows" , async({page})=>{
+       test
+       ("Test the functionality user click on submit if all mandatory message shows" , async({page})=>{
         
         const mandatory= new Addgroup(page);
         await mandatory.companylogin();
@@ -381,7 +382,7 @@
 
        //// Test the functionality user click on submit if all mandatory message shows
        
-       test("Test the functionality user click on submit after fill the data" , async({page})=>{
+       test.only("Test the functionality user click on submit after fill the data" , async({page})=>{
         
         const fillmandatory= new Addgroup(page);
         await fillmandatory.companylogin();
@@ -390,11 +391,11 @@
         await page.waitForTimeout(1000);
         await page.locator("//button[normalize-space()='Enter Data Manually']").click();
         
-        await fillmandatoryfields(page);
+        const result=await fillmandatory.fillmandatoryfields(page);
         await page.waitForTimeout(10000);
         await page.locator("//div[normalize-space()='Submit']").click();
         //
-         await page.pause();
+        
         console.log("✅ All mandatory fields have been filled successfully.");
       });
       

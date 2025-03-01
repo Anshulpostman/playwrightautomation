@@ -268,7 +268,7 @@ class Addgroup{
            //const{test , expect}= require('@playwright/test');
            
            //const exp = require('constants');
-            async  fillmandatoryfields(){
+            async  fillmandatoryfields(page){
 
             const inputFields ={
 
