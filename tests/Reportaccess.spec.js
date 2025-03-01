@@ -1,5 +1,5 @@
 const{test , expect}=require('@playwright/test')
-const { Addgroup } = require('./Addgroup');
+const  Addgroup  = require('./Addgroup');
 
 test("test the functionality by clicking on 1A generate report", async({page})=>{
 
@@ -98,8 +98,15 @@ test("test the functionality by clicking on 1A generate report", async({page})=>
     await reportaccess.login();
     await page.waitForTimeout(1000);
     await page.locator("//div[normalize-space()='Report Access']").click();
-    await page.locator("//tbody/tr[1]/td[5]/div[1]/div[1]/div[2]//*[name()='svg']").click();
+    const grpname=page.locator("//div[@aria-label='ReTest Group Anshul donot delete']");
+    const grpnamesave=grpname;
+    const action=page.locator("//tbody/tr[4]/td[5]/div[1]/div[1]/div[2]//*[name()='svg']")
+    const actionsave=action.click();
+    if(grpnamesave===action){
+      actionsave();
+    }
     await page.locator("//div[normalize-space()='View Group']").click();
+   
     await page.locator("//tbody/tr[2]/td[8]/div[1]/div[1]/div[2]//*[name()='svg']").click();
     await page.waitForTimeout(1000);
     await page.locator("//div[normalize-space()='Lock Report']").click();
@@ -163,7 +170,13 @@ test.only("Test the functionality of Superadmin unlock report the same report un
     await reportaccess.login();
     await page.waitForTimeout(1000);
     await page.locator("//div[normalize-space()='Report Access']").click();
-    await page.locator("//tbody/tr[1]/td[5]/div[1]/div[1]/div[2]//*[name()='svg']").click();
+    const grpname=page.locator("//div[@aria-label='ReTest Group Anshul donot delete']");
+    const grpnamesave=grpname;
+    const action=page.locator("//tbody/tr[4]/td[5]/div[1]/div[1]/div[2]//*[name()='svg']")
+    const actionsave=action.click();
+    if(grpnamesave===action){
+      actionsave();
+    }
     await page.locator("//div[normalize-space()='View Group']").click();
     await page.locator("//tbody/tr[2]/td[8]/div[1]/div[1]/div[2]//*[name()='svg']").click();
     await page.waitForTimeout(1000);

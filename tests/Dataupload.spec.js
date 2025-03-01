@@ -382,7 +382,7 @@
 
        //// Test the functionality user click on submit if all mandatory message shows
        
-       test.only("Test the functionality user click on submit after fill the data" , async({page})=>{
+       test("Test the functionality user click on submit after fill the data" , async({page})=>{
         
         const fillmandatory= new Addgroup(page);
         await fillmandatory.companylogin();
