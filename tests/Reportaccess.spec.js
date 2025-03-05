@@ -164,7 +164,7 @@ test("test the functionality by clicking on 1A generate report", async({page})=>
 
 
 // Test the functionality of Superadmin lock report the same report locked on th end user side.
-test.only("Test the functionality of Superadmin unlock report the same report unlocked on th end user side" , async({page})=>{
+test("Test the functionality of Superadmin unlock report the same report unlocked on th end user side" , async({page})=>{
 
     const reportaccess=new Addgroup(page);
     await reportaccess.login();
