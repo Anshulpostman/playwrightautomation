@@ -1,4 +1,4 @@
-const { Addgroup } = require('./Addgroup');
+const  Addgroup = require('./Addgroup');
    // const Addgroup = require('./forgotpassword')
     const{test , expect}= require('@playwright/test')
    // Test the Add Groupmanagement button and Add group is  clickable or not 
