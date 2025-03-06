@@ -5,46 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-
 jobs:
-  test:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Install Playwright Browsers
-        run: npx playwright install
-
-      - name: Find Changed Test Files
-        id: changed-tests
-        run: |
-          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'tests/' || true)
-          if [[ -n "$CHANGED_FILES" ]]; then
-            echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
-          else
-            echo "CHANGED_FILES=" >> $GITHUB_ENV
-          fi
-
-      - name: Run Only Changed Tests
-        if: env.CHANGED_FILES != ''
-        run: npx playwright test $CHANGED_FILES --reporter=html
-
-      - name: Upload Playwright Report
-        if: env.CHANGED_FILES != ''
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright Report
-          path: playwright-report/
-
   myjob:
     runs-on: Self-hosted
     steps:
@@ -61,19 +22,21 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
 
-      - name: Find Changed Test Files
+      - name: Find Changed Test Files (Windows)
         id: changed-tests
+        shell: pwsh
         run: |
-          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'tests/' || true)
-          if [[ -n "$CHANGED_FILES" ]]; then
-            echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
-          else
-            echo "CHANGED_FILES=" >> $GITHUB_ENV
-          fi
+          $CHANGED_FILES = git diff --name-only $env:GITHUB_EVENT_BEFORE $env:GITHUB_SHA | Select-String 'tests/' 
+          if ($CHANGED_FILES) {
+            echo "CHANGED_FILES=$CHANGED_FILES" | Out-File -FilePath $env:GITHUB_ENV -Append
+          } else {
+            echo "CHANGED_FILES=" | Out-File -FilePath $env:GITHUB_ENV -Append
+          }
 
-          - name: Run Only Changed Tests
-          if: env.CHANGED_FILES != ''
-          run: |
-            echo "Running tests for changed files:"
-            echo "$CHANGED_FILES"
-            npx playwright test $(echo "$CHANGED_FILES" | tr '\n' ' ') --reporter=html
+      - name: Run Only Changed Tests (Windows)
+        if: env.CHANGED_FILES != ''
+        shell: pwsh
+        run: |
+          Write-Output "Running tests for changed files:"
+          Write-Output "$env:CHANGED_FILES"
+          npx playwright test $env:CHANGED_FILES --reporter=html
