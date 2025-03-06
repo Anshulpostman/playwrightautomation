@@ -24,13 +24,22 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install
 
-      - name: Run Playwright Tests
-        run: npx playwright test --reporter=html
+      - name: Find Changed Test Files
+        id: changed-tests
+        run: |
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'tests/' || true)
+          if [[ -n "$CHANGED_FILES" ]]; then
+            echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
+          else
+            echo "CHANGED_FILES=" >> $GITHUB_ENV
+          fi
 
-      - name: Debug Directory Structure
-        run: ls -R  # Lists all files and directories
+      - name: Run Only Changed Tests
+        if: env.CHANGED_FILES != ''
+        run: npx playwright test $CHANGED_FILES --reporter=html
 
       - name: Upload Playwright Report
+        if: env.CHANGED_FILES != ''
         uses: actions/upload-artifact@v4
         with:
           name: playwright Report
@@ -46,8 +55,25 @@ jobs:
           ref: main
           token: ${{ secrets.PAT_TOKEN }}  # Correct token reference
 
-      - name: Run Playwright Tests
-        run: | 
-          npm install
-          npx playwright install
-          npx playwright test  # This line is now commented out and should not run
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install
+
+      - name: Find Changed Test Files
+        id: changed-tests
+        run: |
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'tests/' || true)
+          if [[ -n "$CHANGED_FILES" ]]; then
+            echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
+          else
+            echo "CHANGED_FILES=" >> $GITHUB_ENV
+          fi
+
+          - name: Run Only Changed Tests
+          if: env.CHANGED_FILES != ''
+          run: |
+            echo "Running tests for changed files:"
+            echo "$CHANGED_FILES"
+            npx playwright test $(echo "$CHANGED_FILES" | tr '\n' ' ') --reporter=html
