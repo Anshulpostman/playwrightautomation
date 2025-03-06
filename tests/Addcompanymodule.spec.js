@@ -220,13 +220,13 @@ const exp = require('constants');
 
         //Test the company delete functionality by comfirm yes
 
-        test.only("Delete the company functoionality" , async({page})=>{
+        test("Delete the company functoionality" , async({page})=>{
 
         const deletefunctionality =new Addcompany(page);
         await deletefunctionality.login();
         await deletefunctionality.clickgroupmanagement();
         const grp13=await page.locator("//p[normalize-space()='Testing New Group']").click();
-        const Actionclick=await page.locator("//tbody//tr//td//div//div//div[contains(text(),'Actions')]").click();
+        const Actionclick=await page.locator("//p[normalize-space()='ForReportGroupOnly']").click();
         const deleteactionclick=await page.locator("//div[normalize-space()='Delete Company']").click();
         await page.waitForTimeout(10000)
         const deleteconfirm= await page.locator("//button[normalize-space()='Confirm']").click();
