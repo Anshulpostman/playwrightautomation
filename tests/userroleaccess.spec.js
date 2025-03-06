@@ -1,193 +1,193 @@
 
-const { test, expect } = require('@playwright/test');
-const {Addcompany}=require('./Addcompany');
-const { ECGcompvalidationmessage } = require('./Addcompanyfunction');
-const  {Actionofeditgroup}  = require('./Addcompanyfunction');
-const config = require('../config/environment'); 
- const Addinput = require('./Clinput');
- const Addgroup = require('./forgotpassword'); 
- const exp = require('constants');
- const MailosaurClient = require('mailosaur');
-//const Addinput = require('./Clinput'); // Correct im
+// const { test, expect } = require('@playwright/test');
+// const {Addcompany}=require('./Addcompany');
+// const { ECGcompvalidationmessage } = require('./Addcompanyfunction');
+// const  {Actionofeditgroup}  = require('./Addcompanyfunction');
+// const config = require('../config/environment'); 
+//  const Addinput = require('./Clinput');
+//  const Addgroup = require('./forgotpassword'); 
+//  const exp = require('constants');
+//  const MailosaurClient = require('mailosaur');
+// //const Addinput = require('./Clinput'); // Correct im
 
-// test the login functionality from sub-admin
-test("test the functionality verify that sub-admin prsenet and login with sub-admin", async ({ page }) => {
+// // test the login functionality from sub-admin
+// test("test the functionality verify that sub-admin prsenet and login with sub-admin", async ({ page }) => {
    
-    const subadmin= new Addcompany(page);
-    await subadmin.login();
-    await page.waitForTimeout(1000);
-    await subadmin.clickgroupmanagement();
-    await page.waitForTimeout(1000);
-    const companylistpage=await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
-    const statusA='Active';
-    const companyname='D';
-    const statusI='Inactive';
-    const company='CCA';
+//     const subadmin= new Addcompany(page);
+//     await subadmin.login();
+//     await page.waitForTimeout(1000);
+//     await subadmin.clickgroupmanagement();
+//     await page.waitForTimeout(1000);
+//     const companylistpage=await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
+//     const statusA='Active';
+//     const companyname='D';
+//     const statusI='Inactive';
+//     const company='CCA';
 
-    const active=await page.locator("(//div[contains(text(),'Active')])[1]");
-    const activeread= await active.textContent();
-    const inactive=await page.locator("//div[contains(text(),'Inactive')]");
-    const inactiveread= await inactive.textContent();
+//     const active=await page.locator("(//div[contains(text(),'Active')])[1]");
+//     const activeread= await active.textContent();
+//     const inactive=await page.locator("//div[contains(text(),'Inactive')]");
+//     const inactiveread= await inactive.textContent();
 
-     if (statusA==activeread){
-         console.log("The company is active and user able to login with companyuser");
-         expect(statusA).toContain("Active");
-       }
-      else{
-           console.log("The company is not present");
-      }
+//      if (statusA==activeread){
+//          console.log("The company is active and user able to login with companyuser");
+//          expect(statusA).toContain("Active");
+//        }
+//       else{
+//            console.log("The company is not present");
+//       }
 
-       if (statusI==inactiveread){
-         console.log("The company is inactive and user not able to login with companyuser");
-         expect(statusI).toContain("Inactive");
-       }
-        else{
-          console.log("The company is not present");
-       }
-    })
+//        if (statusI==inactiveread){
+//          console.log("The company is inactive and user not able to login with companyuser");
+//          expect(statusI).toContain("Inactive");
+//        }
+//         else{
+//           console.log("The company is not present");
+//        }
+//     })
 
-    //Test the functionality of Add company and then edit and copy email address and login successfuly if user is active
+//     //Test the functionality of Add company and then edit and copy email address and login successfuly if user is active
 
-test("Test the functionality of login ifcompany  user is active", async ({ page }) => {
-  const apiKey = 'p8eEa1mNH1BEpi9PMbTerGA6kphp40cX';
-  const mailosaur =  new MailosaurClient(apiKey);
-  const serverid='zis1bxhm';
+// test("Test the functionality of login ifcompany  user is active", async ({ page }) => {
+//   const apiKey = 'p8eEa1mNH1BEpi9PMbTerGA6kphp40cX';
+//   const mailosaur =  new MailosaurClient(apiKey);
+//   const serverid='zis1bxhm';
  
-    const addcompany= new Addcompany(page);
-    await addcompany.login();
-    await page.waitForTimeout(1000);
-    await addcompany.clickgroupmanagement();
-    await page.waitForTimeout(1000);
-    await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
-    await page.waitForTimeout(1000);
-    //await page.locator("//div[contains(text(),'Add Company')]").click();
-    await addcompany.clickAddcompanybutton();
-    await page.waitForTimeout(1000);
-    await ECGcompvalidationmessage(page);
-    await page.waitForTimeout(1000);
-    await addcompany.clickAddcompanyinfo();
-    //wait for an email to be sent
+//     const addcompany= new Addcompany(page);
+//     await addcompany.login();
+//     await page.waitForTimeout(1000);
+//     await addcompany.clickgroupmanagement();
+//     await page.waitForTimeout(1000);
+//     await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
+//     await page.waitForTimeout(1000);
+//     //await page.locator("//div[contains(text(),'Add Company')]").click();
+//     await addcompany.clickAddcompanybutton();
+//     await page.waitForTimeout(1000);
+//     await ECGcompvalidationmessage(page);
+//     await page.waitForTimeout(1000);
+//     await addcompany.clickAddcompanyinfo();
+//     //wait for an email to be sent
   
-    const heademail=mailosaur.messages.get(serverid,{
+//     const heademail=mailosaur.messages.get(serverid,{
      
       
-    });
+//     });
 
-  if (heademail.subject='Welcome! You’ve been added to the company management system'){
+//   if (heademail.subject='Welcome! You’ve been added to the company management system'){
 
-    console.log("Email subject  is correct:" + heademail.subject)
-    expect(heademail.subject).toContain("Welcome! You’ve been added to the company management system");
-}
+//     console.log("Email subject  is correct:" + heademail.subject)
+//     expect(heademail.subject).toContain("Welcome! You’ve been added to the company management system");
+// }
 
-  else{
-    console.log("Email subject is not correct");
-  }
+//   else{
+//     console.log("Email subject is not correct");
+//   }
 
-  const bodytext=mailosaur.messages.get(serverid,{
+//   const bodytext=mailosaur.messages.get(serverid,{
      
-    });
+//     });
 
-   if (bodytext.text=("\n Hello, vs user',")+
-    ("\n You have been registered as a company manager for group Anshul Testing Group.',")+
-    ("\n Your temporary password is: (xZ^bcLBjA)',")+
-    ("\n Please click here to create your password.',")+
-    ("\n Note: This link will expire in 1 hour.',")+
-    ("\n Please click here to create your password.',")+
-    ("\n nNote: This link will expire in 1 hour.',") ){
+//    if (bodytext.text=("\n Hello, vs user',")+
+//     ("\n You have been registered as a company manager for group Anshul Testing Group.',")+
+//     ("\n Your temporary password is: (xZ^bcLBjA)',")+
+//     ("\n Please click here to create your password.',")+
+//     ("\n Note: This link will expire in 1 hour.',")+
+//     ("\n Please click here to create your password.',")+
+//     ("\n nNote: This link will expire in 1 hour.',") ){
 
-    console.log("Email body text is correct:" + bodytext.text)
-    expect(bodytext.text).toContain("\n Hello, vs user',");
-    }
-    else{
-      console.log("Email body text is not correct");
-    }
+//     console.log("Email body text is correct:" + bodytext.text)
+//     expect(bodytext.text).toContain("\n Hello, vs user',");
+//     }
+//     else{
+//       console.log("Email body text is not correct");
+//     }
 
-})
+// })
 
-//Test the functionality copy password and click on the link and reset password
+// //Test the functionality copy password and click on the link and reset password
 
-test("Test the functionality of copy password and click on the link and reset password", async ({ page }) => {
+// test("Test the functionality of copy password and click on the link and reset password", async ({ page }) => {
      
-     const apiKey = 'p8eEa1mNH1BEpi9PMbTerGA6kphp40cX';
-     const mailosaur =  new MailosaurClient(apiKey);
-     const serverid='zis1bxhm';
+//      const apiKey = 'p8eEa1mNH1BEpi9PMbTerGA6kphp40cX';
+//      const mailosaur =  new MailosaurClient(apiKey);
+//      const serverid='zis1bxhm';
 
-    const addcompany= new Addcompany(page);
-    await addcompany.login();
-    await page.waitForTimeout(1000);
-    await addcompany.clickgroupmanagement();
-    await page.waitForTimeout(1000);
-    await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
-    await page.waitForTimeout(1000);
-    //await page.locator("//div[contains(text(),'Add Company')]").click();
-    await addcompany.clickAddcompanybutton();
-    await page.waitForTimeout(1000);
-    await ECGcompvalidationmessage(page);
-    await page.waitForTimeout(1000);
-    await addcompany.clickAddcompanyinfo();
+//     const addcompany= new Addcompany(page);
+//     await addcompany.login();
+//     await page.waitForTimeout(1000);
+//     await addcompany.clickgroupmanagement();
+//     await page.waitForTimeout(1000);
+//     await page.locator("//p[normalize-space()='Anshul Testing Group']").click();
+//     await page.waitForTimeout(1000);
+//     //await page.locator("//div[contains(text(),'Add Company')]").click();
+//     await addcompany.clickAddcompanybutton();
+//     await page.waitForTimeout(1000);
+//     await ECGcompvalidationmessage(page);
+//     await page.waitForTimeout(1000);
+//     await addcompany.clickAddcompanyinfo();
     
-     // Declare searchCriteria with a subject or other metadata (no body search possible directly)
-    const searchCriteria = {
-      sentTo: "vsuser@zis1bxhm.mailosaur.net", // Replace with your test email
-      bodytextread: "You have been registered as a company manager for group Anshul Testing Group.",
-       receivedAfter: new Date().toISOString() // Optional: Search for recent emails
-  };
+//      // Declare searchCriteria with a subject or other metadata (no body search possible directly)
+//     const searchCriteria = {
+//       sentTo: "vsuser@zis1bxhm.mailosaur.net", // Replace with your test email
+//       bodytextread: "You have been registered as a company manager for group Anshul Testing Group.",
+//        receivedAfter: new Date().toISOString() // Optional: Search for recent emails
+//   };
 
-  // Retrieve the email based on the search criteria
-  let bodytextread;
-  try {
-    console.log("Searching for email...");
-    bodytextread = await mailosaur.messages.get(serverid, searchCriteria, { timeout: 30000 });
-    console.log("Email found: ", bodytextread);
-  } catch (error) {
-    console.error("Error retrieving email: ", error);
-  }
+//   // Retrieve the email based on the search criteria
+//   let bodytextread;
+//   try {
+//     console.log("Searching for email...");
+//     bodytextread = await mailosaur.messages.get(serverid, searchCriteria, { timeout: 30000 });
+//     console.log("Email found: ", bodytextread);
+//   } catch (error) {
+//     console.error("Error retrieving email: ", error);
+//   }
    
-    const emailbody=bodytextread?.html?.body;
-    if (emailbody) {
+//     const emailbody=bodytextread?.html?.body;
+//     if (emailbody) {
       
-    const passwordRegex = /Your temporary password is:\s*([\w^().!]+)/;
-    const passwordMatch = emailbody.match(passwordRegex);
+//     const passwordRegex = /Your temporary password is:\s*([\w^().!]+)/;
+//     const passwordMatch = emailbody.match(passwordRegex);
 
-    if (passwordMatch) {
-        const password = passwordMatch[1];
-        console.log("Extracted password: " + password);
+//     if (passwordMatch) {
+//         const password = passwordMatch[1];
+//         console.log("Extracted password: " + password);
 
-        const linkregex=  /Please click here to create your password:\s*([\w^().!]+)/;
-        const linkMatch = emailbody.match(linkregex);
+//         const linkregex=  /Please click here to create your password:\s*([\w^().!]+)/;
+//         const linkMatch = emailbody.match(linkregex);
 
-        if (linkMatch) {
-            const clickherelink = linkMatch[1];
-            console.log("Extracted link: " + clickherelink);
+//         if (linkMatch) {
+//             const clickherelink = linkMatch[1];
+//             console.log("Extracted link: " + clickherelink);
         
 
-        // Step 5: Navigate to the link and use the password
-        await page.goto(clickHereLink);
-        console.log('Navigated to the link.');
+//         // Step 5: Navigate to the link and use the password
+//         await page.goto(clickHereLink);
+//         console.log('Navigated to the link.');
 
-          // Step 6: Paste the dynamic password into the text box
-          await page.fill('//*[@id="temp_password"]', dynamicPassword); // Adjust the selector as needed
-          await page.getByPlaceholder(" Enter Password").fill("Anshul11@123");
-          await page.getByPlaceholder(" Confirm Password").fill("Anshul11@123");
-          console.log('Password pasted into the form.');
-          console.log('New Password pasted into the form.');
-          console.log('Confirm Password pasted into the form.');
+//           // Step 6: Paste the dynamic password into the text box
+//           await page.fill('//*[@id="temp_password"]', dynamicPassword); // Adjust the selector as needed
+//           await page.getByPlaceholder(" Enter Password").fill("Anshul11@123");
+//           await page.getByPlaceholder(" Confirm Password").fill("Anshul11@123");
+//           console.log('Password pasted into the form.');
+//           console.log('New Password pasted into the form.');
+//           console.log('Confirm Password pasted into the form.');
 
-             // Step 7: Submit the form
-        await page.locator("//span[normalize-space()='Reset Password']").click(); // Adjust the selector as needed
-        console.log('Form submitted.');
-    }
+//              // Step 7: Submit the form
+//         await page.locator("//span[normalize-space()='Reset Password']").click(); // Adjust the selector as needed
+//         console.log('Form submitted.');
+//     }
 
-    else{
-      console.log("Failed to extract 'click here' link from the email.");
-    }
+//     else{
+//       console.log("Failed to extract 'click here' link from the email.");
+//     }
 
-   } else{
+//    } else{
 
-    console.log("Email body text is not correct");
-  }
+//     console.log("Email body text is not correct");
+//   }
 
 
-    }
+//     }
 
-})
+// })

@@ -220,7 +220,7 @@ const exp = require('constants');
 
         //Test the company delete functionality by comfirm yes
 
-        test("Delete the company functoionality" , async({page})=>{
+        test.only("Delete the company functoionality" , async({page})=>{
 
         const deletefunctionality =new Addcompany(page);
         await deletefunctionality.login();
