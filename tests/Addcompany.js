@@ -4,7 +4,7 @@ const{test , expect}= require('@playwright/test')
 
   
 
-class Addcompany extends Addgroup{}    
+class Addcompany extends Addgroup{    
     constructor(page){
     super(page); 
 
@@ -28,7 +28,7 @@ class Addcompany extends Addgroup{}
           if (await cancelclickbutton.isVisible()){
              await cancelclickbutton.click();
              await page.waitForTimeout(1000);
-          
+          }
           
             else if(crossclickbutton.isVisible()){
               await crossclickbutton.click();
