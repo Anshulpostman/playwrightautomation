@@ -4,7 +4,7 @@ const{test , expect}= require('@playwright/test')
 
   
 
-class Addcompany extends Addgroup{    
+class Addcompany extends Addgroup{  
     constructor(page){
     super(page); 
 
