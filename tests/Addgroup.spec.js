@@ -238,6 +238,16 @@ const  Addgroup = require('./Addgroup');
 
         // Search the group from the group dashboard
 
+        test("Test the functionality of testing the group in dashboard" , async({page})=>{
+
+       
+
+
+
+
+
+        })
+
               
              
                                   

@@ -5,9 +5,10 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
   myjob:
-    runs-on: Self-hosted
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -15,6 +16,9 @@ jobs:
           repository: Anshulpostman/playwrightautomation
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Fetch All Git History
+        run: git fetch --prune --unshallow
 
       - name: Install Dependencies
         run: npm install
@@ -26,24 +30,27 @@ jobs:
         id: changed-tests
         shell: powershell
         run: |
-          $CHANGED_FILES = git diff --name-only $env:GITHUB_EVENT_BEFORE $env:GITHUB_SHA | Select-String 'tests/' | ForEach-Object { $_.Line }
+          $CHANGED_FILES = git diff --name-only origin/${{ github.event.repository.default_branch }} | Select-String 'tests/' | ForEach-Object { $_.Line }
           if ($CHANGED_FILES) {
             echo "::set-output name=CHANGED_FILES::$CHANGED_FILES"
           } else {
             echo "::set-output name=CHANGED_FILES::"
           }
-        continue-on-error: true  # Prevent failure if no files are found
+        continue-on-error: true  
 
       - name: Debug Changed Files
         shell: powershell
         run: |
+          git diff --name-only origin/${{ github.event.repository.default_branch }}
           echo "Detected Changed Files: ${{ steps.changed-tests.outputs.CHANGED_FILES }}"
 
       - name: Run Only Changed Tests
-        if: steps.changed-tests.outputs.CHANGED_FILES != ''
+        if: steps.changed-tests.outputs.CHANGED_FILES != '' && steps.changed-tests.outputs.CHANGED_FILES != null
         shell: powershell
         run: |
-          echo "Running tests for changed files:"
-          echo "${{ steps.changed-tests.outputs.CHANGED_FILES }}"
           $files = "${{ steps.changed-tests.outputs.CHANGED_FILES }}" -split "\s+"
-          npx playwright test $files --reporter=html
+          if ($files.Count -gt 0) {
+            npx playwright test $files --reporter=html
+          } else {
+            echo "No test files changed. Skipping tests."
+          }
