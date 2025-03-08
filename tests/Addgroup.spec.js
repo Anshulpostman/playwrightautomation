@@ -238,7 +238,24 @@ const  Addgroup = require('./Addgroup');
 
         // Search the group from the group dashboard
 
-        test("Test the functionality of testing the group in dashboard" , async({page})=>{
+        test.only("Test the functionality of testing the group in dashboard" , async({page})=>{
+
+            const searchgroup=new Addgroup(page);
+            await searchgroup.login();
+            await searchgroup.clickgroupmanagement();
+            await page.locator("//input[@placeholder=' | Search Group']").fill("Anshul");
+            await page.keyboard.press('Enter');
+           const text= await page.getByText("Anshul").first();
+           await text.waitFor({ state: "visible" }); 
+           const textsave=await text.textContent();
+           if(textsave.includes('Anshul')){
+            console.log("Seraching is working correct", + textsave)
+            expect(text).toBeTruthy();
+           }
+           else{
+            console.log("serahing is not working correct")
+           }
+           
 
        
 
