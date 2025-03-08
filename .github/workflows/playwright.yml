@@ -17,8 +17,14 @@ jobs:
           ref: main
           token: ${{ secrets.PAT_TOKEN }}
 
-      - name: Fetch All Git History
-        run: powershell -ExecutionPolicy Bypass -Command "git fetch --prune --unshallow"
+      - name: Set PowerShell Execution Policy
+        run: Set-ExecutionPolicy Bypass -Scope Process -Force
+        shell: pwsh
+        
+      - name: Fetch Git Repo
+        run: git fetch --prune --unshallow
+        shell: pwsh
+        
 
 
       - name: Install Dependencies
