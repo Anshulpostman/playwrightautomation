@@ -18,7 +18,8 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: Fetch All Git History
-        run: git fetch --prune --unshallow
+        run: powershell -ExecutionPolicy Bypass -Command "git fetch --prune --unshallow"
+
 
       - name: Install Dependencies
         run: npm install
