@@ -238,7 +238,7 @@ const  Addgroup = require('./Addgroup');
 
         // Search the group from the group dashboard
 
-        test.only("Test the functionality of testing the group in dashboard" , async({page})=>{
+        test("Test the functionality of testing the group in dashboard" , async({page})=>{
 
             const searchgroup=new Addgroup(page);
             await searchgroup.login();
@@ -254,7 +254,7 @@ const  Addgroup = require('./Addgroup');
            }
            else{
             console.log("serahing is not working correct")
-           }
+           }                                 
            
 
        

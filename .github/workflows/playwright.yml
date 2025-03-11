@@ -7,9 +7,12 @@ on:
     branches: [ main, master ]
 
 jobs:
-  myjob:
-    runs-on: self-hosted
+  my-job:
+    runs-on:  self-hosted  # Ensure this matches your runner label
     steps:
+      - name: Print Runner Info
+        run: echo "Runner is active!"
+    
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
